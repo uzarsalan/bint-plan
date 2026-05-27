@@ -1,0 +1,345 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Повторные продажи" currentSlug="/7-retention">
+
+<style is:global></style>
+
+<section class="border-t border-slate-200">
+
+  <!-- HEADER -->
+  <div class="bg-gradient-to-br from-orange-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-8 py-16">
+      <div class="flex items-center gap-3 text-sm text-orange-700 font-semibold mb-4">
+        <span class="px-3 py-1 bg-orange-100 rounded-full">Направление 7</span>
+        <span class="text-xs uppercase tracking-wider bg-gradient-to-r from-orange-500 to-amber-500 text-white px-2 py-0.5 rounded">Главный недоиспользованный актив</span>
+      </div>
+      <h2 class="text-5xl font-bold tracking-tight max-w-4xl">Повторные продажи и рассылки</h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-3xl">54% розничной выручки уже сейчас — повторные покупки. <strong>33% покупателей возвращаются органически</strong>, без email-рассылок и программы лояльности. Если научиться удерживать систематически, эта доля может вырасти до 50-60%, а LTV покупателя — в 2 раза.</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="max-w-6xl mx-auto px-8 py-12 space-y-12">
+
+    <!-- ГЛАВНЫЕ ЦИФРЫ -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">Выручки повторные</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">54%</div>
+        <div class="text-xs text-slate-500 mt-1">426k из 787k за 12 мес — БД</div>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">Покупателей возвращаются</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">33%</div>
+        <div class="text-xs text-slate-500 mt-1">44 из 135 уникальных</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Email-рассылок</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">0</div>
+        <div class="text-xs text-slate-500 mt-1">канал не активирован</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Программа лояльности</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">нет</div>
+        <div class="text-xs text-slate-500 mt-1">скидок и баллов покупателю не возвращается</div>
+      </div>
+    </div>
+
+    <!-- ФАКТЫ ИЗ БД -->
+    <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-6">
+      <h3 class="font-bold text-lg text-emerald-900 mb-2">Что показала БД сайта по retention</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+        <div class="bg-white rounded-lg p-4">
+          <div class="text-xs font-bold uppercase text-slate-500 mb-2">За весь период наблюдения</div>
+          <table class="w-full text-sm">
+            <tr><td class="py-1">Уникальных покупателей с оплат.</td><td class="text-right font-bold">157</td></tr>
+            <tr><td class="py-1">Купили 1 раз</td><td class="text-right">91 (58%)</td></tr>
+            <tr class="text-emerald-700 font-semibold"><td class="py-1">Купили 2+ раз</td><td class="text-right">44 (32%)</td></tr>
+            <tr><td class="py-1">Купили 3+ раз</td><td class="text-right text-emerald-700 font-semibold">~15</td></tr>
+            <tr class="border-t"><td class="py-1 font-bold">Выручка с первичных</td><td class="text-right font-bold">361 062 ₽</td></tr>
+            <tr class="text-emerald-700"><td class="py-1 font-bold">Выручка с повторных</td><td class="text-right font-bold">426 344 ₽</td></tr>
+          </table>
+        </div>
+        <div class="bg-white rounded-lg p-4">
+          <div class="text-xs font-bold uppercase text-slate-500 mb-2">Что это значит</div>
+          <ul class="text-sm text-slate-700 space-y-1.5">
+            <li>• <strong>33% retention органически</strong> — это уже хороший показатель для российского e-commerce (норма 20-30%)</li>
+            <li>• Каждый повторный покупатель покупает в среднем <strong>2-3 раза</strong>, давая ~9 700 ₽ LTV</li>
+            <li>• Первичный покупатель — в среднем 1 покупка × 3 970 ₽ = 3 970 ₽ LTV</li>
+            <li>• <strong>Разница LTV ×2.5</strong> — каждый удержанный покупатель в 2.5 раза ценнее</li>
+            <li>• 12 visits «из рассылки» за 9 мес (Я.Метрика) — канал email-рассылок практически не работает</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- РАСПРЕДЕЛЕНИЕ ВЫРУЧКИ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Доля повторных в общей выручке (12 мес)</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="revenueShareChart"></div>
+        <p class="text-xs text-slate-500 mt-4">При том что повторных покупателей всего 33% от базы, они приносят 54% всей выручки — потому что покупают регулярно. Это работает <strong>сейчас органически</strong>. Если добавить систематическую работу, можно довести до 65-70%.</p>
+      </div>
+    </div>
+
+    <!-- ЧТО ДЕЛАЕМ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что делаем — 5 каналов работы с клиентом</div>
+      <div class="space-y-3">
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">1</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Email-маркетинг — unisender или sendpulse</div>
+            <div class="text-sm text-slate-700 mb-3">Подключаем сервис email-рассылок, импортируем 157 контактов покупателей и 409 пользователей сайта. Готовим базовый шаблон писем под бренд.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• Сегментация базы: покупатели / зарегистрированные но не купившие / подписчики через форму на сайте</li>
+              <li>• Шаблон письма с логотипом, фирменными цветами, отписочной ссылкой (152-ФЗ обязателен)</li>
+              <li>• Подключение через API к Django для автоматических триггеров</li>
+              <li>• Корпоративный домен для отправки + настройка SPF, DKIM, DMARC (не попадать в спам)</li>
+            </ul>
+            <div class="mt-3 text-xs text-amber-700 font-semibold">Внешний расход: unisender 5-10 тыс. ₽/мес + домен почты ~500 ₽/год</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">2</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Триггерные цепочки писем</div>
+            <div class="text-sm text-slate-700 mb-3">Автоматические письма по событиям. Запускаются один раз, работают постоянно — главный источник retention.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>Брошенная корзина</strong> — через 1ч после ухода: «Вы забыли товары» + список + ссылка на корзину. Требует Этап 0b (cart event)</li>
+              <li>• <strong>После покупки (+0)</strong> — благодарность + подтверждение заказа + ссылка на отслеживание</li>
+              <li>• <strong>После доставки (+14 дней)</strong> — «Как вам товар? Оставьте отзыв» + промокод 5% на следующий заказ</li>
+              <li>• <strong>Реактивация (+90 дней)</strong> — «Не пора ли пополнить запасы?» + актуальные товары + персональный промокод</li>
+              <li>• <strong>Поздравление с днём рождения</strong> (если дата собирается) + промокод 10%</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">3</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Программа лояльности — кешбэк баллами</div>
+            <div class="text-sm text-slate-700 mb-3">Простая механика: 5% от заказа возвращается баллами. 1 балл = 1 ₽. Баллы можно потратить на следующий заказ.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• Личный кабинет покупателя с балансом баллов и историей начислений</li>
+              <li>• Автоматическое начисление после оплаты заказа</li>
+              <li>• Уведомление по email когда накопилось 500+ баллов («Время потратить»)</li>
+              <li>• Срок жизни баллов — 12 мес (стимулирует возврат)</li>
+              <li>• Возможность ограничения 30-50% оплаты заказа баллами (чтобы покупали хотя бы половину деньгами)</li>
+              <li>• <strong>Дополнительно:</strong> бонусы за регистрацию (100 баллов), за день рождения (200), за приведённого друга (300)</li>
+            </ul>
+            <div class="mt-3 text-xs text-orange-700 font-semibold">Работа: 30-50k разово на Django-разработку + 10k/мес поддержки</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">4</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Сегментация базы и регулярная рассылка</div>
+            <div class="text-sm text-slate-700 mb-3">Раз в месяц — тематическая рассылка по сегментам, не общий спам всем подряд.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>Покупатели чулков</strong> — рассылка про новые модели, статьи про варикоз и реабилитацию</li>
+              <li>• <strong>Покупатели бандажей</strong> — рассылка про беременность и послеродовое восстановление</li>
+              <li>• <strong>Покупатели бинтов</strong> — рассылка для спортсменов и людей с лимфостазом</li>
+              <li>• <strong>Подписчики без покупок</strong> — мягкая «прогревающая» серия с пользой и социальными доказательствами</li>
+              <li>• Каждое письмо включает 1-2 актуальных товара + статья из блога + промокод</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">5</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Email после первого заказа — главная воронка</div>
+            <div class="text-sm text-slate-700 mb-3">Из 91 первичного покупателя превращаются в постоянных пока единицы. Серия писем после первой покупки — самая важная точка работы с retention.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>+0 дней:</strong> подтверждение заказа, инструкция по использованию, контакт менеджера для вопросов</li>
+              <li>• <strong>+3 дня:</strong> «Как использовать правильно» — видео или статья с инструкцией для купленного типа товара</li>
+              <li>• <strong>+14 дней:</strong> «Поделитесь впечатлениями» + промокод на следующий заказ</li>
+              <li>• <strong>+30 дней:</strong> «Связанные товары» — что обычно покупают вместе с тем что купил клиент (cross-sell)</li>
+              <li>• <strong>+60 дней:</strong> «Время обновить?» — для расходников (бинты, гольфы) которые изнашиваются</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ПРОГНОЗ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Прогноз — выручка от повторных покупок</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="growthChart"></div>
+        <p class="text-xs text-slate-500 mt-4">База: сейчас 426 тыс. ₽/год от повторных или 36 тыс. ₽/мес. С систематической работой — рост в 2.5-3 раза за 12 мес за счёт: ×1.5 retention (33% → 50%), ×1.5 частоты покупок (2.5 → 3.5 за год), ×1.15 среднего чека (cross-sell).</p>
+      </div>
+    </div>
+
+    <!-- БЮДЖЕТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Бюджет</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Срок до эффекта</div>
+          <div class="text-3xl font-bold mt-2">2-4 мес</div>
+          <div class="text-sm text-slate-500 mt-2">Триггерные цепочки работают с первого месяца. Полный эффект — после накопления базы.</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Работа</div>
+          <div class="text-3xl font-bold mt-2 text-orange-700">50-80 тыс. ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">email-маркетолог 20-30 ч + Django-разработка цепочек и кабинета лояльности</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Сервисы</div>
+          <div class="text-3xl font-bold mt-2 text-amber-700">10-15 тыс. ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">unisender / sendpulse подписка + корпоративный домен почты</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ОКУПАЕМОСТЬ -->
+    <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-200">
+      <div class="flex items-start gap-4">
+        <div class="text-4xl">🔄</div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-emerald-900">Окупаемость</h3>
+          <p class="mt-2 text-emerald-800 leading-relaxed">
+            <strong>На существующей базе:</strong> 157 покупателей × +0.5 повторной покупки × 3 500 ₽ = +275 тыс. ₽/год дополнительно за счёт реактивации тех кого уже привлекли.
+            <br><br>
+            <strong>На приросте retention:</strong> +17% покупателей в категорию «вернулись» (33% → 50%) × LTV-разница 5 700 ₽ = +50-150 тыс. ₽/мес через 6-12 мес.
+            <br><br>
+            <strong>Главный множитель — для всех остальных направлений:</strong> Реклама, SEO, AI-поиск окупаются на LTV покупателя, не на первой продаже. Без retention CPA рекламы и стоимость SEO-привлечения не окупаются. С retention — окупаются в 2-3 раза быстрее.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЗАВИСИМОСТИ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border-l-4 border-amber-400 bg-amber-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-amber-800 uppercase tracking-wider mb-2">Требует</div>
+        <div class="font-semibold text-amber-900">Этап 0b — настройка аналитики</div>
+        <div class="text-sm text-amber-800 mt-1">Без cart-события невозможна цепочка «брошенная корзина». Без UTM-меток на письмах нельзя измерять эффект рассылок.</div>
+        <div class="font-semibold text-amber-900 mt-3">Направление 4 (CRO)</div>
+        <div class="text-sm text-amber-800 mt-1">Не критично, но без перенос отзывов с WB триггер «оставьте отзыв через 14 дней» работает в полсилы.</div>
+      </div>
+      <div class="border-l-4 border-indigo-400 bg-indigo-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-indigo-800 uppercase tracking-wider mb-2">Усиливает</div>
+        <div class="font-semibold text-indigo-900">Все направления привлечения трафика</div>
+        <div class="text-sm text-indigo-800 mt-1">Реклама, SEO, AI-поиск — это всё привлечение нового покупателя. Без retention каждый новый покупатель — одна покупка и забыт. С retention — LTV ×2.5, и каждый рубль на привлечение окупается в 2-3 раза быстрее.</div>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что отслеживаем</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Метрика</th>
+              <th class="text-center p-3 font-semibold">Сейчас</th>
+              <th class="text-center p-3 font-semibold">+3 мес</th>
+              <th class="text-center p-3 font-semibold">+6 мес</th>
+              <th class="text-center p-3 font-semibold">+12 мес</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="p-3">База подписчиков</td><td class="text-center">409</td><td class="text-center">500-700</td><td class="text-center">800-1200</td><td class="text-center font-bold text-emerald-700">1500-2500</td></tr>
+            <tr><td class="p-3">Доля покупателей вернувшихся</td><td class="text-center">33%</td><td class="text-center">38%</td><td class="text-center">45%</td><td class="text-center font-bold text-emerald-700">50-55%</td></tr>
+            <tr><td class="p-3">Средний LTV покупателя</td><td class="text-center">5 800 ₽</td><td class="text-center">6 500 ₽</td><td class="text-center">8 000 ₽</td><td class="text-center font-bold text-emerald-700">10 000+ ₽</td></tr>
+            <tr><td class="p-3">Open rate писем</td><td class="text-center">—</td><td class="text-center">25-30%</td><td class="text-center">30-35%</td><td class="text-center font-bold text-emerald-700">35-40%</td></tr>
+            <tr><td class="p-3">CR письма → заказ</td><td class="text-center">—</td><td class="text-center">1-2%</td><td class="text-center">2-3%</td><td class="text-center font-bold text-emerald-700">3-5%</td></tr>
+            <tr class="bg-emerald-50"><td class="p-3 font-bold">Выручка с повторных/мес</td><td class="text-center font-semibold">~36k</td><td class="text-center font-semibold">50-70k</td><td class="text-center font-semibold">80-120k</td><td class="text-center font-bold text-emerald-700">120-180k</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex gap-3 pt-4">
+      <button class="px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700">Обсудить направление</button>
+      <button class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold hover:bg-slate-50">Запросить детальный план триггеров</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Подсказка -->
+<div class="bg-slate-100 py-4">
+  <div class="max-w-6xl mx-auto px-8 text-sm text-slate-500">
+    <strong>Прототип Направления 7 с реальными данными.</strong> БД сайта на 21 мая 2026: 157 уникальных оплаченных покупателей за весь период, из них 44 (28%) с 2+ оплатами, дающих 54% всей выручки (426 344 ₽ vs 361 062 ₽). Я.Метрика 33517108 — 12 visits «из рассылки» за 9 мес.
+  </div>
+</div>
+
+<script>
+// ДОЛЯ ПОВТОРНЫХ В ВЫРУЧКЕ — donut
+new ApexCharts(document.querySelector('#revenueShareChart'), {
+  chart: { type: 'donut', height: 300, toolbar: { show: false } },
+  series: [361062, 426344],
+  labels: ['Первичные покупки (91 чел.)', 'Повторные покупки (44 чел.)'],
+  colors: ['#94a3b8', '#fb923c'],
+  legend: { position: 'bottom', fontSize: '12px' },
+  plotOptions: {
+    pie: {
+      donut: {
+        size: '60%',
+        labels: {
+          show: true,
+          total: { show: true, label: 'Всего за период', formatter: () => '787 406 ₽' }
+        }
+      }
+    }
+  },
+  dataLabels: { formatter: (v, opt) => {
+    return (opt.w.config.series[opt.seriesIndex]/1000).toFixed(0) + 'k ₽ (' + v.toFixed(0) + '%)';
+  } }
+}).render();
+
+// ПРОГНОЗ выручки от повторных — range area
+new ApexCharts(document.querySelector('#growthChart'), {
+  chart: { type: 'rangeArea', height: 320, toolbar: { show: false } },
+  series: [
+    {
+      name: 'Диапазон',
+      type: 'rangeArea',
+      data: [
+        { x: 'Сейчас', y: [36000, 36000] },
+        { x: '+1 мес', y: [40000, 50000] },
+        { x: '+3 мес', y: [50000, 70000] },
+        { x: '+6 мес', y: [80000, 120000] },
+        { x: '+9 мес', y: [100000, 150000] },
+        { x: '+12 мес', y: [120000, 180000] }
+      ]
+    },
+    {
+      name: 'Средняя оценка',
+      type: 'line',
+      data: [
+        { x: 'Сейчас', y: 36000 },
+        { x: '+1 мес', y: 45000 },
+        { x: '+3 мес', y: 60000 },
+        { x: '+6 мес', y: 100000 },
+        { x: '+9 мес', y: 125000 },
+        { x: '+12 мес', y: 150000 }
+      ]
+    }
+  ],
+  stroke: { curve: 'smooth', width: [0, 3] },
+  colors: ['#fb923c', '#ea580c'],
+  fill: { opacity: [0.25, 1] },
+  markers: { size: [0, 6], strokeWidth: 2, strokeColors: '#fff', colors: ['#fb923c', '#ea580c'] },
+  xaxis: { categories: ['Сейчас', '+1 мес', '+3 мес', '+6 мес', '+9 мес', '+12 мес'] },
+  yaxis: {
+    title: { text: 'Выручка от повторных ₽/мес' },
+    labels: { formatter: v => (v/1000).toFixed(0) + ' тыс.' }
+  },
+  grid: { borderColor: '#e2e8f0' },
+  legend: { position: 'top' },
+  tooltip: { y: { formatter: v => v.toLocaleString('ru-RU') + ' ₽' } }
+}).render();
+</script>
+
+</Base>

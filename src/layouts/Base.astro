@@ -1,0 +1,94 @@
+---
+export interface Props {
+  title: string;
+  currentSlug?: string;
+}
+const { title, currentSlug } = Astro.props;
+
+const directions = [
+  { slug: '/', label: 'Дашборд', short: 'Дашборд', full: 'Дашборд-симулятор', color: 'emerald' },
+  { slug: '/0a-brand', label: 'Бренд', short: '0a', full: 'Брендовая защита', color: 'indigo' },
+  { slug: '/0b-analytics', label: 'Аналитика', short: '0b', full: 'Аналитика Я.Метрики', color: 'indigo' },
+  { slug: '/1-seo', label: 'SEO', short: '1', full: 'SEO для покупателей', color: 'sky' },
+  { slug: '/2-b2b', label: 'B2B', short: '2', full: 'Digital B2B', color: 'orange' },
+  { slug: '/3-ads', label: 'Реклама', short: '3', full: 'Реклама (Я.Директ + VK)', color: 'cyan' },
+  { slug: '/4-cro', label: 'Конверсия', short: '4', full: 'Конверсия и чекаут', color: 'purple' },
+  { slug: '/6-eeat', label: 'AI + Авторитет', short: '6', full: 'Авторитетность + AI-поиск', color: 'violet' },
+  { slug: '/7-retention', label: 'Retention', short: '7', full: 'Повторные продажи + рассылки', color: 'orange' }
+];
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} — план развития bint.ru</title>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <style is:global>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif; background: #fafbff; }
+  </style>
+</head>
+<body class="text-slate-800">
+  <!-- ШАПКА НАВИГАЦИИ -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
+      <a href="/" class="flex-shrink-0">
+        <div class="text-xs text-slate-500 uppercase tracking-wider font-semibold">План развития</div>
+        <div class="text-base font-bold">bint.ru</div>
+      </a>
+      <nav class="flex-1 overflow-x-auto">
+        <div class="flex gap-0.5 text-sm">
+          {directions.map(d => (
+            <a href={d.slug}
+               title={d.full}
+               class:list={[
+                 'px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-all flex items-center gap-1',
+                 currentSlug === d.slug
+                   ? 'bg-slate-900 text-white font-semibold'
+                   : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+               ]}>
+              {d.slug !== '/' && <span class="font-mono text-[10px] opacity-60">{d.short}</span>}
+              <span class="text-xs font-medium">{d.label}</span>
+            </a>
+          ))}
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <!-- ФУТЕР -->
+  <footer class="border-t border-slate-200 bg-slate-50 mt-16">
+    <div class="max-w-7xl mx-auto px-6 py-8 text-sm text-slate-500">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <div class="font-semibold text-slate-700 mb-2">План v2 для bint.ru</div>
+          <p class="text-xs">Презентация направлений цифрового маркетинга с реальными данными из БД сайта, Я.Метрики, Wordstat и Я.Вебмастера.</p>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-700 mb-2">Направления</div>
+          <ul class="space-y-1 text-xs">
+            {directions.slice(1).map(d => (
+              <li><a href={d.slug} class="hover:text-slate-900 hover:underline">{d.short} · {d.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold text-slate-700 mb-2">Источники данных</div>
+          <ul class="space-y-1 text-xs">
+            <li>Я.Метрика счётчик 33517108</li>
+            <li>БД сайта (Django + PostgreSQL)</li>
+            <li>Я.Вебмастер API</li>
+            <li>Я.Вордстат (прямая выгрузка)</li>
+            <li>Live-выдача Яндекса (Москва, регион 213)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

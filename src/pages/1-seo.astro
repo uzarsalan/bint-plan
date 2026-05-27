@@ -1,0 +1,505 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="SEO для покупателей" currentSlug="/1-seo">
+
+<style is:global>
+  .dom-pill { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 3px; }
+  .pill-bint { background: #d1fae5; color: #065f46; }
+  .pill-apt { background: #fef3c7; color: #78350f; }
+  .pill-spec { background: #dbeafe; color: #1e3a8a; }
+  .pill-other { background: #f1f5f9; color: #475569; }</style>
+
+<section class="border-t border-slate-200">
+
+  <!-- HEADER -->
+  <div class="bg-gradient-to-br from-sky-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-8 py-16">
+      <div class="flex items-center gap-3 text-sm text-sky-700 font-semibold mb-4">
+        <span class="px-3 py-1 bg-sky-100 rounded-full">Направление 1</span>
+        <span class="text-xs uppercase tracking-wider bg-gradient-to-r from-sky-500 to-cyan-500 text-white px-2 py-0.5 rounded">Главный фронт · 6-12 месяцев</span>
+      </div>
+      <h2 class="text-5xl font-bold tracking-tight max-w-4xl">SEO для покупателей</h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-3xl">Когда человек ищет в Яндексе «купить компрессионные чулки» — bint.ru <strong>не показывается</strong>. Весь коммерческий трафик уходит к аптекам и специализированным магазинам. Задача — попасть в выдачу по 50-80 коммерческим запросам и забрать оттуда десятки тысяч заходов.</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="max-w-6xl mx-auto px-8 py-12 space-y-12">
+
+    <!-- ГЛАВНЫЕ ЦИФРЫ -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">/shop/ сейчас</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">~600</div>
+        <div class="text-xs text-slate-500 mt-1">заходов/мес (1.2% от всего)</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">В топ-500 коммерческих</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">0</div>
+        <div class="text-xs text-slate-500 mt-1">из 500 проверенных коммерческих запросов</div>
+      </div>
+      <div class="bg-white rounded-xl border border-sky-300 p-5">
+        <div class="text-xs text-sky-700 uppercase">Ёмкость рынка</div>
+        <div class="text-3xl font-bold mt-1 text-sky-700">~2 200</div>
+        <div class="text-xs text-slate-500 mt-1">точных запросов/мес по основным категориям</div>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">Цель через 12 мес</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">50-70k</div>
+        <div class="text-xs text-slate-500 mt-1">заходов/мес в /shop/</div>
+      </div>
+    </div>
+
+    <!-- КТО СТОИТ ВМЕСТО BINT.RU -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Что Яндекс показывает по коммерческим запросам · 21 мая 2026</div>
+      <div class="text-xs text-slate-500 mb-6">Первые три сайта в обычной выдаче. <span class="dom-pill pill-bint">bint.ru</span> <span class="dom-pill pill-apt">аптеки</span> <span class="dom-pill pill-spec">специализированные магазины</span> <span class="dom-pill pill-other">прочие</span></div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-4 font-semibold">Запрос</th>
+              <th class="text-right p-4 font-semibold">Запросов в месяц</th>
+              <th class="text-center p-4 font-semibold">Место bint.ru</th>
+              <th class="text-left p-4 font-semibold">Первая тройка</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr class="bg-rose-50">
+              <td class="p-4 font-medium">купить компрессионные чулки</td>
+              <td class="p-4 text-right">1 394</td>
+              <td class="p-4 text-center"><span class="inline-block bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded">ниже 15-го</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-other">1. yabs (реклама)</span>
+                <span class="dom-pill pill-apt">2. apteka.ru</span>
+                <span class="dom-pill pill-apt">3. apteka.ru</span>
+              </td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="p-4 font-medium">эластичный бинт купить</td>
+              <td class="p-4 text-right">523</td>
+              <td class="p-4 text-center"><span class="inline-block bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded">ниже 15-го</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. gorzdrav.org</span>
+                <span class="dom-pill pill-other">2. yabs (реклама)</span>
+                <span class="dom-pill pill-apt">3. apteka.ru</span>
+                <div class="text-xs text-rose-700 mt-1">🔴 Bint — производитель эластичных бинтов (топ-категория на WB), а в коммерческой выдаче не виден.</div>
+              </td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="p-4 font-medium">бандаж купить</td>
+              <td class="p-4 text-right">~400</td>
+              <td class="p-4 text-center"><span class="inline-block bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded">ниже 15-го</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. stolichki.ru</span>
+                <span class="dom-pill pill-apt">2. uteka.ru</span>
+                <span class="dom-pill pill-other">3. yabs (реклама)</span>
+              </td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="p-4 font-medium">компрессионный трикотаж купить</td>
+              <td class="p-4 text-right">210</td>
+              <td class="p-4 text-center"><span class="inline-block bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded">ниже 15-го</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">аптеки</span>
+                <span class="dom-pill pill-spec">medi-salon.ru</span>
+                <span class="dom-pill pill-spec">orteka.ru</span>
+              </td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="p-4 font-medium">компрессионные колготки купить</td>
+              <td class="p-4 text-right">82</td>
+              <td class="p-4 text-center"><span class="inline-block bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded">ниже 15-го</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">аптеки</span>
+                <span class="dom-pill pill-spec">medi-salon.ru</span>
+                <span class="dom-pill pill-spec">veno-art.ru</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 p-4 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-900">
+        <strong>Из Я.Вебмастера за неделю:</strong> по 2 832 запросам где сайт хоть как-то показался, <strong>только 1 коммерческий</strong> запрос с «купить» («какие компрессионные гольфы купить в самолёт» — 3 показа, поз. 7.3, 0 кликов). По остальным сотням коммерческих запросов bint.ru ниже 50-го места.
+      </div>
+    </div>
+
+    <!-- КОНКУРЕНТЫ -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <h3 class="font-bold text-lg mb-1">Кто забирает коммерческий трафик</h3>
+        <p class="text-sm text-slate-600 mb-4">Сравнение органических заходов в месяц. bint.ru в самом низу — потолок легко обогнать medi-salon (специализированный конкурент).</p>
+        <div id="competitorsBar"></div>
+      </div>
+      <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6">
+        <h3 class="font-bold text-lg mb-1">Два типа перехватчиков</h3>
+        <p class="text-sm text-slate-600 mb-4">По всем проверенным запросам топ-10 делят между собой две группы. С обеими можно конкурировать, но по-разному.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <div class="text-xs font-bold uppercase text-amber-700 mb-2">Аптеки и агрегаторы</div>
+            <div class="text-sm space-y-1">
+              <div class="font-semibold">apteka.ru, gorzdrav.org, stolichki.ru, uteka.ru, eapteka.ru, rigla.ru, zdravcity.ru, planetazdorovo.ru</div>
+              <p class="text-xs text-amber-900 mt-2">Огромные сайты с десятками тысяч SKU. Бить в общую категорию невозможно. <strong>Стратегия:</strong> уходить в длинный хвост («компрессионные чулки 1 класса для родов», «эластичный бинт средней растяжимости 5 м») — там аптек нет.</p>
+            </div>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <div class="text-xs font-bold uppercase text-blue-700 mb-2">Специализированные магазины</div>
+            <div class="text-sm space-y-1">
+              <div class="font-semibold">medi-salon.ru (236k visits), ortix.ru (170k), orteka.ru (990k), veno-art.ru, medtehno.ru</div>
+              <p class="text-xs text-blue-900 mt-2">Это прямой конкурент. У них преимущество — давно в выдаче. <strong>Стратегия:</strong> наш аргумент — «купить у производителя без посредников» (своя ниша среди агрегаторов).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- РЕШЕНИЕ: HUB-СТРАНИЦЫ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что делаем — hub-страницы под коммерческие запросы</div>
+      <p class="text-sm text-slate-600 mb-6 max-w-4xl">Сейчас на сайте только товарные карточки. Нет страниц-витрин под коммерческие запросы. Создаём 40-60 hub-страниц, каждая под свой пучок запросов.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+          <div class="text-xs font-bold text-slate-500 mb-2 uppercase">Что есть сейчас по «купить компрессионные чулки 2 класса»</div>
+          <div class="bg-white rounded p-3 border border-slate-200 text-xs space-y-2">
+            <div>Нет страницы-витрины под этот запрос.</div>
+            <div>Есть товарная карточка одного товара — «Чулки Элеганс 2 класс» (по адресу <code class="text-[10px] bg-slate-100 px-1">/shop/chulki/protivovarikoznye/chulki-elegans-...</code>) — но Яндекс её не показывает по общему запросу.</div>
+            <div class="text-rose-600 font-semibold pt-2 border-t">❌ Когда пользователь ищет «купить компрессионные чулки 2 класса» — ему нечего показать. Витрина-страница «Компрессионные чулки 2 класс» отсутствует.</div>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 rounded-lg p-4 border-2 border-emerald-300">
+          <div class="text-xs font-bold text-emerald-700 mb-2 uppercase">Будет: hub-страница</div>
+          <div class="bg-white rounded p-3 border border-slate-200 text-xs space-y-2">
+            <div class="font-bold">Компрессионные чулки 2 класса — каталог производителя ТМ Интекс</div>
+            <div class="text-[10px] text-emerald-600">bint.ru/kompressionnye-chulki/2-klass-kompressii/</div>
+            <div class="border-t pt-2 space-y-1">
+              <div>📖 <strong>Что внутри</strong> — каталог всех чулков 2 класса (8-12 моделей), фильтры по типу (классические / госпитальные / антиэмболические / Элеганс / Универсал)</div>
+              <div>📋 <strong>Контентный блок</strong> — кому подходит 2 класс компрессии (показания, противопоказания), как подобрать размер, чем 2 класс отличается от 1 и 3</div>
+              <div>❓ <strong>FAQ</strong>: «Можно ли носить ночью», «Сколько часов в день», «Как стирать»</div>
+              <div>🔗 <strong>Перелинковка</strong> со статей блога («Какой класс компрессии выбрать» и т.п.)</div>
+              <div>⭐ <strong>Отзывы</strong> с WB по этой категории</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- КАРТА HUB-СТРАНИЦ -->
+    <div class="bg-gradient-to-br from-sky-50 to-white border-2 border-sky-200 rounded-2xl p-8">
+      <div class="text-xs font-bold uppercase text-sky-700 mb-2">Карта 40-60 hub-страниц на 12 месяцев</div>
+      <h3 class="text-2xl font-bold mb-4">По категориям и подкатегориям</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="font-bold text-sky-700 mb-2">Чулки и колготки (12-15 страниц)</div>
+          <ul class="space-y-1 text-slate-700 text-xs">
+            <li>• Компрессионные чулки 1 класса</li>
+            <li>• Компрессионные чулки 2 класса</li>
+            <li>• Компрессионные чулки 3 класса</li>
+            <li>• Антиэмболические чулки</li>
+            <li>• Госпитальные чулки</li>
+            <li>• Чулки для родов / операций</li>
+            <li>• Компрессионные колготки 1/2 класса</li>
+            <li>• Колготки для беременных</li>
+            <li>• Колготки от варикоза</li>
+            <li>• Гольфы 1/2 класса</li>
+            <li>• Чулки мужские</li>
+            <li>• Чулки на широкое бедро</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="font-bold text-sky-700 mb-2">Бинты (10-12 страниц)</div>
+          <ul class="space-y-1 text-slate-700 text-xs">
+            <li>• Эластичные бинты</li>
+            <li>• Бинты средней растяжимости</li>
+            <li>• Бинты длинной растяжимости</li>
+            <li>• Бинты с застёжкой</li>
+            <li>• Трубчатые бинты №1-7</li>
+            <li>• Сетчатые бинты</li>
+            <li>• Когезивные бинты</li>
+            <li>• Бинты при варикозе</li>
+            <li>• Бинты для спорта</li>
+            <li>• Бинты после операций</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4">
+          <div class="font-bold text-sky-700 mb-2">Бандажи и пояса (12-15 страниц)</div>
+          <ul class="space-y-1 text-slate-700 text-xs">
+            <li>• Бандаж послеоперационный</li>
+            <li>• Бандаж для беременных</li>
+            <li>• Бандаж послеродовой</li>
+            <li>• Бандаж паховый</li>
+            <li>• Бандаж брюшной</li>
+            <li>• Пояс эластичный для спины</li>
+            <li>• Пояс при радикулите</li>
+            <li>• Пояс согревающий</li>
+            <li>• Корсет грудно-поясничный</li>
+            <li>• Наколенники</li>
+            <li>• Налокотники</li>
+            <li>• Голеностопные ортезы</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-6 bg-sky-100 rounded-lg p-4 text-sm text-sky-900">
+        <strong>Принцип:</strong> каждая hub-страница покрывает одну подкатегорию + пучок связанных запросов («1 класс компрессии», «купить», «цена», «производитель», «доставка»). Большая часть — длинный хвост, где конкуренция слабая.
+      </div>
+    </div>
+
+    <!-- ПЕРЕЛИНКОВКА БЛОГ → SHOP -->
+    <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6">
+      <h3 class="font-bold text-lg mb-2">+ Перелинковка из блога</h3>
+      <p class="text-sm text-slate-700 mb-4">Блог даёт 95% всего трафика (~412 тыс. визитов за 9 мес). Сейчас оттуда <strong>никто не идёт</strong> в магазин: 0 заказов из поиска по самоанкете покупателей. Из топ-20 статей блога — поставить ссылки на новые hub-страницы.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div class="bg-white rounded-lg p-3 border border-slate-200">
+          <div class="font-bold mb-1">«Какой класс компрессии выбрать»</div>
+          <div class="text-slate-500">→ /kompressionnye-chulki/1-klass/, /2-klass/, /3-klass/</div>
+        </div>
+        <div class="bg-white rounded-lg p-3 border border-slate-200">
+          <div class="font-bold mb-1">«Как бинтовать ногу при варикозе»</div>
+          <div class="text-slate-500">→ /elastichnye-binty/sredney-rastyazhimosti/</div>
+        </div>
+        <div class="bg-white rounded-lg p-3 border border-slate-200">
+          <div class="font-bold mb-1">«Восстановление после кесарева»</div>
+          <div class="text-slate-500">→ /bandazh/poslerodovoy/, /bandazh-poslе-kesareva/</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПЛАН РАБОТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Порядок работ — 12 месяцев</div>
+      <div class="space-y-3">
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-slate-500 uppercase font-semibold">Месяц</div>
+            <div class="text-2xl font-bold text-sky-700">1</div>
+          </div>
+          <div class="flex-1 border-l border-slate-200 pl-4">
+            <div class="font-bold mb-1">Сбор семантики и приоритизация</div>
+            <div class="text-sm text-slate-700">Полная выгрузка коммерческой семантики из Я.Вордстата (1 500-2 000 запросов). Кластеризация — какие запросы в одну hub-страницу. Приоритизация: первые 10-15 страниц по объёму трафика. Конкурентный анализ топ-10 по каждому кластеру.</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-slate-500 uppercase font-semibold">Месяц</div>
+            <div class="text-2xl font-bold text-sky-700">2-3</div>
+          </div>
+          <div class="flex-1 border-l border-slate-200 pl-4">
+            <div class="font-bold mb-1">Первые 15 hub-страниц</div>
+            <div class="text-sm text-slate-700">Топ-10-15 категорий по объёму трафика. Каждая: каталог моделей + контентный блок + FAQ + перелинковка. Шаблон страницы в Django + контент копирайтером (~7-10 тыс. знаков на страницу).</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-slate-500 uppercase font-semibold">Месяц</div>
+            <div class="text-2xl font-bold text-sky-700">4-6</div>
+          </div>
+          <div class="flex-1 border-l border-slate-200 pl-4">
+            <div class="font-bold mb-1">Расширение до 40 страниц + перелинковка из блога</div>
+            <div class="text-sm text-slate-700">Дополнительные 25 страниц — длинный хвост и подкатегории. Перелинковка из топ-20 статей блога на профильные hub-страницы. Замер первых позиций — какие категории растут, какие нет.</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-slate-500 uppercase font-semibold">Месяц</div>
+            <div class="text-2xl font-bold text-sky-700">7-12</div>
+          </div>
+          <div class="flex-1 border-l border-slate-200 pl-4">
+            <div class="font-bold mb-1">Оптимизация и масштабирование</div>
+            <div class="text-sm text-slate-700">Дозагрузка до 50-60 страниц по длинному хвосту. Анализ позиций — где сайт встал, где нет. Усиление контента на «застрявших» страницах. Кросс-перелинковка между hub'ами. Внешние ссылки на сильные hub-страницы (через PR из Направления 6).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПРОГНОЗ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Прогноз — сколько заходов получим</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="growthChart"></div>
+        <p class="text-xs text-slate-500 mt-4">SEO — самый долгий канал. <strong>1-2 мес</strong> — индексация, ничего почти не видно. <strong>3-6 мес</strong> — первые позиции по длинному хвосту, 5-15 тыс. заходов/мес. <strong>9-12 мес</strong> — устойчивые позиции по топ-категориям, выход на потолок 50-70 тыс./мес.</p>
+      </div>
+    </div>
+
+    <!-- БЮДЖЕТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Бюджет и сроки</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Срок до результата</div>
+          <div class="text-3xl font-bold mt-2">6-12 мес</div>
+          <div class="text-sm text-slate-500 mt-2">Первые позиции — 3-4 месяца. Полный эффект — 12 месяцев.</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Работа</div>
+          <div class="text-3xl font-bold mt-2 text-sky-700">120-180k ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">SEO-специалист 30-50 ч/мес + копирайтер на ~20 тыс. знаков/мес</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Реклама и сервисы</div>
+          <div class="text-3xl font-bold mt-2 text-slate-500">0 ₽</div>
+          <div class="text-sm text-slate-500 mt-2">Только своя работа, без подписок и внешних расходов.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ОКУПАЕМОСТЬ -->
+    <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-200">
+      <div class="flex items-start gap-4">
+        <div class="text-4xl">📈</div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-emerald-900">Окупаемость</h3>
+          <p class="mt-2 text-emerald-800 leading-relaxed">
+            <strong>Потолок через 12 мес:</strong> 50-70 тыс. коммерческих заходов в месяц.
+            При конверсии 0.5% (после починки чекаута в Направлении 4) × средний чек 3 500 ₽ = <strong>+875 тыс. — 1.2 млн ₽/мес</strong> розничной выручки.
+            <br><br>
+            <strong>Без Направления 4</strong> (текущая конверсия 0.03%) — даже 70 тыс. заходов дадут только +75 тыс. ₽/мес. <strong>Поэтому SEO эффективен только в связке с чекаутом.</strong>
+            <br><br>
+            <strong>Окупаемость:</strong> при бюджете 150 тыс./мес × 12 мес = 1.8 млн вложений → окупается на 10-12 мес работы при CR 0.5%.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЗАВИСИМОСТИ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border-l-4 border-amber-400 bg-amber-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-amber-800 uppercase tracking-wider mb-2">Требует</div>
+        <div class="font-semibold text-amber-900">Этап 0b — настройка аналитики</div>
+        <div class="text-sm text-amber-800 mt-1">Без этого нельзя измерить какие hub-страницы реально приводят к заказам, на какие надо удваиваться.</div>
+        <div class="font-semibold text-amber-900 mt-3">Желательно — Направление 4 (CRO)</div>
+        <div class="text-sm text-amber-800 mt-1">Без починки чекаута весь дорогой SEO-трафик не конвертится в покупки.</div>
+      </div>
+      <div class="border-l-4 border-indigo-400 bg-indigo-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-indigo-800 uppercase tracking-wider mb-2">Усиливает / Усиливается</div>
+        <div class="font-semibold text-indigo-900">+ Этап 0a (брендовая защита)</div>
+        <div class="text-sm text-indigo-800 mt-1">«Купить компрессионные чулки Интекс» — отдельный сегмент. После 0a hub-страницы получают бренд-приоритет.</div>
+        <div class="font-semibold text-indigo-900 mt-3">+ Направление 6 (E-E-A-T)</div>
+        <div class="text-sm text-indigo-800 mt-1">Authority бренда — главный сигнал ранжирования в YMYL (медтрикотаж). Без 6 любой Core Update Яндекса просядет позиции на 20-40%.</div>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что отслеживаем</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Метрика</th>
+              <th class="text-center p-3 font-semibold">Сейчас</th>
+              <th class="text-center p-3 font-semibold">+3 мес</th>
+              <th class="text-center p-3 font-semibold">+6 мес</th>
+              <th class="text-center p-3 font-semibold">+12 мес</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="p-3">Hub-страниц создано</td><td class="text-center">0</td><td class="text-center">15</td><td class="text-center">40</td><td class="text-center font-bold text-emerald-700">50-60</td></tr>
+            <tr><td class="p-3">Заходов в /shop/ в месяц</td><td class="text-center">~600</td><td class="text-center">2-5 тыс.</td><td class="text-center">15-25 тыс.</td><td class="text-center font-bold text-emerald-700">50-70 тыс.</td></tr>
+            <tr><td class="p-3">Коммерческих запросов в топ-10</td><td class="text-center">0</td><td class="text-center">10-20</td><td class="text-center">50-80</td><td class="text-center font-bold text-emerald-700">150-200</td></tr>
+            <tr><td class="p-3">Средняя позиция по hub-семантике</td><td class="text-center">&gt; 50</td><td class="text-center">15-25</td><td class="text-center">7-12</td><td class="text-center font-bold text-emerald-700">3-7</td></tr>
+            <tr><td class="p-3">Заказов из /shop/ органики (после Н4)</td><td class="text-center">~5</td><td class="text-center">15-30</td><td class="text-center">80-150</td><td class="text-center font-bold text-emerald-700">250-400</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex gap-3 pt-4">
+      <button class="px-6 py-3 bg-sky-600 text-white rounded-lg font-semibold hover:bg-sky-700">Обсудить направление</button>
+      <button class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold hover:bg-slate-50">Запросить семантическое ядро (1 500+ запросов)</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Подсказка -->
+<div class="bg-slate-100 py-4">
+  <div class="max-w-6xl mx-auto px-8 text-sm text-slate-500">
+    <strong>Прототип Направления 1 с реальными данными.</strong> Выдача Яндекса проверена вручную 21 мая 2026 (регион Москва). Я.Вебмастер счётчика bint.ru — 2 832 запроса за неделю, только 1 с коммерческим интентом. Частотности — Wordstat за май 2026.
+  </div>
+</div>
+
+<script>
+// КОНКУРЕНТЫ — бар-чарт с visits/мес
+new ApexCharts(document.querySelector('#competitorsBar'), {
+  chart: { type: 'bar', height: 280, toolbar: { show: false } },
+  series: [{
+    name: 'Заходов/мес из органики',
+    data: [
+      { x: 'Orteka.ru', y: 990000, fillColor: '#f43f5e' },
+      { x: 'medi-salon.ru', y: 236000, fillColor: '#fb923c' },
+      { x: 'ortix.ru', y: 170000, fillColor: '#fbbf24' },
+      { x: 'bint.ru (сейчас)', y: 600, fillColor: '#94a3b8' },
+      { x: 'bint.ru (цель 12 мес)', y: 60000, fillColor: '#10b981' }
+    ]
+  }],
+  plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '70%' } },
+  dataLabels: {
+    enabled: true,
+    formatter: v => v >= 1000 ? (v/1000).toFixed(0) + 'k' : v.toLocaleString('ru-RU'),
+    offsetX: 35, style: { fontSize: '11px', colors: ['#475569'] }
+  },
+  xaxis: {
+    type: 'numeric',
+    labels: { formatter: v => v >= 1000 ? (v/1000).toFixed(0) + 'k' : v }
+  },
+  grid: { borderColor: '#e2e8f0' }
+}).render();
+
+// ПРОГНОЗ заходов в /shop/
+new ApexCharts(document.querySelector('#growthChart'), {
+  chart: { type: 'rangeArea', height: 320, toolbar: { show: false } },
+  series: [
+    {
+      name: 'Диапазон прогноза',
+      type: 'rangeArea',
+      data: [
+        { x: 'Сейчас', y: [600, 600] },
+        { x: '+1 мес', y: [600, 1200] },
+        { x: '+2 мес', y: [1500, 3000] },
+        { x: '+3 мес', y: [2000, 5000] },
+        { x: '+6 мес', y: [15000, 25000] },
+        { x: '+9 мес', y: [30000, 50000] },
+        { x: '+12 мес', y: [50000, 70000] }
+      ]
+    },
+    {
+      name: 'Средняя оценка',
+      type: 'line',
+      data: [
+        { x: 'Сейчас', y: 600 },
+        { x: '+1 мес', y: 900 },
+        { x: '+2 мес', y: 2250 },
+        { x: '+3 мес', y: 3500 },
+        { x: '+6 мес', y: 20000 },
+        { x: '+9 мес', y: 40000 },
+        { x: '+12 мес', y: 60000 }
+      ]
+    }
+  ],
+  stroke: { curve: 'smooth', width: [0, 3] },
+  colors: ['#38bdf8', '#0284c7'],
+  fill: { opacity: [0.25, 1] },
+  markers: { size: [0, 6], strokeWidth: 2, strokeColors: '#fff', colors: ['#38bdf8', '#0284c7'] },
+  xaxis: { categories: ['Сейчас', '+1 мес', '+2 мес', '+3 мес', '+6 мес', '+9 мес', '+12 мес'] },
+  yaxis: {
+    title: { text: 'Заходов в /shop/ в месяц' },
+    labels: { formatter: v => v >= 1000 ? (v/1000).toFixed(0) + 'k' : v }
+  },
+  grid: { borderColor: '#e2e8f0' },
+  legend: { position: 'top' },
+  tooltip: { y: { formatter: v => v.toLocaleString('ru-RU') } }
+}).render();
+</script>
+
+</Base>

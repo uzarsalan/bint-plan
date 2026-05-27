@@ -1,0 +1,17 @@
+{
+  "name": "bint-plan",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "apexcharts": "^5.13.0",
+    "astro": "^6.3.7",
+    "tailwindcss": "^3.4.17"
+  }
+}

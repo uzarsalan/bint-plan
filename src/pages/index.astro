@@ -1,0 +1,1123 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Дашборд-симулятор" currentSlug="/">
+
+<style is:global>
+  /* Амбиентные blob'ы — медленно плавающие цветные пятна */
+  .ambient-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+    transition: opacity 1.2s ease;
+    will-change: transform;
+  }
+  .ambient-blob.dim { opacity: 0.08; }
+  @keyframes blob-float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25%      { transform: translate(150px, -80px) scale(1.1); }
+    50%      { transform: translate(80px, 120px) scale(0.95); }
+    75%      { transform: translate(-100px, 60px) scale(1.05); }
+  }
+  @keyframes blob-float-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(-180px, 100px) scale(1.15); }
+    66%      { transform: translate(120px, -100px) scale(0.9); }
+  }
+  @keyframes blob-float-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(200px, 150px) scale(1.2); }
+  }
+  @keyframes blob-float-4 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    40%      { transform: translate(-150px, -120px) scale(1.1); }
+    80%      { transform: translate(180px, 80px) scale(0.95); }
+  }
+  .node {
+    transition: all 0.25s ease;
+    user-select: none;
+    position: relative;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .node:hover .node-open-hint { opacity: 1; }
+  .node-open-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-size: 10px;
+    color: #0f172a;
+    background: rgba(255,255,255,0.95);
+    padding: 3px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    border: 1px solid #e2e8f0;
+    font-weight: 600;
+  }
+  .node.on { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .node.off { opacity: 0.55; filter: grayscale(0.4); }
+  .node-toggle-area {
+    cursor: pointer;
+    z-index: 10;
+  }
+  .metric-num {
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s ease;
+  }
+  .preset-card { cursor: pointer; }
+  .preset-card.active { box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15); transform: translateY(-1px); }
+  .preset-card:hover { transform: translateY(-2px); }
+  .preset-card.active[data-preset="none"] { border-color: #475569; box-shadow: 0 8px 24px rgba(71, 85, 105, 0.15); }
+  .preset-card.active[data-preset="none"] .preset-check { background: #475569; border-color: #475569; }
+  .preset-card.active[data-preset="none"] .preset-check svg { opacity: 1; }
+  .preset-card.active[data-preset="minimal"] { border-color: #0284c7; box-shadow: 0 8px 24px rgba(2, 132, 199, 0.15); }
+  .preset-card.active[data-preset="minimal"] .preset-check { background: #0284c7; border-color: #0284c7; }
+  .preset-card.active[data-preset="minimal"] .preset-check svg { opacity: 1; }
+  .preset-card.active[data-preset="basic"] { border-color: #7c3aed; box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15); }
+  .preset-card.active[data-preset="basic"] .preset-check { background: #7c3aed; border-color: #7c3aed; }
+  .preset-card.active[data-preset="basic"] .preset-check svg { opacity: 1; }
+  .preset-card.active[data-preset="full"] { border-color: #059669; box-shadow: 0 8px 24px rgba(5, 150, 105, 0.15); }
+  .preset-card.active[data-preset="full"] .preset-check { background: #059669; border-color: #059669; }
+  .preset-card.active[data-preset="full"] .preset-check svg { opacity: 1; }
+  /* Ползунок горизонта */
+  #horizon-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #cbd5e1, #818cf8, #38bdf8, #10b981);
+    outline: none;
+  }
+  #horizon-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #0f172a;
+    cursor: grab;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.1s;
+  }
+  #horizon-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  #horizon-slider::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.05); }
+  #horizon-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #0f172a;
+    cursor: grab;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .switch {
+    width: 36px; height: 20px; border-radius: 10px; position: relative;
+    transition: background 0.2s; flex-shrink: 0;
+  }
+  .switch.on { background: #10b981; }
+  .switch.off { background: #cbd5e1; }
+  .switch::after {
+    content: ''; position: absolute; top: 2px; width: 16px; height: 16px;
+    background: #fff; border-radius: 50%; transition: left 0.2s;
+  }
+  .switch.on::after { left: 18px; }
+  .switch.off::after { left: 2px; }
+  .arrow-svg { pointer-events: none; }
+  .flow-channel {
+    stroke-dasharray: 8 12;
+    animation: flow-stream 1.8s linear infinite;
+  }
+  @keyframes flow-stream {
+    to { stroke-dashoffset: -20; }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 4px 12px rgba(16,185,129,0.15); }
+    50% { box-shadow: 0 4px 20px rgba(16,185,129,0.4); }
+  }
+  .profit-positive { animation: pulse-glow 2s ease-in-out infinite; }
+  .flow-particle {
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  /* Карточки и заголовки колонок поднимаем над canvas/SVG потока */
+  #graphContainer > .grid { position: relative; z-index: 1; }
+  @keyframes particle-fade {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  /* Лёгкий «дыхательный» эффект на панели результата при положительной прибыли */
+  @keyframes coin-rain {
+    0% { transform: translateY(-10px) scale(0.5); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(40px) scale(1); opacity: 0; }
+  }</style>
+
+<main class="max-w-7xl mx-auto px-8 py-8">
+
+  <!-- Подзаголовок страницы -->
+  <div class="mb-6 text-center">
+    <h1 class="text-3xl font-bold text-slate-900">Что если включить эти направления?</h1>
+    <p class="text-sm text-slate-500 mt-2">Выберите сценарий снизу или щёлкните по карточкам направлений. Цифры внизу пересчитываются. Карточка ведёт на детальное описание.</p>
+  </div>
+
+  <!-- ВЫБОР СЦЕНАРИЯ — БОЛЬШИЕ ПЛАШКИ -->
+  <div class="mb-8 grid grid-cols-2 md:grid-cols-4 gap-3" id="presetCards">
+    <button class="preset-card preset-btn group relative bg-white rounded-2xl border-2 border-slate-200 p-5 text-left hover:border-slate-400 transition-all" data-preset="none">
+      <div class="flex items-center justify-between mb-2">
+        <div class="text-xs uppercase tracking-wider font-bold text-slate-500">Ничего</div>
+        <div class="preset-check w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">
+          <svg class="w-3 h-3 text-white opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+      <div class="text-2xl font-bold mt-3" data-metric="revenue">—</div>
+      <div class="text-xs text-slate-500 uppercase tracking-wider mt-1">выручка</div>
+      <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500">
+        <span class="font-semibold text-slate-700" data-metric="cost">—</span> бюджет
+      </div>
+      <div class="mt-2 text-[11px] text-slate-400 leading-snug">текущая база без направлений</div>
+    </button>
+
+    <button class="preset-card preset-btn group relative bg-white rounded-2xl border-2 border-slate-200 p-5 text-left hover:border-sky-400 transition-all" data-preset="minimal">
+      <div class="flex items-center justify-between mb-2">
+        <div class="text-xs uppercase tracking-wider font-bold text-sky-700">Минимум</div>
+        <div class="preset-check w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">
+          <svg class="w-3 h-3 text-white opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+      <div class="text-2xl font-bold mt-3" data-metric="revenue">—</div>
+      <div class="text-xs text-slate-500 uppercase tracking-wider mt-1">выручка</div>
+      <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500">
+        <span class="font-semibold text-slate-700" data-metric="cost">—</span> бюджет
+      </div>
+      <div class="mt-2 text-[11px] text-slate-400 leading-snug">Фундамент + SEO + Конверсия</div>
+    </button>
+
+    <button class="preset-card preset-btn active group relative bg-white rounded-2xl border-2 border-slate-200 p-5 text-left hover:border-purple-400 transition-all" data-preset="basic">
+      <div class="flex items-center justify-between mb-2">
+        <div class="text-xs uppercase tracking-wider font-bold text-purple-700">Базовый</div>
+        <div class="preset-check w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">
+          <svg class="w-3 h-3 text-white opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+      <div class="text-2xl font-bold mt-3" data-metric="revenue">—</div>
+      <div class="text-xs text-slate-500 uppercase tracking-wider mt-1">выручка</div>
+      <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500">
+        <span class="font-semibold text-slate-700" data-metric="cost">—</span> бюджет
+      </div>
+      <div class="mt-2 text-[11px] text-slate-400 leading-snug">+ Реклама, Авторитетность, Удержание</div>
+    </button>
+
+    <button class="preset-card preset-btn group relative bg-white rounded-2xl border-2 border-slate-200 p-5 text-left hover:border-emerald-400 transition-all" data-preset="full">
+      <div class="flex items-center justify-between mb-2">
+        <div class="text-xs uppercase tracking-wider font-bold text-emerald-700">Полный</div>
+        <div class="preset-check w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">
+          <svg class="w-3 h-3 text-white opacity-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+      <div class="text-2xl font-bold mt-3" data-metric="revenue">—</div>
+      <div class="text-xs text-slate-500 uppercase tracking-wider mt-1">выручка</div>
+      <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500">
+        <span class="font-semibold text-slate-700" data-metric="cost">—</span> бюджет
+      </div>
+      <div class="mt-2 text-[11px] text-slate-400 leading-snug">+ B2B-канал — максимум возможностей</div>
+    </button>
+  </div>
+
+  <!-- ГРАФ-ВОРОНКА -->
+  <div class="relative" id="graphContainer">
+    <svg class="arrow-svg absolute inset-0 w-full h-full" style="pointer-events:none; z-index:0" id="arrows"></svg>
+    <canvas id="flowCanvas" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0"></canvas>
+
+    <div class="grid grid-cols-4 gap-6 relative" style="z-index: 2;">
+
+      <!-- КОЛОНКА 1: ФУНДАМЕНТ -->
+      <div class="space-y-3">
+        <div class="text-center mb-3">
+          <div class="text-xs font-bold text-indigo-700 uppercase tracking-wider">Фундамент</div>
+          <div class="text-[10px] text-slate-500">база для всего</div>
+        </div>
+
+        <div class="node on bg-white rounded-xl border-2 border-indigo-300 p-3" data-id="0a">
+          <div class="flex items-start justify-between gap-2">
+            <div class="text-sm font-bold leading-tight">Брендовая защита</div>
+            <div class="switch on"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2">+ узнаваемость, +5-8k заходов</div>
+          <div class="text-[10px] mt-1.5 leading-snug"><span class="text-indigo-700 font-semibold">Работа:</span> <span class="text-slate-700">120-180k разово</span></div>
+        </div>
+
+        <div class="node on bg-white rounded-xl border-2 border-indigo-300 p-3" data-id="0b">
+          <div class="flex items-start justify-between gap-2">
+            <div class="text-sm font-bold leading-tight">Аналитика Метрики</div>
+            <div class="switch on"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2">видимость для всех направлений</div>
+          <div class="text-[10px] mt-1.5 leading-snug"><span class="text-indigo-700 font-semibold">Работа:</span> <span class="text-slate-700">80-130k разово</span></div>
+        </div>
+
+      </div>
+
+      <!-- КОЛОНКА 2: ТРАФИК -->
+      <div class="space-y-3">
+        <div class="text-center mb-3">
+          <div class="text-xs font-bold text-sky-700 uppercase tracking-wider">Привлечение</div>
+          <div class="text-[10px] text-slate-500">больше заходов на сайт</div>
+        </div>
+
+        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="1">
+          <div class="flex items-start justify-between gap-2">
+            <div class="text-sm font-bold leading-tight">SEO для покупателей</div>
+            <div class="switch off"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2">+ до 70 тыс. заходов/мес за 12 мес</div>
+          <div class="text-[10px] mt-1.5 leading-snug"><span class="text-sky-700 font-semibold">Работа:</span> <span class="text-slate-700">120-180k/мес</span></div>
+        </div>
+
+        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="3">
+          <div class="flex items-start justify-between gap-2">
+            <div class="text-sm font-bold leading-tight">Реклама</div>
+            <div class="switch off"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2">Эффект после конверсии. Клики оплачиваются Яндексу.</div>
+          <div class="text-[10px] mt-1.5 leading-snug">
+            <div><span class="text-sky-700 font-semibold">Работа:</span> <span class="text-slate-700">30-50k/мес</span></div>
+            <div><span class="text-amber-700 font-semibold">Клики:</span> <span class="text-slate-700">20-200k/мес</span></div>
+          </div>
+        </div>
+
+        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="6">
+          <div class="flex items-start justify-between gap-2">
+            <div class="text-sm font-bold leading-tight">Авторитетность + AI-поиск</div>
+            <div class="switch off"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2">контент + AI-разметка + врач-эксперт</div>
+          <div class="text-[10px] mt-1.5 leading-snug">
+            <div><span class="text-sky-700 font-semibold">Работа:</span> <span class="text-slate-700">100k/мес</span></div>
+            <div><span class="text-amber-700 font-semibold">Врач + публикации:</span> <span class="text-slate-700">40-60k/мес</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- КОЛОНКА 3: КОНВЕРСИЯ -->
+      <div class="space-y-3">
+        <div class="text-center mb-3">
+          <div class="text-xs font-bold text-purple-700 uppercase tracking-wider">Конверсия</div>
+          <div class="text-[10px] text-slate-500">заходы → покупки</div>
+        </div>
+
+        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="4">
+          <div class="flex items-start justify-between gap-2">
+            <div class="text-sm font-bold leading-tight">Конверсия и чекаут</div>
+            <div class="switch off"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2">конверсия 0.03% → 0.5-1%</div>
+          <div class="text-[10px] mt-1.5 leading-snug"><span class="text-purple-700 font-semibold">Работа:</span> <span class="text-slate-700">70-120k/мес → 40-70k</span></div>
+        </div>
+
+        <div class="bg-purple-50 rounded-xl border border-purple-200 p-3 text-[11px] text-purple-900">
+          <div class="font-bold mb-1">Множитель</div>
+          Без этого направления конверсия упирается в потолок 0.03% — каждый рубль на привлечение трафика приносит сущие копейки.
+        </div>
+      </div>
+
+      <!-- КОЛОНКА 4: УДЕРЖАНИЕ + B2B -->
+      <div class="space-y-3">
+        <div class="text-center mb-3">
+          <div class="text-xs font-bold text-orange-700 uppercase tracking-wider">Удержание + B2B</div>
+          <div class="text-[10px] text-slate-500">повторные и оптовые</div>
+        </div>
+
+        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="7">
+          <div class="flex items-start justify-between gap-2">
+            <div class="text-sm font-bold leading-tight">Повторные продажи + рассылки</div>
+            <div class="switch off"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2">+40% повторных, +15% средний чек</div>
+          <div class="text-[10px] mt-1.5 leading-snug">
+            <div><span class="text-orange-700 font-semibold">Работа:</span> <span class="text-slate-700">50-80k/мес</span></div>
+            <div><span class="text-amber-700 font-semibold">Сервисы:</span> <span class="text-slate-700">10-15k/мес</span> <span class="text-slate-400">(unisender + домен)</span></div>
+          </div>
+        </div>
+
+        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="2">
+          <div class="flex items-start justify-between gap-2">
+            <div class="text-sm font-bold leading-tight">Digital B2B (лендинг + Я.Директ + SEO)</div>
+            <div class="switch off"></div>
+          </div>
+          <div class="text-[10px] text-slate-500 mt-2">amoCRM, /b2b/ лендинг, Я.Директ опт, B2B-каталоги</div>
+          <div class="text-[10px] mt-1.5 leading-snug">
+            <div><span class="text-orange-700 font-semibold">Работа:</span> <span class="text-slate-700">90k разово + 80k/мес</span></div>
+            <div><span class="text-amber-700 font-semibold">Сервисы:</span> <span class="text-slate-700">15-55k/мес</span> <span class="text-slate-400">(amoCRM + Я.Директ клики)</span></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  <!-- РЕЗУЛЬТАТ + ГОРИЗОНТ — единая плашка снизу (внутри graphContainer чтобы поток мог долетать) -->
+  <div class="mt-8 bg-white rounded-2xl border-2 border-emerald-300 p-6 relative" style="z-index:2" id="resultPanel">
+    <!-- Шапка: заголовок + горизонт + дата -->
+    <div class="flex items-start justify-between mb-5 flex-wrap gap-3">
+      <div>
+        <div class="text-xs uppercase text-emerald-700 font-bold tracking-wider">Результат в месяц</div>
+        <div class="mt-1 flex items-baseline gap-3">
+          <span class="text-2xl font-bold" id="horizon-label">Через 12 месяцев</span>
+          <span class="text-lg text-slate-400" id="horizon-date">— май 2027</span>
+        </div>
+      </div>
+      <div class="text-right text-xs text-slate-500">
+        <div>Старт работ: май 2026</div>
+        <div class="mt-0.5">Прогноз — выход направлений на мощность</div>
+      </div>
+    </div>
+
+    <!-- Метрики — две строки по 4 -->
+    <div class="space-y-5">
+      <!-- Строка 1: воронка -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div>
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider">Заходов</div>
+          <div class="text-2xl font-bold metric-num mt-1" id="m-visits">—</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider">Заказов</div>
+          <div class="text-2xl font-bold metric-num mt-1" id="m-orders">—</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider">Розница</div>
+          <div class="text-2xl font-bold metric-num mt-1" id="m-b2c">—</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider">B2B</div>
+          <div class="text-2xl font-bold metric-num mt-1" id="m-b2b">—</div>
+        </div>
+      </div>
+
+      <!-- Строка 2: деньги -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4 border-t border-slate-100">
+        <div>
+          <div class="text-[10px] text-emerald-700 uppercase tracking-wider font-bold">Выручка всего</div>
+          <div class="text-3xl font-bold text-emerald-700 metric-num mt-1" id="m-total">—</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider">Работа</div>
+          <div class="text-lg font-bold text-slate-700 metric-num mt-1" id="m-work">—</div>
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider mt-2">Реклама и сервисы</div>
+          <div class="text-lg font-bold text-slate-700 metric-num mt-1" id="m-external">—</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-rose-600 uppercase tracking-wider font-bold">Бюджет всего</div>
+          <div class="text-2xl font-bold text-rose-600 metric-num mt-1" id="m-cost">—</div>
+          <div class="text-[10px] text-slate-500 mt-1.5" id="m-cost-onetime"></div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider">Прибыль</div>
+          <div class="text-2xl font-bold metric-num mt-1" id="m-profit">—</div>
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider mt-2">На рубль</div>
+          <div class="text-lg font-bold metric-num mt-1" id="m-roi">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ползунок горизонта — внизу плашки -->
+    <div class="mt-6 pt-5 border-t border-slate-100">
+      <input type="range" min="0" max="12" value="12" step="1" id="horizon-slider" class="w-full cursor-pointer">
+      <div class="flex justify-between text-xs text-slate-500 mt-2 px-1">
+        <span>Сейчас</span>
+        <span>+3 мес</span>
+        <span>+6 мес</span>
+        <span>+9 мес</span>
+        <span>+12 мес</span>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- НИЖНИЙ БЛОК — ОБЪЯСНЕНИЕ -->
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <div class="text-xs font-bold uppercase text-slate-500 mb-2">Откуда цифры</div>
+      <div class="text-sm text-slate-700">База: 43 тыс. заходов/мес (Я.Метрика), 171 заказ/год (БД сайта), конверсия 0.03%, средний чек 4 400 ₽. Эффекты направлений — медиана из прогноза плана v2.</div>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <div class="text-xs font-bold uppercase text-slate-500 mb-2">Что не учтено</div>
+      <div class="text-sm text-slate-700">Сезонность · временной лаг SEO (6-12 мес до выхода в топ) · риски Core Updates без Направления 6 · цикл B2B-сделки 1-3 мес.</div>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <div class="text-xs font-bold uppercase text-slate-500 mb-2">Пресеты</div>
+      <div class="text-sm text-slate-700"><strong>Минимум:</strong> Фундамент + SEO + Конверсия. <strong>Базовый:</strong> + Реклама, Авторитетность, Удержание. <strong>Полный:</strong> + B2B.</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ============================================================
+//   МОДЕЛЬ
+// ============================================================
+const PRESETS = {
+  none:    [],
+  minimal: ['0a','0b','1','4'],
+  basic:   ['0a','0b','1','3','4','6','7'],
+  full:    ['0a','0b','1','2','3','4','6','7']
+};
+
+// Профиль выхода каждого направления на полную мощность (1 = 100% эффект)
+// в % от полного эффекта на горизонтах 0 / 3 / 6 / 12 мес
+const RAMP = {
+  '0a':         { 0: 0,    3: 0.7,  6: 0.95, 12: 1.0 },  // быстрый — техника + переобход
+  '0b':         { 0: 1.0,  3: 1.0,  6: 1.0,  12: 1.0 },  // инфраструктура, нет лага по выручке
+  '1':          { 0: 0,    3: 0.15, 6: 0.5,  12: 1.0 },  // SEO — самый долгий
+  '2':          { 0: 0.1,  3: 0.3,  6: 0.6,  12: 1.0 },  // B2B цикл 1-3 мес
+  '3':          { 0: 0.2,  3: 0.8,  6: 1.0,  12: 1.0 },  // реклама — быстрый эффект
+  '4':          { 0: 0,    3: 0.5,  6: 0.9,  12: 1.0 },  // CRO — несколько A/B-итераций
+  '6':          { 0: 0,    3: 0.15, 6: 0.4,  12: 1.0 },  // E-E-A-T + AI — медленный
+  '7':          { 0: 0,    3: 0.3,  6: 0.7,  12: 1.0 }   // retention — нужна накопленная база
+};
+
+let currentHorizon = 12;
+
+// Линейная интерполяция между ключевыми точками 0, 3, 6, 12
+function rampOf(id) {
+  const r = RAMP[id];
+  if (!r) return 1.0;
+  const h = currentHorizon;
+  if (h <= 0) return r[0];
+  if (h <= 3)  return r[0] + (r[3]  - r[0]) * (h - 0) / 3;
+  if (h <= 6)  return r[3] + (r[6]  - r[3]) * (h - 3) / 3;
+  if (h <= 12) return r[6] + (r[12] - r[6]) * (h - 6) / 6;
+  return r[12];
+}
+
+function calculate(active) {
+  const has = id => active.includes(id);
+  const ramp = id => has(id) ? rampOf(id) : 0;
+  const cro4 = ramp('4'); // 0..1 — насколько чекаут уже починен
+
+  // Линейная интерполяция между low (плохой чекаут) и high (CRO работает на 100%)
+  const cr = (low, high) => low + (high - low) * cro4;
+  // Доля выхода направления на мощность
+  const r = id => ramp(id);
+
+  // ============ СЕГМЕНТНАЯ МОДЕЛЬ ============
+  // Реальная база по БД (14 заказов/мес создано, 7 оплачено) и Метрике (523 visits/мес в /shop/, CR ~1.3%):
+  // CRO работает на двух фронтах:
+  //   А) переход блог→магазин (сейчас ~1%, после CRO 3-5%)
+  //   Б) конверсия в самой воронке /shop/ (сейчас 1.3%, после CRO 2-3%)
+  // Поэтому множитель CRO = ×3-5 общий, а не ×15.
+
+  const segments = [];
+
+  // Базовые сегменты — есть всегда (калибровка под факт 14 заказов/мес)
+  // Блог: 41k visits × 1% переход в /shop/ × 1.3% CR = 0.013% от visits. С CRO: 4% × 2.5% = 0.1%
+  segments.push({ name: 'Блог', visits: 41000,
+    cr: cr(0.00013, 0.0010) });
+  // Брендовый сейчас (~110 visits) — горячая аудитория уже сегодня
+  segments.push({ name: 'Брендовый (сейчас)', visits: 110,
+    cr: cr(0.013, 0.025) });
+  // Прямые / закладки / бренд-набор
+  segments.push({ name: 'Прямые', visits: 1900,
+    cr: cr(0.004, 0.022) });
+
+  // === Эффекты направлений (visits * ramp) ===
+
+  // 0a: +6500 брендовых заходов, тёплая аудитория (попадают в /shop/ напрямую)
+  if (has('0a')) {
+    segments.push({ name: '0a Бренд', visits: 6500 * r('0a'),
+      cr: cr(0.008, 0.022) });
+  }
+
+  // 1 SEO коммерческий: +70k visits на hub-страницы (попадают в /shop/ сразу)
+  if (has('1')) {
+    segments.push({ name: '1 SEO коммерч.', visits: 70000 * r('1'),
+      cr: cr(0.002, 0.008) });
+  }
+
+  // 3 Реклама: +3-5k при умеренном бюджете 80-200k клики (CPC 50-80 ₽ × 200k = ~3 тыс. visits)
+  // Для 20-40k visits нужен бюджет 1-3 млн ₽/мес — это уже отдельный сценарий
+  if (has('3')) {
+    segments.push({ name: '3 Реклама', visits: 4000 * r('3'),
+      cr: cr(0.0015, 0.007) });
+  }
+
+  // 6 AI-поиск + E-E-A-T: +6k тёплых, осознанный выбор
+  if (has('6')) {
+    segments.push({ name: '6 AI-поиск', visits: 6000 * r('6'),
+      cr: cr(0.005, 0.015) });
+  }
+
+
+  // ============ СЧИТАЕМ ЗАКАЗЫ И ВЫРУЧКУ ============
+  const visits = segments.reduce((a,s) => a + s.visits, 0);
+  const orders = segments.reduce((a,s) => a + s.visits * s.cr, 0);
+  let aov = 3500; // факт из БД за 12 мес
+  let retentionMul = 1.0;
+
+  // 7 Retention: +40% повторных + +15% средний чек, рампится
+  if (has('7')) {
+    const k7 = r('7');
+    retentionMul = 1.0 + 0.4 * k7;
+    aov *= (1 + 0.15 * k7);
+  }
+
+  // ============ B2B (только digital-канал) ============
+  let b2bRevenue = 210000; // текущий поток заявок (оценка плана v2)
+  if (has('2')) {
+    const k2 = r('2');
+    // Консервативный прогноз: 4× рост заявок (7-8 → 30) × 30% close rate × 100k опт чек ≈ 800k.
+    // Требует подтверждения у Алёны (реальный close rate и опт чек)
+    const target = 800000;
+    b2bRevenue = 210000 + (target - 210000) * k2;
+  }
+
+  // ============ БЮДЖЕТ — разделение на работу и внешние расходы ============
+  // workMonthly — моя работа как Senior-фрилансера
+  // externalMonthly — то что клиент платит напрямую (реклама, подписки, врачи)
+  let workMonthly = 0;
+  let externalMonthly = 0;
+  let workOneTime = 0;
+  let externalOneTime = 0;
+
+  if (has('0a')) workOneTime += 150000;          // SEO + frontend + копирайтер
+  if (has('0b')) workOneTime += 105000;          // аналитик + программист + юрист
+
+  if (has('1'))  workMonthly += 150000;          // SEO команда + копирайтер
+
+  // 3 Реклама: моё ведение + бюджет на клики (растёт с CRO)
+  if (has('3')) {
+    const k3 = r('3');
+    const cro = r('4');
+    workMonthly += 50000 * k3;                   // ведение Я.Директ + Google Ads
+    externalMonthly += (20000 + 180000 * cro) * k3; // 20k клики стартово → 200k с CRO
+  }
+
+  // 4 CRO: высокий первые 3-4 мес, потом снижается
+  if (has('4')) {
+    const k4 = r('4');
+    workMonthly += 95000 - 50000 * Math.max(0, k4 - 0.5) * 2;
+  }
+
+
+  // 6 E-E-A-T: моя работа (контент, AI, разметка) + врач + PR-публикации
+  if (has('6')) {
+    const k6 = r('6');
+    workMonthly += 100000;                       // контент + AI-оптимизация
+    externalMonthly += 60000 * k6;               // 1 врач 25k + 1-2 публикации 35k
+  }
+
+  // 7 Retention: email-маркетинг + сервисы
+  if (has('7')) {
+    workMonthly += 60000;                        // email + автоматизация
+    externalMonthly += 15000;                    // unisender + домен
+  }
+
+  // 2 Digital B2B: лендинг разово + ведение + клики + amoCRM подписка
+  if (has('2')) {
+    const k2 = r('2');
+    workOneTime += 90000;                        // лендинг + amoCRM настройка
+    workMonthly += 80000;                        // ведение Я.Директ B2B + B2B-SEO
+    externalMonthly += (15000 + 40000 * k2);     // amoCRM 10-15k + клики 0-40k
+  }
+
+  // Обратная совместимость для UI и render()
+  const costMonthly = workMonthly + externalMonthly;
+  const costOneTime = workOneTime + externalOneTime;
+
+  const revenueB2C = Math.round(orders * aov * retentionMul);
+  const totalRevenue = revenueB2C + b2bRevenue;
+  const profit = totalRevenue - costMonthly;
+  const roi = costMonthly > 0 ? totalRevenue / costMonthly : 0;
+
+  return {
+    visits: Math.round(visits),
+    orders: Math.round(orders),
+    revenueB2C, b2bRevenue, totalRevenue,
+    costMonthly, costOneTime, profit, roi,
+    workMonthly, externalMonthly, workOneTime,
+    segments
+  };
+}
+
+// ============================================================
+//   РЕНДЕР
+// ============================================================
+const fmt = n => n.toLocaleString('ru-RU');
+const fmtMoney = n => {
+  if (n >= 1000000) return (n/1000000).toFixed(2).replace(/\.?0+$/,'') + ' млн ₽';
+  if (n >= 1000) return Math.round(n/1000) + ' тыс. ₽';
+  return n + ' ₽';
+};
+
+function animateNumber(el, target, formatter = fmt) {
+  const current = parseInt(el.dataset.val) || 0;
+  const start = current;
+  const duration = 600;
+  const startTime = performance.now();
+  function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const val = Math.round(start + (target - start) * ease);
+    el.textContent = formatter(val);
+    if (t < 1) requestAnimationFrame(step);
+    else el.dataset.val = target;
+  }
+  requestAnimationFrame(step);
+}
+
+function getActive() {
+  return [...document.querySelectorAll('.node.on')].map(n => n.dataset.id);
+}
+
+function render() {
+  const result = calculate(getActive());
+  animateNumber(document.getElementById('m-visits'), result.visits);
+  animateNumber(document.getElementById('m-orders'), result.orders);
+  animateNumber(document.getElementById('m-b2c'), result.revenueB2C, fmtMoney);
+  animateNumber(document.getElementById('m-b2b'), result.b2bRevenue, fmtMoney);
+  animateNumber(document.getElementById('m-total'), result.totalRevenue, fmtMoney);
+  animateNumber(document.getElementById('m-work'), result.workMonthly, fmtMoney);
+  animateNumber(document.getElementById('m-external'), result.externalMonthly, fmtMoney);
+  animateNumber(document.getElementById('m-cost'), result.costMonthly, fmtMoney);
+  animateNumber(document.getElementById('m-profit'), result.profit, fmtMoney);
+
+  document.getElementById('m-cost-onetime').textContent = result.costOneTime > 0
+    ? `+ ${fmtMoney(result.costOneTime)} разово`
+    : '';
+
+  const roiEl = document.getElementById('m-roi');
+  if (result.costMonthly === 0) {
+    roiEl.textContent = '—';
+  } else {
+    roiEl.textContent = result.roi.toFixed(1) + '×';
+  }
+
+  // Цвет прибыли
+  const profitEl = document.getElementById('m-profit');
+  if (result.profit > 0) {
+    profitEl.style.color = '#059669';
+  } else if (result.profit < 0) {
+    profitEl.style.color = '#dc2626';
+  } else {
+    profitEl.style.color = '#475569';
+  }
+
+  // Подсветка панели когда прибыль большая
+  const panel = document.getElementById('resultPanel');
+  panel.classList.toggle('profit-positive', result.profit > 500000);
+}
+
+// ============================================================
+//   ИНТЕРАКТИВ
+// ============================================================
+// Ссылки на карточки направлений
+const NODE_HREF = {
+  '0a': '/0a-brand',
+  '0b': '/0b-analytics',
+  '1':  '/1-seo',
+  '2':  '/2-b2b',
+  '3':  '/3-ads',
+  '4':  '/4-cro',
+  '6':  '/6-eeat',
+  '7':  '/7-retention'
+};
+
+// Превращаем каждую карточку в гиперссылку и добавляем hint при наведении
+document.querySelectorAll('.node').forEach(node => {
+  const id = node.dataset.id;
+  const href = NODE_HREF[id];
+  if (!href) return;
+  // Меняем div → behavior link
+  node.addEventListener('click', e => {
+    // Если клик пришёл из switch — не переходим
+    if (e.target.closest('.switch') || e.target.closest('.node-toggle-area')) return;
+    window.location.href = href;
+  });
+  // Hint при наведении
+  const hint = document.createElement('div');
+  hint.className = 'node-open-hint';
+  hint.textContent = 'Открыть →';
+  node.appendChild(hint);
+});
+
+function setNodeState(node, on) {
+  const switchEl = node.querySelector('.switch');
+  const color = node.dataset.color || 'indigo';
+  if (on) {
+    node.classList.remove('off');
+    node.classList.add('on');
+    node.classList.remove('border-slate-300');
+    node.classList.add('border-' + color + '-300');
+    switchEl.classList.remove('off'); switchEl.classList.add('on');
+  } else {
+    node.classList.remove('on');
+    node.classList.add('off');
+    node.classList.remove('border-indigo-300','border-sky-300','border-purple-300','border-orange-300');
+    node.classList.add('border-slate-300');
+    switchEl.classList.remove('on'); switchEl.classList.add('off');
+  }
+}
+
+// Клик по переключателю — toggle (не переход)
+document.querySelectorAll('.node .switch').forEach(switchEl => {
+  // Оборачиваем switch в кликабельную зону которая не пускает событие на карточку
+  switchEl.classList.add('node-toggle-area');
+  switchEl.addEventListener('click', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const node = switchEl.closest('.node');
+    if (!node) return;
+    const isOn = node.classList.contains('on');
+    setNodeState(node, !isOn);
+    const id = node.dataset.id;
+    if (!isOn && id !== '0b') {
+      const node0b = document.querySelector('.node[data-id="0b"]');
+      if (node0b && !node0b.classList.contains('on')) setNodeState(node0b, true);
+    } else if (isOn && id === '0b') {
+      const others = [...document.querySelectorAll('.node.on')].filter(n => n.dataset.id !== '0b');
+      if (others.length > 0) setNodeState(node, true);
+    }
+
+    document.querySelectorAll('.preset-card').forEach(b => b.classList.remove('active'));
+    render();
+    drawArrows();
+    buildField();
+    updatePresetCards();
+  });
+});
+
+// Обновление цифр в плашках сценариев
+function updatePresetCards() {
+  document.querySelectorAll('.preset-card').forEach(card => {
+    const preset = card.dataset.preset;
+    const ids = PRESETS[preset] || [];
+    const result = calculate(ids);
+    const revEl = card.querySelector('[data-metric="revenue"]');
+    const costEl = card.querySelector('[data-metric="cost"]');
+    if (revEl) revEl.textContent = fmtMoney(result.totalRevenue);
+    if (costEl) costEl.textContent = fmtMoney(result.costMonthly);
+  });
+}
+
+// Ползунок горизонта
+const MONTHS_RU = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+const START_DATE = new Date(2026, 4, 1); // май 2026
+
+function updateHorizonLabel() {
+  const labelEl = document.getElementById('horizon-label');
+  const dateEl = document.getElementById('horizon-date');
+  if (!labelEl) return;
+  if (currentHorizon === 0) labelEl.textContent = 'Сейчас';
+  else if (currentHorizon === 1) labelEl.textContent = 'Через 1 месяц';
+  else if (currentHorizon >= 2 && currentHorizon <= 4) labelEl.textContent = `Через ${currentHorizon} месяца`;
+  else labelEl.textContent = `Через ${currentHorizon} месяцев`;
+  const d = new Date(START_DATE);
+  d.setMonth(d.getMonth() + currentHorizon);
+  dateEl.textContent = `— ${MONTHS_RU[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+const slider = document.getElementById('horizon-slider');
+if (slider) {
+  slider.addEventListener('input', () => {
+    currentHorizon = parseInt(slider.value);
+    updateHorizonLabel();
+    render();
+  });
+}
+
+document.querySelectorAll('.preset-card').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset-card').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const preset = PRESETS[btn.dataset.preset];
+    document.querySelectorAll('.node').forEach(node => {
+      const id = node.dataset.id;
+      const shouldBeOn = preset.includes(id);
+      node.classList.toggle('on', shouldBeOn);
+      node.classList.toggle('off', !shouldBeOn);
+      if (shouldBeOn) {
+        node.classList.remove('border-slate-300');
+        const c = node.dataset.color || 'indigo';
+        node.classList.add('border-' + c + '-300');
+      } else {
+        node.classList.remove('border-indigo-300','border-sky-300','border-purple-300','border-orange-300');
+        node.classList.add('border-slate-300');
+      }
+      node.querySelector('.switch').classList.toggle('on', shouldBeOn);
+      node.querySelector('.switch').classList.toggle('off', !shouldBeOn);
+    });
+    render();
+    drawArrows();
+    buildField();
+    updatePresetCards();
+  });
+});
+
+// Сохраним data-color для каждого узла на основе изначального border-color
+document.querySelectorAll('.node').forEach(node => {
+  if (node.classList.contains('border-indigo-300')) node.dataset.color = 'indigo';
+  else if (node.classList.contains('border-sky-300')) node.dataset.color = 'sky';
+  else if (node.classList.contains('border-purple-300')) node.dataset.color = 'purple';
+  else if (node.classList.contains('border-orange-300')) node.dataset.color = 'orange';
+});
+// Раздадим цвета на основании колонки (по DOM)
+const cols = document.querySelectorAll('#graphContainer .grid > div');
+['indigo','sky','purple','orange'].forEach((c, i) => {
+  cols[i]?.querySelectorAll('.node').forEach(n => { n.dataset.color = c; });
+});
+
+// ============================================================
+//   СТРЕЛКИ + ПОТОК ЧАСТИЦ
+// ============================================================
+// Цвета сегментов — переход через колонки
+const SEGMENT_COLORS = ['#818cf8', '#38bdf8', '#a855f7', '#fb923c'];
+// Какие узлы каждого сегмента «питают» поток (для расчёта плотности частиц)
+const SEGMENT_NODES = [
+  ['0a','0b'],
+  ['1','3','6'],
+  ['4'],
+  ['7','2']
+];
+
+// Соответствие узла → цвет (по колонке)
+const NODE_COLOR = {
+  '0a':'#818cf8','0b':'#818cf8','compliance':'#fbbf24',
+  '1':'#38bdf8','3':'#38bdf8','6':'#38bdf8',
+  '4':'#a855f7',
+  '7':'#fb923c','2':'#fb923c'
+};
+
+function drawArrows() {
+  const svg = document.getElementById('arrows');
+  if (!svg) return;
+  svg.innerHTML = ''; // больше не рисуем стрелки — поток заменяет их
+  return;
+  const container = document.getElementById('graphContainer');
+  const rect = container.getBoundingClientRect();
+  svg.setAttribute('width', rect.width);
+  svg.setAttribute('height', rect.height);
+
+  const cols = container.querySelectorAll('.grid > div');
+  const active = getActive();
+  let svgContent = '';
+
+  for (let i = 0; i < 4; i++) {
+    const colA = cols[i].getBoundingClientRect();
+    const colB = cols[i+1].getBoundingClientRect();
+    const x1 = colA.right - rect.left + 4;
+    const x2 = colB.left - rect.left - 4;
+    const y1 = colA.top + colA.height/2 - rect.top;
+    const y2 = colB.top + colB.height/2 - rect.top;
+    const cx1 = x1 + (x2-x1) * 0.4;
+    const cx2 = x1 + (x2-x1) * 0.6;
+    const pathD = `M ${x1} ${y1} C ${cx1} ${y1}, ${cx2} ${y2}, ${x2} ${y2}`;
+    const color = SEGMENT_COLORS[i];
+
+    const activeInSegment = SEGMENT_NODES[i].filter(id => active.includes(id)).length;
+    const isActive = activeInSegment > 0;
+    const opacity = isActive ? 0.25 : 0.08;
+
+    svgContent += `<path d="${pathD}" stroke="${color}" stroke-width="1" fill="none" stroke-linecap="round" opacity="${opacity}"/>`;
+  }
+
+  svg.innerHTML = svgContent;
+}
+
+// ============================================================
+//   ЧАСТИЦЫ — МАГНИТНОЕ ПОЛЕ
+// ============================================================
+const canvas = document.getElementById('flowCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let lastFieldUpdate = 0;
+
+function resizeCanvas() {
+  const container = document.getElementById('graphContainer');
+  const rect = container.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = rect.height + 'px';
+  ctx.scale(dpr, dpr);
+}
+
+function getNodeCenter(node, containerRect) {
+  const r = node.getBoundingClientRect();
+  return {
+    x: r.right - containerRect.left,
+    y: r.top + r.height/2 - containerRect.top,
+    leftX: r.left - containerRect.left
+  };
+}
+
+// Линии-русла через всё полотно к карточке «Результат»
+let lines = [];
+const LINE_PALETTE = ['#818cf8','#38bdf8','#a855f7','#fb923c','#10b981','#f472b6','#facc15'];
+
+function buildField() {
+  const container = document.getElementById('graphContainer');
+  if (!container) return;
+  const rect = container.getBoundingClientRect();
+  const resultPanel = document.getElementById('resultPanel');
+  if (!resultPanel) return;
+  const rp = resultPanel.getBoundingClientRect();
+  // Поток сверху-вниз
+  const ty = rp.top - rect.top + 10;
+
+  const activeNodes = [...document.querySelectorAll('.node.on')];
+  const LINES_PER_CARD = 3;
+  const PARTICLES_PER_LINE = 6;
+  const BASE_SPEED = 0.0022;
+
+  const rpLeft = rp.left - rect.left;
+  // Каждая колонка → своя зона в плашке Результата.
+  // Внутри колонки карточки равномерно распределены по этой зоне.
+  // Берём только верхний grid (4 колонки), не вложенный в Result-плашку
+  const topGrid = container.querySelector(':scope > .grid');
+  const cols = topGrid ? [...topGrid.children] : [];
+  const colCount = cols.length;
+  // Карта: узел → {colIndex, inColIndex, colActiveCount}
+  const nodeTargetMap = new Map();
+  cols.forEach((col, ci) => {
+    const activeInCol = [...col.querySelectorAll('.node.on')];
+    activeInCol.forEach((n, idx) => {
+      nodeTargetMap.set(n, { ci, idx, total: activeInCol.length });
+    });
+  });
+
+  lines = [];
+  activeNodes.forEach((node) => {
+    const nRect = node.getBoundingClientRect();
+    const startX = nRect.left + nRect.width/2 - rect.left;
+    const startY = nRect.bottom - rect.top;
+    const color = NODE_COLOR[node.dataset.id] || '#818cf8';
+
+    // Все потоки сходятся в центр плашки Результата
+    const tx = rpLeft + rp.width / 2;
+
+    for (let l = 0; l < LINES_PER_CARD; l++) {
+      const startOffsetX = (l - (LINES_PER_CARD-1)/2) * 10; // выходы веером из карточки
+      const baseCurve = (l - (LINES_PER_CARD-1)/2) * 12;    // лёгкое горизонтальное искривление
+
+      const particles = [];
+      for (let p = 0; p < PARTICLES_PER_LINE; p++) {
+        particles.push({
+          progress: p / PARTICLES_PER_LINE,
+          speed: BASE_SPEED,
+          size: 1.3 + Math.random() * 0.3,
+          pulsePhase: p * 0.9 + l * 1.2,
+          pulseSpeed: 2
+        });
+      }
+
+      lines.push({
+        startX: startX + startOffsetX, startY,
+        tx, ty,
+        baseCurve,
+        wavePhase: Math.random() * Math.PI * 2,
+        color, particles
+      });
+    }
+  });
+}
+
+function tickParticles(now) {
+  const container = document.getElementById('graphContainer');
+  if (!container) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.globalCompositeOperation = 'lighter';
+
+  const t_now = now * 0.001;
+
+  lines.forEach(line => {
+    // Вертикальный поток сверху-вниз: контрольные точки изгибаются ПО ГОРИЗОНТАЛИ
+    const dy = line.ty - line.startY;
+    const breath = Math.sin(t_now * 0.6 + line.wavePhase) * 8;
+    const cx1 = line.startX + line.baseCurve + breath;
+    const cy1 = line.startY + dy * 0.35;
+    const cx2 = line.tx - line.baseCurve - breath * 0.7;
+    const cy2 = line.startY + dy * 0.7;
+
+    // Жила — рисуем кривую заметнее
+    ctx.globalAlpha = 0.18;
+    ctx.strokeStyle = line.color;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(line.startX, line.startY);
+    ctx.bezierCurveTo(cx1, cy1, cx2, cy2, line.tx, line.ty);
+    ctx.stroke();
+
+    // По кривой бегут частицы
+    line.particles.forEach(p => {
+      p.progress += p.speed;
+      if (p.progress > 1) p.progress -= 1;
+
+      const t = p.progress;
+      const u = 1 - t;
+      const x = u*u*u*line.startX + 3*u*u*t*cx1 + 3*u*t*t*cx2 + t*t*t*line.tx;
+      const y = u*u*u*line.startY + 3*u*u*t*cy1 + 3*u*t*t*cy2 + t*t*t*line.ty;
+
+      const pulse = 0.6 + 0.4 * Math.sin(t_now * p.pulseSpeed + p.pulsePhase);
+      const size = p.size * (0.7 + pulse * 0.6);
+      const alphaCore = 0.7 * pulse * Math.sin(t * Math.PI);
+
+      ctx.fillStyle = line.color;
+      ctx.globalAlpha = alphaCore * 0.25;
+      ctx.beginPath();
+      ctx.arc(x, y, size * 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.globalAlpha = alphaCore;
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  });
+
+  ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = 'source-over';
+  requestAnimationFrame(tickParticles);
+}
+
+function initCanvas() {
+  resizeCanvas();
+  buildField();
+  requestAnimationFrame(tickParticles);
+}
+// двойная инициализация чтобы поймать момент после layout
+window.addEventListener('load', () => {
+  setTimeout(initCanvas, 100);
+  setTimeout(() => { resizeCanvas(); buildField(); drawArrows(); }, 400);
+});
+window.addEventListener('resize', () => { resizeCanvas(); buildField(); drawArrows(); });
+
+window.addEventListener('load', drawArrows);
+window.addEventListener('resize', drawArrows);
+
+// ============================================================
+//   СТАРТ
+// ============================================================
+// Применить «базовый» пресет при загрузке
+window.addEventListener('DOMContentLoaded', () => {
+  updateHorizonLabel();
+  document.querySelector('.preset-card[data-preset="basic"]').click();
+});
+</script>
+
+</Base>

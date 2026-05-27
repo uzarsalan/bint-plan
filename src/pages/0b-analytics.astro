@@ -1,0 +1,394 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Аналитика" currentSlug="/0b-analytics">
+
+<style is:global></style>
+
+<section class="border-t border-slate-200">
+
+  <!-- HEADER -->
+  <div class="bg-gradient-to-br from-indigo-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-8 py-16">
+      <div class="flex items-center gap-3 text-sm text-indigo-700 font-semibold mb-4">
+        <span class="px-3 py-1 bg-indigo-100 rounded-full">Этап 0b</span>
+        <span class="text-xs uppercase tracking-wider bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-2 py-0.5 rounded">Базовая инфраструктура · 1-2 недели</span>
+      </div>
+      <h2 class="text-5xl font-bold tracking-tight max-w-4xl">Настроить аналитику Я.Метрики</h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-3xl">В админке сайта <strong>171 заказ за последний год</strong> — их видно в списке. Но Я.Метрика этих заказов <strong>не видит ни одного</strong>: цели сломаны, события электронной коммерции отключены. Поэтому неизвестно <strong>откуда пришёл каждый покупатель</strong>, через какие страницы он прошёл, сколько корзин брошено по пути. Без починки эффект любых направлений (брендовая защита, B2B, реклама, конверсия чекаута) измерить невозможно.</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="max-w-6xl mx-auto px-8 py-12 space-y-12">
+
+    <!-- ГЛАВНЫЕ ЦИФРЫ -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="text-xs text-slate-500 uppercase">Заказов в админке сайта</div>
+        <div class="text-3xl font-bold mt-1">171</div>
+        <div class="text-xs text-slate-500 mt-1">за последний год</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Из них с известным источником</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">0</div>
+        <div class="text-xs text-slate-500 mt-1">Метрика их не отслеживает</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Целей сломано</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">3</div>
+        <div class="text-xs text-slate-500 mt-1">из 8 настроенных</div>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">Целей живых</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">5</div>
+        <div class="text-xs text-slate-500 mt-1">контакты, e-mail, ретаргет</div>
+      </div>
+    </div>
+
+    <!-- ВОРОНКА С РАЗРЫВАМИ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Воронка апреля 2026 — почему цифры не сходятся</div>
+      <div class="text-xs text-slate-500 mb-6">Каждая строка из своего источника: верхние — Метрика, нижние — сайт. Между ними — слепая зона.</div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="funnelChart"></div>
+
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-rose-50 border border-rose-200 rounded-lg p-4 text-sm">
+            <div class="font-bold text-rose-900 mb-2">🔴 Что не так с цифрами:</div>
+            <ul class="text-rose-900 space-y-1.5 text-xs">
+              <li>• <strong>«Корзина — 5»</strong>: цель настроена на устаревший адрес <code class="bg-white px-1 rounded">/?13867</code>. Реально корзин на порядок больше — мы их не видим.</li>
+              <li>• <strong>«Событие оплата — 85»</strong>: считает все нажатия на кнопку оплаты, включая неуспешные попытки и ошибки. Не равно реальному заказу.</li>
+              <li>• <strong>«Завершённый заказ — 0»</strong>: цель настроена на адрес <code class="bg-white px-1 rounded">/shop/zakaz-uspeshno-oformlen/</code> — такой страницы либо нет, либо счётчик там не загружается.</li>
+              <li>• <strong>11 заказов в админке</strong> — реальная цифра, видна в списке заказов. Но в Метрике эти заказы <strong>не зарегистрированы</strong>: не привязаны к источнику, не привязаны к воронке, не отображаются в отчётах по конверсии.</li>
+            </ul>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm">
+            <div class="font-bold text-amber-900 mb-2">⚠️ Последствия:</div>
+            <ul class="text-amber-900 space-y-1.5 text-xs">
+              <li>• Нельзя сказать <strong>какой источник приносит покупателей</strong> (поиск Яндекса, Google, прямые заходы, реклама — всё в одной куче)</li>
+              <li>• Нельзя сравнить два варианта страницы — нет метрики чтобы измерить</li>
+              <li>• Нельзя посчитать стоимость привлечения покупателя — нет атрибуции</li>
+              <li>• Нельзя оценить эффект от любых изменений — каждое направление будет работать «на слепую»</li>
+              <li>• <strong>Любой бюджет на рекламу = деньги в темноту</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЦЕЛИ — ЖИВЫЕ И МЁРТВЫЕ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Все цели Я.Метрики — что работает, что нет</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Цель</th>
+              <th class="text-center p-3 font-semibold">Срабатываний за 6 мес</th>
+              <th class="text-center p-3 font-semibold">Статус</th>
+              <th class="text-left p-3 font-semibold">Что делать</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr class="bg-emerald-50">
+              <td class="p-3">Открытие /contacts/ (просмотр контактов)</td>
+              <td class="text-center font-bold">829</td>
+              <td class="text-center"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded font-semibold">работает</span></td>
+              <td class="text-slate-600">Оставить</td>
+            </tr>
+            <tr class="bg-emerald-50">
+              <td class="p-3">Клик по e-mail</td>
+              <td class="text-center font-bold">340</td>
+              <td class="text-center"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded font-semibold">работает</span></td>
+              <td class="text-slate-600">Оставить</td>
+            </tr>
+            <tr class="bg-emerald-50">
+              <td class="p-3">Ретаргет: чулки противоварикозные</td>
+              <td class="text-center font-bold">493</td>
+              <td class="text-center"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded font-semibold">работает</span></td>
+              <td class="text-slate-600">Использовать для рекламы (Направление 3)</td>
+            </tr>
+            <tr class="bg-emerald-50">
+              <td class="p-3">Ретаргет: гольфы женские</td>
+              <td class="text-center font-bold">164</td>
+              <td class="text-center"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded font-semibold">работает</span></td>
+              <td class="text-slate-600">Использовать для рекламы (Направление 3)</td>
+            </tr>
+            <tr class="bg-amber-50">
+              <td class="p-3">Ретаргет: колготки противоварикозные</td>
+              <td class="text-center font-bold">6</td>
+              <td class="text-center"><span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded font-semibold">почти ноль</span></td>
+              <td class="text-slate-600">Проверить настройку — слишком мало для категории</td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="p-3 font-medium">Завершённый заказ (cart → success)</td>
+              <td class="text-center font-bold text-rose-700">0</td>
+              <td class="text-center"><span class="bg-rose-100 text-rose-800 text-xs px-2 py-1 rounded font-semibold">🔴 сломана</span></td>
+              <td class="text-slate-600">Адрес <code class="bg-white px-1 rounded text-xs">/shop/zakaz-uspeshno-oformlen/</code> не существует или счётчик не загружается. Найти реальный адрес страницы «Спасибо за заказ»</td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="p-3 font-medium">Корзина (/?13867)</td>
+              <td class="text-center font-bold text-rose-700">0</td>
+              <td class="text-center"><span class="bg-rose-100 text-rose-800 text-xs px-2 py-1 rounded font-semibold">🔴 сломана</span></td>
+              <td class="text-slate-600">Устаревший адрес. Перенастроить на текущий URL корзины или событие открытия корзины</td>
+            </tr>
+            <tr class="bg-rose-50">
+              <td class="p-3 font-medium">Загрузка фото для анализа</td>
+              <td class="text-center font-bold text-rose-700">0</td>
+              <td class="text-center"><span class="bg-rose-100 text-rose-800 text-xs px-2 py-1 rounded font-semibold">🔴 сломана</span></td>
+              <td class="text-slate-600">Функционал отсутствует на сайте или цель не привязана к кнопке. Уточнить с разработчиками</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ЧТО ВИДИМ / ЧТО НЕ ВИДИМ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что мы знаем о посетителях — и чего не знаем</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-emerald-50 rounded-xl border border-emerald-200 p-6">
+          <div class="text-xs font-bold text-emerald-800 uppercase mb-3">✅ Сейчас знаем</div>
+          <ul class="text-sm text-emerald-900 space-y-2">
+            <li>• <strong>В Метрике:</strong> сколько людей зашло (43 тыс./мес), откуда (Яндекс 86%, Google 14%, прямые), на каких страницах были (95% — статьи блога), сколько посмотрели контакты (829), кликнули по e-mail (340)</li>
+            <li>• <strong>В админке сайта:</strong> список всех 171 заказа за год, состав корзины, сумма, ФИО и адрес покупателя, дата оплаты</li>
+          </ul>
+        </div>
+        <div class="bg-rose-50 rounded-xl border border-rose-200 p-6">
+          <div class="text-xs font-bold text-rose-800 uppercase mb-3">❌ Не знаем (после починки узнаем)</div>
+          <ul class="text-sm text-rose-900 space-y-2">
+            <li>• <strong>Откуда пришёл каждый из 171 заказа</strong> — поиск Яндекс, Google, реклама, соцсети, рассылка, рекомендация (есть только устаревшая форма «откуда узнали»)</li>
+            <li>• Сколько было брошенных корзин и на каком шаге оформления уходят</li>
+            <li>• Какие товары добавляют в корзину (а не только те что купили)</li>
+            <li>• Средний чек по каждому источнику — какие приводят дорогих, какие дешёвых</li>
+            <li>• Какие категории, товары и статьи блога реально приводят к покупке (а не просто читаются)</li>
+            <li>• Возврат на вложенный в рекламу рубль — невозможно посчитать без атрибуции</li>
+            <li>• Какие пути к покупке наиболее частые — Вебвизор пишет сессии, но мы их не разбираем системно (это работа Направления 4)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ВОРОНКА ПОСЛЕ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Воронка какой она должна быть</div>
+      <div class="text-xs text-slate-500 mb-6">После настройки — все шаги атрибутированы, источники привязаны, цифры сходятся.</div>
+
+      <div class="bg-white rounded-2xl border-2 border-emerald-300 p-6">
+        <div id="funnelChartAfter"></div>
+        <div class="mt-4 text-sm text-slate-700">
+          <strong>Что станет возможным:</strong> разрез воронки по любому источнику · сравнение «откуда самые конверсионные покупатели» · подсчёт стоимости привлечения покупателя · A/B-тесты вариантов страниц · оценка ROI на каждый рубль в рекламе.
+        </div>
+      </div>
+    </div>
+
+    <!-- ЧТО ДЕЛАЕМ — СПИСОК -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что делаем — 6 пунктов настройки</div>
+      <div class="space-y-3">
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">1</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Починить цели Метрики</div>
+            <div class="text-sm text-slate-600">Найти реальный адрес страницы «Спасибо за заказ» (проверить через оформление тестового заказа) и перенастроить цель «Завершённый заказ». Переделать цель «Корзина» — на текущий URL или на событие открытия корзины. Удалить или починить цель «Загрузка фото для анализа».</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">2</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Включить электронную коммерцию (e-commerce-данные)</div>
+            <div class="text-sm text-slate-600">Сейчас в коде сайта стоит метка «использовать слой данных», но сами данные отключены. Включить отправку событий: открытие товара, добавление в корзину, начало оформления, успешный заказ. С каждым событием передавать товар, цену, количество. Это база для всей дальнейшей аналитики продаж.</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">3</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Параллельно настроить Google Analytics 4 (GA4)</div>
+            <div class="text-sm text-slate-600">Трафик с Google растёт быстро (с октября 2025 — в 22 раза). Без GA4 эти посетители — в общей куче. GA4 позволит сегментировать Google-аудиторию отдельно и видеть конверсии. Электронная коммерция настраивается параллельно с Метрикой — одно событие на сайте отправляется в обе системы.</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">4</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Расширить форму «Откуда узнали»</div>
+            <div class="text-sm text-slate-600">Сейчас при оформлении заказа поле «Откуда узнали» — общее. Разбить на конкретные варианты: «Из поиска Яндекс», «Из поиска Google», «Из соцсетей», «По рекомендации блогера/врача», «От знакомых», «Из аптеки». Сохранять источник в БД заказа — это даст ручную атрибуцию параллельно с автоматической Метрикой.</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">5</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">UTM-метки на все внешние ссылки</div>
+            <div class="text-sm text-slate-600">Каждая ссылка на сайт из соцсетей, e-mail-рассылок, Telegram-канала, статей в СМИ должна содержать метку источника. Без меток Метрика всё сваливает в «прямые заходы». С метками — каждый источник виден отдельно с конверсиями.</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">6</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Cookie-баннер и обновлённая Политика конфиденциальности</div>
+            <div class="text-sm text-slate-600">Требование закона 152-ФЗ «О персональных данных». Без явного согласия посетителя нельзя собирать его данные через Метрику/GA4. Сейчас на сайте баннера нет — это правовой риск (штрафы для юрлиц до 18 млн ₽ за повторное нарушение). Параллельно — обновить Политику конфиденциальности с актуальным списком собираемых данных.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-4 bg-emerald-50 border border-emerald-200 rounded-lg p-4 text-sm text-emerald-900">
+        ✅ <strong>Вебвизор и тепловые карты в Я.Метрике уже включены</strong> — записи сессий, карты кликов и скролла собираются. Системно использовать эти данные для анализа поведения — задача Направления 4 (конверсия и оформление заказа).
+      </div>
+    </div>
+
+    <!-- БЮДЖЕТ И СРОКИ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Бюджет и сроки</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Срок</div>
+          <div class="text-3xl font-bold mt-2">1-2 недели</div>
+          <div class="text-sm text-slate-500 mt-2">Настройка и проверка на тестовых заказах</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Разово</div>
+          <div class="text-3xl font-bold mt-2 text-indigo-700">80-130 тыс. ₽</div>
+          <div class="text-sm text-slate-500 mt-2">Веб-аналитик 30-40 ч · программист 20-30 ч (события + cookie-баннер) · юрист на обновление политики</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Ежемесячно</div>
+          <div class="text-3xl font-bold mt-2 text-slate-600">0 ₽</div>
+          <div class="text-sm text-slate-500 mt-2">Я.Метрика и Вебвизор — бесплатные. После настройки работают сами.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЦЕННОСТЬ -->
+    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-200">
+      <div class="flex items-start gap-4">
+        <div class="text-4xl">🎯</div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-indigo-900">Зачем это нужно</h3>
+          <p class="mt-2 text-indigo-900 leading-relaxed">
+            Окупаемость этапа сама по себе — нулевая. Это не маркетинговое направление, а <strong>инфраструктура</strong>.
+            Без неё <strong>невозможно измерить</strong> эффект от любого другого направления:
+            нельзя сказать «реклама окупилась», «новая страница работает лучше», «бренд-трафик вырос» — нечем измерить.
+            <br><br>
+            <strong>Считайте это страховкой</strong>: 80-130 тыс. ₽ разовых вложений защищают весь остальной бюджет
+            (600 тыс. — 1.7 млн ₽/мес постоянно) от работы «вслепую».
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЗАВИСИМОСТИ И СВЯЗКИ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border-l-4 border-emerald-400 bg-emerald-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-2">Требует</div>
+        <div class="font-semibold text-emerald-900">Ничего</div>
+        <div class="text-sm text-emerald-800 mt-1">Это базовая инфраструктура. Делается первым или параллельно с Этапом 0a (брендовая защита).</div>
+      </div>
+      <div class="border-l-4 border-indigo-400 bg-indigo-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-indigo-800 uppercase tracking-wider mb-2">Усиливает</div>
+        <div class="font-semibold text-indigo-900">Все 7 направлений плана</div>
+        <div class="text-sm text-indigo-800 mt-1">Без этого этапа KPI и атрибуция любого другого направления невозможны: ни «рост по брендовым запросам» (0a), ни «B2C-конверсия» (1), ни «отдача от B2B-рекламы» (2), ни «эффект чекаута» (4) — нечем измерить.</div>
+      </div>
+    </div>
+
+    <!-- ЧТО СМОЖЕМ ИЗМЕРИТЬ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что сможем измерить после настройки</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Метрика</th>
+              <th class="text-left p-3 font-semibold">Сейчас</th>
+              <th class="text-left p-3 font-semibold">После 0b</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="p-3 font-medium">Список заказов</td><td class="text-emerald-700">видим (админка)</td><td class="text-emerald-700 font-semibold">видим (без изменений)</td></tr>
+            <tr><td class="p-3 font-medium">Заказы в разрезе источника</td><td class="text-slate-500">не видим</td><td class="text-emerald-700 font-semibold">видим: «из поиска Я. 40, из Google 12, из рекламы 8…»</td></tr>
+            <tr><td class="p-3 font-medium">Брошенные корзины</td><td class="text-slate-500">не видим</td><td class="text-emerald-700 font-semibold">видим объём и шаг, на котором уходят</td></tr>
+            <tr><td class="p-3 font-medium">Конверсия категории и товара</td><td class="text-slate-500">не видим</td><td class="text-emerald-700 font-semibold">видим какие товары покупают, какие только смотрят</td></tr>
+            <tr><td class="p-3 font-medium">Средний чек по источникам</td><td class="text-slate-500">не видим</td><td class="text-emerald-700 font-semibold">видим какой источник приводит на бóльшую сумму</td></tr>
+            <tr><td class="p-3 font-medium">Окупаемость рекламы</td><td class="text-slate-500">невозможна</td><td class="text-emerald-700 font-semibold">видим окупаемость каждой кампании в рублях</td></tr>
+            <tr><td class="p-3 font-medium">Эффект статьи блога на покупку</td><td class="text-slate-500">не видим</td><td class="text-emerald-700 font-semibold">видим какие статьи приводят к заказу</td></tr>
+            <tr><td class="p-3 font-medium">Поведение пользователя на странице</td><td class="text-emerald-700">Вебвизор включён (есть данные)</td><td class="text-emerald-700 font-semibold">системный разбор сессий — Направление 4</td></tr>
+            <tr><td class="p-3 font-medium">Сравнение вариантов страницы (A/B)</td><td class="text-slate-500">невозможно</td><td class="text-emerald-700 font-semibold">возможно (есть метрика для сравнения)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex gap-3 pt-4">
+      <button class="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700">Обсудить этап</button>
+      <button class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold hover:bg-slate-50">Запросить план настройки</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Подсказка -->
+<div class="bg-slate-100 py-4">
+  <div class="max-w-6xl mx-auto px-8 text-sm text-slate-500">
+    <strong>Прототип Этапа 0b с реальными данными.</strong> Я.Метрика счётчик 33517108 — список целей и срабатывания за период 21 ноября 2025 → 21 мая 2026. БД сайта — фактическое количество заказов за тот же период.
+  </div>
+</div>
+
+<script>
+// Воронка СЕЙЧАС (с разрывами)
+new ApexCharts(document.querySelector('#funnelChart'), {
+  chart: { type: 'bar', height: 280, toolbar: { show: false } },
+  series: [{
+    name: 'Апрель 2026',
+    data: [
+      { x: 'Заходов на сайт', y: 39333, fillColor: '#6366f1' },
+      { x: 'Добавили в корзину (цель Метрики)', y: 5, fillColor: '#ec4899' },
+      { x: 'Событие «оплата» (все нажатия)', y: 85, fillColor: '#f59e0b' },
+      { x: 'Завершённый заказ (Метрика)', y: 0, fillColor: '#dc2626' },
+      { x: 'Заказов в БД сайта', y: 11, fillColor: '#475569' }
+    ]
+  }],
+  plotOptions: { bar: { horizontal: true, borderRadius: 6, dataLabels: { position: 'top' } } },
+  dataLabels: {
+    enabled: true,
+    formatter: v => v.toLocaleString('ru-RU'),
+    offsetX: 80, style: { fontSize: '12px', colors: ['#475569'] }
+  },
+  xaxis: { labels: { formatter: v => v.toLocaleString('ru-RU') } },
+  grid: { borderColor: '#e2e8f0' }
+}).render();
+
+// Воронка ПОСЛЕ — идеальная
+new ApexCharts(document.querySelector('#funnelChartAfter'), {
+  chart: { type: 'bar', height: 280, toolbar: { show: false } },
+  series: [{
+    name: 'После настройки',
+    data: [
+      { x: 'Заходов на сайт', y: 39333, fillColor: '#6366f1' },
+      { x: 'Открытие товара', y: 4200, fillColor: '#8b5cf6' },
+      { x: 'Добавили в корзину', y: 320, fillColor: '#a855f7' },
+      { x: 'Начали оформление', y: 95, fillColor: '#d946ef' },
+      { x: 'Прошли все шаги', y: 38, fillColor: '#ec4899' },
+      { x: 'Успешная оплата', y: 14, fillColor: '#10b981' }
+    ]
+  }],
+  plotOptions: { bar: { horizontal: true, borderRadius: 6, dataLabels: { position: 'top' } } },
+  dataLabels: {
+    enabled: true,
+    formatter: v => v.toLocaleString('ru-RU'),
+    offsetX: 80, style: { fontSize: '12px', colors: ['#475569'] }
+  },
+  xaxis: { labels: { formatter: v => v.toLocaleString('ru-RU') } },
+  grid: { borderColor: '#e2e8f0' }
+}).render();
+</script>
+
+</Base>

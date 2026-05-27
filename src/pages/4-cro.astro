@@ -1,0 +1,667 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Конверсия и чекаут" currentSlug="/4-cro">
+
+<style is:global></style>
+
+<section class="border-t border-slate-200">
+
+  <!-- HEADER -->
+  <div class="bg-gradient-to-br from-purple-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-8 py-16">
+      <div class="flex items-center gap-3 text-sm text-purple-700 font-semibold mb-4">
+        <span class="px-3 py-1 bg-purple-100 rounded-full">Направление 4</span>
+        <span class="text-xs uppercase tracking-wider bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white px-2 py-0.5 rounded">Множитель ко всему</span>
+      </div>
+      <h2 class="text-5xl font-bold tracking-tight max-w-4xl">Конверсия и чекаут</h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-3xl">Два фронта работы: <strong>перевод аудитории из блога в магазин</strong> (сейчас в /shop/ переходит ~1% от 41 тыс. блог-visits) и <strong>повышение конверсии воронки /shop/</strong> с текущих 1,3% до 2-3% для всех источников.</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="max-w-6xl mx-auto px-8 py-12 space-y-12">
+
+    <!-- ГЛАВНЫЕ ЦИФРЫ -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="text-xs text-slate-500 uppercase">Visits в /shop/</div>
+        <div class="text-3xl font-bold mt-1">523</div>
+        <div class="text-xs text-slate-500 mt-1">в месяц (1.2% от 43k)</div>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">Конверсия /shop/</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">1.3%</div>
+        <div class="text-xs text-slate-500 mt-1">в оплачен — норма ниши</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Блог → /shop/</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">~1%</div>
+        <div class="text-xs text-slate-500 mt-1">из 41 тыс. блог-visits</div>
+      </div>
+      <div class="bg-white rounded-xl border border-purple-300 p-5">
+        <div class="text-xs text-purple-700 uppercase">Прирост от CRO</div>
+        <div class="text-3xl font-bold mt-1 text-purple-700">×3-8</div>
+        <div class="text-xs text-slate-500 mt-1">к заказам на текущем трафике</div>
+      </div>
+    </div>
+
+    <!-- БАЗОВЫЕ ФАКТЫ -->
+    <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6">
+      <div class="flex gap-4">
+        <div class="text-4xl">📊</div>
+        <div>
+          <h3 class="font-bold text-lg text-emerald-900 mb-2">Где сейчас точки роста</h3>
+          <p class="text-sm text-emerald-900 leading-relaxed">
+            Конверсия посетителей /shop/ в оплаченный заказ — <strong>1,3%</strong> (523 visits/мес, 7 оплат). Это в рамках отраслевой нормы 0.5-2%.
+            <br><br>
+            Точки роста:
+            <br>— <strong>Фронт А — перевод аудитории из блога в магазин.</strong> Сейчас из 41 тыс. visits в блоге в /shop/ переходит ~1%. Можно довести до 3-5% и получить +1 200-2 000 visits в воронку без новых расходов на трафик.
+            <br>— <strong>Фронт Б — повышение конверсии в самой воронке.</strong> 1,3% → 2-3% за счёт мобильного UX (88% трафика), упрощения чекаута, отзывов с WB.
+            <br>— <strong>Готовая воронка</strong> для нового трафика от Рекламы, SEO и Брендовой защиты — иначе он будет конвертироваться по той же текущей ставке.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ВОРОНКА -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Воронка /shop/ — что мы знаем и не знаем</div>
+      <div class="text-xs text-slate-500 mb-4">Известны только начало и конец. Промежуточные шаги не отслеживаются — это и есть главное обоснование Этапа 0b (включить e-commerce dataLayer).</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="funnelChart"></div>
+        <p class="text-xs text-slate-500 mt-4">
+          <strong>Известно:</strong> 523 заходов в /shop/* и 99 заходов на страницу /shop/cart/ (Я.Метрика), 7 оплачено (БД сайта). Общая конверсия <strong>1,3%</strong>. Между корзиной и оплатой теряется в 14 раз больше людей чем оплатило — это видно даже сейчас.
+          <br>
+          <strong>Не отслеживается:</strong> открыл ли карточку товара, нажал ли «добавить в корзину», начал ли оформление. Это события e-commerce dataLayer — нужен Этап 0b чтобы увидеть полную воронку и точечно работать с местом утечки.
+        </p>
+      </div>
+    </div>
+
+    <!-- ДВА ФРОНТА -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Два фронта работы</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- ФРОНТ А -->
+        <div class="bg-white rounded-2xl border-2 border-purple-300 p-6">
+          <div class="flex items-baseline justify-between mb-3">
+            <div>
+              <div class="text-[10px] text-purple-700 font-bold uppercase">Фронт А</div>
+              <h3 class="text-xl font-bold mt-1">Блог → Магазин</h3>
+            </div>
+            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded font-semibold">+трафик в /shop/</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Главная пропажа трафика. 41 тыс. visits в блоге каждый месяц — но лишь ~1% переходят в магазин. Если научимся переводить 3-5%, это <strong>+1 200-2 000 visits в /shop/</strong> без новых расходов на трафик.</p>
+          <div class="bg-slate-50 rounded-lg p-3 text-xs space-y-1 text-slate-700">
+            <div>• Встроенные ссылки на товары прямо в тексте статьи</div>
+            <div>• Блок «купить» в конце статьи с CTA «Подобрать товар»</div>
+            <div>• Виджет «связанные товары» — 3-4 карточки SKU</div>
+            <div>• Уникальные промокоды для каждой статьи (БД готова: <code class="bg-white px-1 rounded">order_promocode</code>)</div>
+            <div>• Похожие статьи с товарами внизу</div>
+          </div>
+          <div class="bg-purple-50 rounded-lg p-3 text-xs text-purple-900 mt-3">
+            <strong>Прогноз:</strong> переход 1% → 3-5% = <strong>×3-5 visits на /shop/</strong>
+          </div>
+        </div>
+
+        <!-- ФРОНТ Б -->
+        <div class="bg-white rounded-2xl border-2 border-purple-300 p-6">
+          <div class="flex items-baseline justify-between mb-3">
+            <div>
+              <div class="text-[10px] text-purple-700 font-bold uppercase">Фронт Б</div>
+              <h3 class="text-xl font-bold mt-1">Магазин → Покупка</h3>
+            </div>
+            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded font-semibold">+CR в /shop/</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Текущие 1,3% — норма, но на ряде участков можно усилить. Главная утечка — «корзина→оплата» (14%, должно быть 30-40%). Сильнее всего сработает на мобайле (88% трафика).</p>
+          <div class="bg-slate-50 rounded-lg p-3 text-xs space-y-1 text-slate-700">
+            <div>• Чекаут в шаги (Контакты → Адрес → Оплата)</div>
+            <div>• Гостевая оплата + СБП, Apple Pay, Google Pay</div>
+            <div>• Sticky-кнопка «купить» на мобайле</div>
+            <div>• Кнопки размеров S/M/L/XL вместо выпадающего списка</div>
+            <div>• Click-to-call, шрифты ≥16px (чтобы iOS не зумил)</div>
+            <div>• Отзывы с WB + триггер «оставьте отзыв» через 14 дней</div>
+            <div>• Анализ карт кликов и сессий через Вебвизор</div>
+          </div>
+          <div class="bg-purple-50 rounded-lg p-3 text-xs text-purple-900 mt-3">
+            <strong>Прогноз:</strong> CR 1.3% → 2-3% = <strong>×1.5-2 заказов</strong>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ТОЧКИ ВХОДА: десктоп vs мобайл -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-6">
+      <h3 class="font-bold text-lg mb-1">Точки входа: десктоп vs мобайл</h3>
+      <p class="text-sm text-slate-600 mb-5">Откуда люди начинают сессию на сайте. Март-май 2026. 88% — смартфоны, и они почти никогда не идут на главную или в контакты — только сразу в статью блога.</p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
+        <div>
+          <div class="text-center text-xs font-bold uppercase text-slate-500 mb-2">Десктоп · 11 699 заходов</div>
+          <div id="entryDesktop"></div>
+        </div>
+        <div>
+          <div class="text-center text-xs font-bold uppercase text-slate-500 mb-2">Смартфон · 95 257 заходов</div>
+          <div id="entryMobile"></div>
+        </div>
+      </div>
+      <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-4 text-sm text-emerald-900">
+        <strong>Главный вывод:</strong> оптимизировать главную = эффект только на 17% десктопа = ~2% всего трафика.
+        Оптимизировать <strong>статьи</strong> = эффект на <strong>99% всего трафика</strong>. Это подтверждает приоритет №1 — перелинковка из статей (Фронт А).
+      </div>
+    </div>
+
+    <!-- ПЛАН РАБОТ С МОКАПАМИ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Порядок действий по неделям</div>
+      <div class="space-y-3">
+
+        <!-- НЕДЕЛЯ 1-2 -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-slate-500 uppercase font-semibold">Неделя</div>
+            <div class="text-2xl font-bold text-purple-700">1-2</div>
+          </div>
+          <div class="flex-1 border-l border-slate-200 pl-4">
+            <div class="font-bold mb-2">Аудит через Вебвизор + тепловые карты</div>
+            <ul class="text-sm text-slate-700 space-y-1">
+              <li>• Просмотр 20-30 сессий из Вебвизора по фильтрам: «попал в корзину», «попал в /shop/», «смартфон»</li>
+              <li>• Карты кликов и скролла на топ-страницах магазина и блога</li>
+              <li>• Список проблем — где спотыкаются на мобайле, что игнорируется</li>
+              <li>• Зависит от Этапа 0b (Вебвизор уже включён, но e-commerce dataLayer надо подключить)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- НЕДЕЛЯ 3-4 ФРОНТ А С МОКАПОМ -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5">
+          <div class="flex gap-4 mb-4">
+            <div class="flex-shrink-0 w-20 text-center">
+              <div class="text-xs text-slate-500 uppercase font-semibold">Неделя</div>
+              <div class="text-2xl font-bold text-purple-700">3-4</div>
+            </div>
+            <div class="flex-1 border-l border-slate-200 pl-4">
+              <div class="font-bold mb-2">Фронт А — перелинковка блог → магазин</div>
+              <ul class="text-sm text-slate-700 space-y-1">
+                <li>• В топ-20 статей блога добавить: блок «купить», виджет «связанные товары», ссылки в тексте</li>
+                <li>• Уникальные промокоды для каждой статьи (атрибуция + ловит отложенные покупки)</li>
+                <li>• Email-триггер «оставьте отзыв через 14 дней» (для накопления отзывов из Фронта Б)</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- МОКАП блог-статьи -->
+          <div class="mt-4 pt-4 border-t border-slate-200">
+            <div class="text-xs font-bold uppercase text-slate-500 mb-3">Как это будет выглядеть: блог-статья</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+              <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                <div class="text-xs font-bold text-slate-500 mb-2 uppercase">Сейчас</div>
+                <div class="bg-white rounded p-3 border border-slate-200 space-y-1.5">
+                  <div class="font-bold text-sm">Снимать ли эластичные бинты на ночь</div>
+                  <p class="text-[10px] text-slate-600 leading-snug">Эластичный бинт во время сна обычно снимают. В горизонтальном положении нагрузка на вены уменьшается, и компрессия не требуется так же, как днём…</p>
+                  <p class="text-[10px] text-slate-600 leading-snug">Исключение — острый период после операции: врач может назначить непрерывное ношение в течение нескольких суток.</p>
+                  <p class="text-[10px] text-slate-600 leading-snug">Если на ноге появилось раздражение или след от шва — снимите бинт и проконсультируйтесь с врачом.</p>
+                  <div class="border-t border-dashed border-slate-300 pt-2 text-[11px] text-slate-400 italic">конец статьи — ни ссылок на товары, ни кнопки</div>
+                </div>
+              </div>
+
+              <div class="bg-emerald-50 rounded-lg p-4 border-2 border-emerald-300">
+                <div class="text-xs font-bold text-emerald-700 mb-2 uppercase">Будет</div>
+                <div class="bg-white rounded p-3 border border-slate-200 space-y-1.5">
+                  <div class="font-bold text-sm">Снимать ли эластичные бинты на ночь</div>
+                  <p class="text-[10px] text-slate-600 leading-snug">Эластичный бинт во время сна обычно снимают…</p>
+                  <p class="text-[10px] text-slate-600 leading-snug">
+                    Для повседневной поддержки подойдёт
+                    <span class="text-purple-700 underline font-semibold">эластичный бинт Интекс №3</span> — средней растяжимости, для бёдер и икр.
+                  </p>
+                  <p class="text-[10px] text-slate-600 leading-snug">Исключение — острый период после операции: врач может назначить непрерывное ношение в течение нескольких суток.</p>
+
+                  <div class="bg-amber-50 border border-dashed border-amber-400 rounded p-2">
+                    <div class="text-[10px] font-bold text-amber-800">🎁 Промокод для читателей</div>
+                    <div class="text-xs font-mono font-bold text-amber-900 mt-0.5">BINT-NOCH-10 · −10%</div>
+                  </div>
+
+                  <div class="bg-purple-600 text-white rounded p-2 text-center">
+                    <div class="font-bold text-xs">Подобрать эластичный бинт →</div>
+                  </div>
+
+                  <div>
+                    <div class="text-[10px] font-bold text-slate-600 mb-1">Связанные товары</div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                      <div class="border border-slate-200 rounded p-1 text-center">
+                        <div class="w-full h-8 bg-slate-100 rounded mb-0.5"></div>
+                        <div class="text-[9px]">Бинт №1</div>
+                        <div class="text-[9px] font-bold">259₽</div>
+                      </div>
+                      <div class="border border-slate-200 rounded p-1 text-center">
+                        <div class="w-full h-8 bg-slate-100 rounded mb-0.5"></div>
+                        <div class="text-[9px]">Бинт №3</div>
+                        <div class="text-[9px] font-bold">293₽</div>
+                      </div>
+                      <div class="border border-slate-200 rounded p-1 text-center">
+                        <div class="w-full h-8 bg-slate-100 rounded mb-0.5"></div>
+                        <div class="text-[9px]">Бинт №5</div>
+                        <div class="text-[9px] font-bold">376₽</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="text-[10px] font-bold text-slate-600 mb-1">Похожие статьи</div>
+                    <div class="text-[10px] text-blue-600">Сколько носить эластичный бинт</div>
+                    <div class="text-[10px] text-blue-600">Как подобрать длину бинта</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- МЕСЯЦ 2 ФРОНТ Б МОБАЙЛ С МОКАПОМ -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5">
+          <div class="flex gap-4 mb-4">
+            <div class="flex-shrink-0 w-20 text-center">
+              <div class="text-xs text-slate-500 uppercase font-semibold">Месяц</div>
+              <div class="text-2xl font-bold text-purple-700">2</div>
+            </div>
+            <div class="flex-1 border-l border-slate-200 pl-4">
+              <div class="font-bold mb-2">Фронт Б — мобильный UX (88% трафика)</div>
+              <ul class="text-sm text-slate-700 space-y-1">
+                <li>• Sticky-кнопка «купить» внизу экрана на товарных страницах</li>
+                <li>• Кнопки размеров S/M/L/XL вместо select</li>
+                <li>• Click-to-call в шапке, lazy-load фото товаров</li>
+                <li>• Шрифты ≥16px на input-полях, чтобы iOS не зумил при тапе</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- МОКАП товарной карточки -->
+          <div class="mt-4 pt-4 border-t border-slate-200">
+            <div class="text-xs font-bold uppercase text-slate-500 mb-3">Как это будет выглядеть: товарная карточка</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+              <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                <div class="text-xs font-bold text-slate-500 mb-2 uppercase">Сейчас</div>
+                <div class="bg-white rounded p-3 border border-slate-200">
+                  <div class="flex gap-2">
+                    <div class="w-20 h-24 bg-slate-200 rounded flex-shrink-0"></div>
+                    <div class="flex-1 space-y-1.5">
+                      <div class="font-semibold text-xs">Чулки антиэмболические Универсал</div>
+                      <div class="text-[10px] text-slate-500">1 класс компрессии</div>
+                      <div class="text-base font-bold">2 264 ₽</div>
+                      <div class="text-[10px] text-slate-500">Размер: <span class="border border-slate-300 px-1 rounded text-[9px]">S M L XL ▾</span></div>
+                      <div class="bg-purple-600 text-white rounded text-center py-1 text-[11px]">Добавить</div>
+                    </div>
+                  </div>
+                  <div class="border-t border-dashed border-slate-300 mt-2 pt-2 text-[11px] text-slate-400 italic">нет рейтинга, нет отзывов, нет блока о бренде, размеры в select</div>
+                </div>
+              </div>
+
+              <div class="bg-emerald-50 rounded-lg p-4 border-2 border-emerald-300">
+                <div class="text-xs font-bold text-emerald-700 mb-2 uppercase">Будет</div>
+                <div class="bg-white rounded p-3 border border-slate-200 space-y-2">
+                  <div class="flex gap-2">
+                    <div class="w-20 h-24 bg-slate-200 rounded flex-shrink-0"></div>
+                    <div class="flex-1 space-y-1">
+                      <div class="font-semibold text-xs">Чулки антиэмболические Универсал</div>
+                      <div class="flex items-center gap-1 text-[10px]">
+                        <span class="text-amber-500">★★★★★</span>
+                        <span class="text-slate-600 font-semibold">4,9</span>
+                        <span class="text-slate-400">· 187 отзывов</span>
+                      </div>
+                      <div class="text-[10px] text-slate-500">1 класс компрессии</div>
+                      <div class="text-base font-bold">2 264 ₽</div>
+                      <div class="flex gap-0.5 text-[10px]">
+                        <span class="border border-slate-300 px-1.5 py-0.5 rounded">S</span>
+                        <span class="border border-purple-600 bg-purple-50 text-purple-700 px-1.5 py-0.5 rounded font-bold">M</span>
+                        <span class="border border-slate-300 px-1.5 py-0.5 rounded">L</span>
+                        <span class="border border-slate-300 px-1.5 py-0.5 rounded">XL</span>
+                      </div>
+                      <div class="bg-purple-600 text-white rounded text-center py-1 text-[11px] font-bold">Добавить · 2 264 ₽</div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-1.5 text-[10px] text-slate-600 bg-slate-50 rounded p-1.5">
+                    <span class="font-bold">✓</span> Производитель Интекс с 1995 ·
+                    <span class="font-bold">✓</span> РУ Росздравнадзора
+                  </div>
+
+                  <div>
+                    <div class="text-[10px] font-bold text-slate-700 mb-1">Отзывы покупателей</div>
+                    <div class="bg-slate-50 rounded p-1.5 text-[10px]">
+                      <div class="flex items-center justify-between mb-0.5">
+                        <span class="font-semibold">Мария К.</span>
+                        <span class="text-amber-500 text-[9px]">★★★★★</span>
+                      </div>
+                      <div class="text-slate-600">«Носила после операции, очень удобные…»</div>
+                    </div>
+                    <div class="text-[9px] text-slate-500 mt-0.5">+186 отзывов с фото</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- МЕСЯЦ 3 — ЧЕКАУТ + ВИДЖЕТ РАЗМЕРА -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5">
+          <div class="flex gap-4 mb-4">
+            <div class="flex-shrink-0 w-20 text-center">
+              <div class="text-xs text-slate-500 uppercase font-semibold">Месяц</div>
+              <div class="text-2xl font-bold text-purple-700">3</div>
+            </div>
+            <div class="flex-1 border-l border-slate-200 pl-4">
+              <div class="font-bold mb-2">Чекаут, оплата, виджет подбора размера</div>
+              <ul class="text-sm text-slate-700 space-y-1">
+                <li>• Гостевая оплата (без обязательной регистрации)</li>
+                <li>• Чекаут в шаги: 1. Контакты → 2. Адрес → 3. Оплата</li>
+                <li>• СБП, Apple Pay, Google Pay + расширение доставки (СДЭК + Boxberry + Я.Доставка + Почта)</li>
+                <li>• Интерактивный подбор размера: ввод роста и обхватов → авто-подбор</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- МОКАП виджета размера -->
+          <div class="mt-4 pt-4 border-t border-slate-200">
+            <div class="text-xs font-bold uppercase text-slate-500 mb-3">Как это будет выглядеть: подбор размера</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+              <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                <div class="text-xs font-bold text-slate-500 mb-2 uppercase">Сейчас (таблица)</div>
+                <div class="bg-white rounded p-3 border border-slate-200">
+                  <div class="text-xs font-bold mb-2">Размер</div>
+                  <table class="w-full text-[10px]">
+                    <thead>
+                      <tr class="text-slate-500">
+                        <th class="text-left py-1">Размер</th>
+                        <th class="text-right">Рост</th>
+                        <th class="text-right">Бедро</th>
+                        <th class="text-right">Голень</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>S</td><td class="text-right">160-170</td><td class="text-right">50-60</td><td class="text-right">28-32</td></tr>
+                      <tr><td>M</td><td class="text-right">165-175</td><td class="text-right">55-65</td><td class="text-right">31-35</td></tr>
+                      <tr><td>L</td><td class="text-right">170-180</td><td class="text-right">60-70</td><td class="text-right">34-38</td></tr>
+                      <tr><td>XL</td><td class="text-right">175-185</td><td class="text-right">65-75</td><td class="text-right">37-41</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="text-[10px] text-slate-400 italic mt-2">покупатель сам сопоставляет — фрикция</div>
+                </div>
+              </div>
+
+              <div class="bg-emerald-50 rounded-lg p-4 border-2 border-emerald-300">
+                <div class="text-xs font-bold text-emerald-700 mb-2 uppercase">Будет (интерактивно)</div>
+                <div class="bg-white rounded p-3 border border-slate-200 space-y-2">
+                  <div class="text-xs font-bold">🎯 Подберём размер за 10 секунд</div>
+                  <div class="space-y-1.5">
+                    <div>
+                      <div class="text-[10px] text-slate-500">Рост, см</div>
+                      <div class="border border-slate-300 rounded px-2 py-1 text-xs bg-slate-50">168</div>
+                    </div>
+                    <div>
+                      <div class="text-[10px] text-slate-500">Обхват бедра, см</div>
+                      <div class="border border-slate-300 rounded px-2 py-1 text-xs bg-slate-50">62</div>
+                    </div>
+                    <div>
+                      <div class="text-[10px] text-slate-500">Обхват голени, см</div>
+                      <div class="border border-slate-300 rounded px-2 py-1 text-xs bg-slate-50">34</div>
+                    </div>
+                  </div>
+                  <div class="bg-emerald-100 border border-emerald-300 rounded p-2 text-center">
+                    <div class="text-[10px] text-emerald-700">Ваш размер</div>
+                    <div class="text-lg font-bold text-emerald-800">M</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ДАЛЬШЕ -->
+        <div class="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-emerald-700 uppercase font-semibold">Дальше</div>
+            <div class="text-2xl font-bold text-emerald-700">всегда</div>
+          </div>
+          <div class="flex-1 border-l border-emerald-200 pl-4">
+            <div class="font-bold text-emerald-900 mb-2">Постоянный процесс</div>
+            <ul class="text-sm text-emerald-900 space-y-1">
+              <li>• Еженедельный просмотр 10-20 сессий из Вебвизора</li>
+              <li>• <strong>Отчёт по промокодам:</strong> какие статьи реально приводят к покупке. Слабые статьи → переработать или удалить</li>
+              <li>• Сравнение вариантов товарных страниц (заголовок, фото, описание, кнопка)</li>
+              <li>• Конверсия по сегментам: мобайл/десктоп, источник, новый/повторный</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ПРОГНОЗ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Прогноз — оплаченных заказов в месяц</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="growthChart"></div>
+        <p class="text-xs text-slate-500 mt-4">База: 7 оплаченных/мес на текущем трафике (523 visits в /shop/). <strong>+1 мес</strong> — первые промокоды и перелинковка работают (×2). <strong>+3 мес</strong> — мобайл-UX + чекаут готовы (×5). <strong>+6 мес</strong> — полный CRO на текущем трафике (×7-10). Дальнейший рост — на новом трафике от Рекламы и SEO.</p>
+      </div>
+    </div>
+
+    <!-- БЮДЖЕТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Бюджет и сроки</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Срок до эффекта</div>
+          <div class="text-3xl font-bold mt-2">1-3 мес</div>
+          <div class="text-sm text-slate-500 mt-2">Быстрый эффект от Фронта А (промокоды + перелинковка). Полная UX-доработка — 3-4 мес.</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Работа в первые 3-4 мес</div>
+          <div class="text-3xl font-bold mt-2 text-purple-700">70-120k ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">UX-аудит + Django-разработка + копирайтинг блоков «купить»</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Поддержка дальше</div>
+          <div class="text-3xl font-bold mt-2 text-purple-700">40-70k ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">Анализ Вебвизора, сравнение вариантов страниц, мелкие правки</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ОКУПАЕМОСТЬ -->
+    <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-200">
+      <div class="flex items-start gap-4">
+        <div class="text-4xl">📈</div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-emerald-900">Окупаемость</h3>
+          <p class="mt-2 text-emerald-800 leading-relaxed">
+            <strong>На существующем трафике:</strong> +18-43 оплаченных заказов/мес × 3 500 ₽ = <strong>+65-150 тыс. ₽/мес</strong> розничной выручки.
+            <br><br>
+            <strong>На новом трафике от других направлений:</strong> CRO — множитель ко всему. Каждый рубль на Рекламу, SEO, Брендовую защиту окупается в 3-8 раз сильнее.
+            <br><br>
+            <strong>Окупаемость работ:</strong> 3-4 месяца × 90 тыс. ₽ = ~360 тыс. вложений → окупается на 3-5 мес после старта.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЗАВИСИМОСТИ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border-l-4 border-amber-400 bg-amber-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-amber-800 uppercase tracking-wider mb-2">Требует</div>
+        <div class="font-semibold text-amber-900">Этап 0b — настройка аналитики</div>
+        <div class="text-sm text-amber-800 mt-1">Без работающих целей и e-commerce dataLayer невозможно: сравнить варианты страниц, оценить эффект промокодов, понять где спотыкаются в чекауте.</div>
+      </div>
+      <div class="border-l-4 border-indigo-400 bg-indigo-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-indigo-800 uppercase tracking-wider mb-2">Усиливает</div>
+        <div class="font-semibold text-indigo-900">Все направления привлечения трафика</div>
+        <div class="text-sm text-indigo-800 mt-1">Реклама, SEO, Брендовая защита, AI-поиск приводят аудиторию в воронку — CRO её обрабатывает. Без CRO любой новый трафик упирается в текущую конверсию.</div>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что отслеживаем</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Метрика</th>
+              <th class="text-center p-3 font-semibold">Сейчас</th>
+              <th class="text-center p-3 font-semibold">+1 мес</th>
+              <th class="text-center p-3 font-semibold">+3 мес</th>
+              <th class="text-center p-3 font-semibold">+6 мес</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr class="bg-slate-50"><td class="p-3 font-semibold text-purple-700" colspan="5">Фронт А — блог → магазин</td></tr>
+            <tr><td class="p-3">Visits на /shop/ из блога</td><td class="text-center">~400</td><td class="text-center">700-900</td><td class="text-center">1 200-1 500</td><td class="text-center font-bold text-emerald-700">1 500-2 000</td></tr>
+            <tr><td class="p-3">Доля блог→shop</td><td class="text-center">~1%</td><td class="text-center">2%</td><td class="text-center">3-4%</td><td class="text-center font-bold text-emerald-700">4-5%</td></tr>
+            <tr><td class="p-3">Применений промокодов из статей</td><td class="text-center">0</td><td class="text-center">5-10</td><td class="text-center">25-40</td><td class="text-center font-bold text-emerald-700">50+</td></tr>
+            <tr class="bg-slate-50"><td class="p-3 font-semibold text-purple-700" colspan="5">Фронт Б — магазин → покупка</td></tr>
+            <tr><td class="p-3">CR /shop/ (в оплаченный заказ)</td><td class="text-center">1.3%</td><td class="text-center">1.5%</td><td class="text-center">2.0%</td><td class="text-center font-bold text-emerald-700">2.5-3%</td></tr>
+            <tr><td class="p-3">CR корзина → оплата</td><td class="text-center">~14%</td><td class="text-center">20%</td><td class="text-center">30%</td><td class="text-center font-bold text-emerald-700">40%+</td></tr>
+            <tr><td class="p-3">Mobile CR vs Desktop</td><td class="text-center">×0.1</td><td class="text-center">×0.3</td><td class="text-center">×0.5</td><td class="text-center font-bold text-emerald-700">×0.7-0.9</td></tr>
+            <tr class="bg-emerald-50"><td class="p-3 font-bold">Оплаченных заказов/мес (всего)</td><td class="text-center font-semibold">7</td><td class="text-center font-semibold">15-20</td><td class="text-center font-semibold">35-45</td><td class="text-center font-bold text-emerald-700">50-70</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex gap-3 pt-4">
+      <button class="px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700">Обсудить направление</button>
+      <button class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold hover:bg-slate-50">Запросить аудит Вебвизора</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Подсказка -->
+<div class="bg-slate-100 py-4">
+  <div class="max-w-6xl mx-auto px-8 text-sm text-slate-500">
+    <strong>Прототип Направления 4 с реальными данными.</strong> Я.Метрика 33517108 — 523 visits/мес в /shop/* и 99 в /shop/cart/ за 6 мес. БД сайта — 14 заказов созданных / 7 оплаченных в месяц. Конверсия /shop/ в оплаченный заказ = 1.3%.
+  </div>
+</div>
+
+<script>
+// ВОРОНКА /shop/ — измеримые и неизмеримые шаги
+new ApexCharts(document.querySelector('#funnelChart'), {
+  chart: { type: 'bar', height: 320, toolbar: { show: false } },
+  series: [{
+    name: 'Этапы',
+    data: [
+      { x: 'Заходов в /shop/*', y: 523, fillColor: '#6366f1' },
+      { x: 'Открыл карточку товара (нет события)', y: 523, fillColor: '#cbd5e1' },
+      { x: 'Добавил в корзину (нет события)', y: 523, fillColor: '#cbd5e1' },
+      { x: 'Зашёл на /shop/cart/', y: 99, fillColor: '#a855f7' },
+      { x: 'Начал оформление (нет события)', y: 99, fillColor: '#cbd5e1' },
+      { x: 'Оплачено (БД сайта)', y: 7, fillColor: '#10b981' }
+    ]
+  }],
+  plotOptions: { bar: { horizontal: true, borderRadius: 6, dataLabels: { position: 'top' }, barHeight: '60%' } },
+  dataLabels: {
+    enabled: true,
+    formatter: (v, opt) => {
+      const i = opt.dataPointIndex;
+      const labels = [
+        v.toLocaleString('ru-RU') + ' (100%)',
+        'нет данных — нужен Этап 0b',
+        'нет данных — нужен Этап 0b',
+        v.toLocaleString('ru-RU') + ' (18.9%)',
+        'нет данных — нужен Этап 0b',
+        v.toLocaleString('ru-RU') + ' (1.3%)'
+      ];
+      return labels[i] || v;
+    },
+    offsetX: 80,
+    style: { fontSize: '11px', colors: ['#475569'] }
+  },
+  xaxis: { labels: { formatter: v => v.toLocaleString('ru-RU') } },
+  grid: { borderColor: '#e2e8f0' },
+  legend: { show: false }
+}).render();
+
+// ТОЧКИ ВХОДА — donut десктоп
+new ApexCharts(document.querySelector('#entryDesktop'), {
+  chart: { type: 'donut', height: 280, toolbar: { show: false } },
+  series: [16.9, 70.9, 1.4, 10.8],
+  labels: ['Главная', 'Статьи блога', 'Контакты', 'Прочее'],
+  colors: ['#6366f1', '#10b981', '#f59e0b', '#94a3b8'],
+  legend: { position: 'bottom', fontSize: '12px' },
+  plotOptions: {
+    pie: {
+      donut: {
+        size: '60%',
+        labels: { show: true, total: { show: true, label: 'Всего', formatter: () => '11 699' } }
+      }
+    }
+  },
+  dataLabels: { formatter: v => v.toFixed(1) + '%' }
+}).render();
+
+// ТОЧКИ ВХОДА — donut мобайл
+new ApexCharts(document.querySelector('#entryMobile'), {
+  chart: { type: 'donut', height: 280, toolbar: { show: false } },
+  series: [1.7, 95.0, 0.3, 3.0],
+  labels: ['Главная', 'Статьи блога', 'Контакты', 'Прочее'],
+  colors: ['#6366f1', '#10b981', '#f59e0b', '#94a3b8'],
+  legend: { position: 'bottom', fontSize: '12px' },
+  plotOptions: {
+    pie: {
+      donut: {
+        size: '60%',
+        labels: { show: true, total: { show: true, label: 'Всего', formatter: () => '95 257' } }
+      }
+    }
+  },
+  dataLabels: { formatter: v => v.toFixed(1) + '%' }
+}).render();
+
+// ПРОГНОЗ роста заказов — range area
+new ApexCharts(document.querySelector('#growthChart'), {
+  chart: { type: 'rangeArea', height: 320, toolbar: { show: false } },
+  series: [
+    {
+      name: 'Диапазон',
+      type: 'rangeArea',
+      data: [
+        { x: 'Сейчас', y: [7, 7] },
+        { x: '+1 мес', y: [12, 20] },
+        { x: '+2 мес', y: [20, 30] },
+        { x: '+3 мес', y: [30, 45] },
+        { x: '+4 мес', y: [40, 55] },
+        { x: '+6 мес', y: [50, 70] }
+      ]
+    },
+    {
+      name: 'Средняя оценка',
+      type: 'line',
+      data: [
+        { x: 'Сейчас', y: 7 },
+        { x: '+1 мес', y: 16 },
+        { x: '+2 мес', y: 25 },
+        { x: '+3 мес', y: 37 },
+        { x: '+4 мес', y: 47 },
+        { x: '+6 мес', y: 60 }
+      ]
+    }
+  ],
+  stroke: { curve: 'smooth', width: [0, 3] },
+  colors: ['#a855f7', '#7c3aed'],
+  fill: { opacity: [0.25, 1] },
+  markers: { size: [0, 6], strokeWidth: 2, strokeColors: '#fff', colors: ['#a855f7', '#7c3aed'] },
+  xaxis: { categories: ['Сейчас', '+1 мес', '+2 мес', '+3 мес', '+4 мес', '+6 мес'] },
+  yaxis: { title: { text: 'Оплаченных заказов / мес' } },
+  grid: { borderColor: '#e2e8f0' },
+  legend: { position: 'top' }
+}).render();
+</script>
+
+</Base>

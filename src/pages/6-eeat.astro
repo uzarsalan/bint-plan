@@ -1,0 +1,321 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Авторитетность + AI" currentSlug="/6-eeat">
+
+<style is:global></style>
+
+<section class="border-t border-slate-200">
+
+  <!-- HEADER -->
+  <div class="bg-gradient-to-br from-violet-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-8 py-16">
+      <div class="flex items-center gap-3 text-sm text-violet-700 font-semibold mb-4">
+        <span class="px-3 py-1 bg-violet-100 rounded-full">Направление 6</span>
+        <span class="text-xs uppercase tracking-wider bg-gradient-to-r from-violet-500 to-purple-500 text-white px-2 py-0.5 rounded">YMYL + AI · 6-12 мес</span>
+      </div>
+      <h2 class="text-5xl font-bold tracking-tight max-w-4xl">Авторитетность + AI-поиск</h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-3xl">Медицинский трикотаж — это YMYL-ниша (Your Money or Your Life). Яндекс и Google в ней требуют экспертности и доверия: подписей врачей, регистрационных удостоверений, ссылок на стандарты. Без этого <strong>каждое обновление Яндекса режет трафик на 20-40%</strong>. Параллельно — bint.ru уже получает заходы из ChatGPT, Perplexity и других AI-поисковиков. Цель — кратно усилить и защитить оба канала.</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="max-w-6xl mx-auto px-8 py-12 space-y-12">
+
+    <!-- ГЛАВНЫЕ ЦИФРЫ -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-violet-300 p-5">
+        <div class="text-xs text-violet-700 uppercase">AI-поиск сейчас</div>
+        <div class="text-3xl font-bold mt-1 text-violet-700">~10</div>
+        <div class="text-xs text-slate-500 mt-1">заходов/мес без оптимизации</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Подписей врачей</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">0</div>
+        <div class="text-xs text-slate-500 mt-1">из 640 статей блога</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Schema.org Person/MedicalOrganization</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">нет</div>
+        <div class="text-xs text-slate-500 mt-1">YMYL-разметки на сайте отсутствуют</div>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">Через 12 мес</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">+5-8k</div>
+        <div class="text-xs text-slate-500 mt-1">visits/мес от AI и защита от обновлений</div>
+      </div>
+    </div>
+
+    <!-- ОБЪЯСНЕНИЕ E-E-A-T -->
+    <div class="bg-violet-50 border-2 border-violet-200 rounded-2xl p-6">
+      <h3 class="font-bold text-lg text-violet-900 mb-2">Что такое E-E-A-T и почему это критично для медтрикотажа</h3>
+      <p class="text-sm text-violet-900 leading-relaxed">
+        E-E-A-T — это четыре сигнала, по которым поисковики оценивают качество медицинского контента: <strong>Experience</strong> (опыт), <strong>Expertise</strong> (экспертность), <strong>Authoritativeness</strong> (авторитетность), <strong>Trustworthiness</strong> (надёжность).
+        <br><br>
+        В YMYL-нишах (здоровье, финансы, юридика) эти сигналы — главный фактор ранжирования. Яндекс и Google проверяют: есть ли автор-врач у статьи, указаны ли его регалии, ссылается ли сайт на медицинские стандарты, есть ли регистрационные удостоверения на товары.
+        <br><br>
+        <strong>Что это значит для bint.ru:</strong> сейчас 640 статей блога подписаны брендом, не автором-врачом. Schema.org MedicalOrganization и Person отсутствуют. При следующем Core Update (обычно 2-4 раза в год) Яндекс может срезать 20-40% трафика по YMYL-причинам — и это будет нечем компенсировать.
+      </p>
+    </div>
+
+    <!-- AI-ПОИСК УЖЕ РАБОТАЕТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">AI-поисковики уже приводят посетителей — без оптимизации</div>
+      <div class="text-xs text-slate-500 mb-4">Я.Метрика за последние 6 мес. Это база, на которой можно вырасти кратно — после llms.txt, Schema.org и цитируемых блоков в статьях.</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Источник</th>
+              <th class="text-right p-3 font-semibold">Visits / 6 мес</th>
+              <th class="text-right p-3 font-semibold">Bounce</th>
+              <th class="text-left p-3 font-semibold">Канал</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="p-3 font-medium">chatgpt.com</td><td class="text-right">34</td><td class="text-right">17%</td><td class="text-xs text-slate-600">referer + UTM</td></tr>
+            <tr><td class="p-3 font-medium">perplexity.ai</td><td class="text-right">19</td><td class="text-right">—</td><td class="text-xs text-slate-600">UTM</td></tr>
+            <tr><td class="p-3 font-medium">search.brave.com</td><td class="text-right">6</td><td class="text-right">17%</td><td class="text-xs text-slate-600">AI-Mix поиск</td></tr>
+            <tr><td class="p-3 font-medium">copilot.microsoft.com</td><td class="text-right">1</td><td class="text-right">—</td><td class="text-xs text-slate-600">UTM</td></tr>
+            <tr class="bg-emerald-50"><td class="p-3 font-bold">Итого AI</td><td class="text-right font-bold">~60</td><td class="text-right">17%</td><td class="text-xs text-slate-700 font-semibold">~10/мес</td></tr>
+            <tr><td class="p-3 text-slate-600">bing.com (содержит Copilot)</td><td class="text-right">209</td><td class="text-right">17%</td><td class="text-xs text-slate-600">смешанный AI+обычный поиск</td></tr>
+            <tr><td class="p-3 text-slate-600">duckduckgo.com (тестирует AI)</td><td class="text-right">73</td><td class="text-right">19%</td><td class="text-xs text-slate-600">смешанный</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-900">
+        Bounce 17% по AI-трафику — это <strong>в 2 раза лучше</strong> среднего (32% по сайту). AI-поисковики приводят <strong>осознанную аудиторию</strong> — пользователь уже задал конкретный вопрос и получил bint.ru как один из источников ответа. Это самый тёплый трафик после прямых заходов.
+      </div>
+    </div>
+
+    <!-- ЧТО ДЕЛАЕМ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что делаем — 5 направлений работы</div>
+      <div class="space-y-3">
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 text-violet-700 flex items-center justify-center font-bold text-lg">1</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">1-2 врача-эксперта с публичной подписью</div>
+            <div class="text-sm text-slate-700 mb-3">Главный сигнал E-E-A-T. Не команда из 5 авторов, а 1-2 ключевых эксперта чьи материалы можно переиспользовать.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>Профиль:</strong> флеболог или хирург, желательно с публикациями в РОАГ/РОФ, с реальной практикой</li>
+              <li>• <strong>Схема работы:</strong> 1-2 интервью в месяц, проверка фактов в новых статьях, медицинский редактор переупаковывает</li>
+              <li>• <strong>Личная страница</strong> на сайте с фото, образованием, лицензией Росздравнадзора, ссылками на работы</li>
+              <li>• <strong>Подпись под топ-50 статей блога</strong> — постепенно (10 статей/мес), привязка к Schema.org Person</li>
+            </ul>
+            <div class="mt-3 text-xs text-violet-700 font-semibold">Внешний расход: 25-30 тыс. ₽/мес на 1 врача</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 text-violet-700 flex items-center justify-center font-bold text-lg">2</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Schema.org разметка для медицинских сущностей</div>
+            <div class="text-sm text-slate-700 mb-3">Машинная разметка, которую Яндекс/Google используют для понимания «это медицинский сайт-производитель, у которого есть РУ и врачи-эксперты».</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>MedicalOrganization</strong> на главной — производитель с РУ Росздравнадзора</li>
+              <li>• <strong>Person</strong> для каждого врача-эксперта (с hasCredential — лицензия, образование)</li>
+              <li>• <strong>MedicalCondition</strong> на категорийных страницах (варикоз, лимфостаз, послеоперационная реабилитация)</li>
+              <li>• <strong>MedicalIndication</strong> на товарных карточках (показания и противопоказания)</li>
+              <li>• <strong>Article</strong> + <strong>author=Person</strong> на каждой статье блога</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 text-violet-700 flex items-center justify-center font-bold text-lg">3</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">/sertifikaty/ — страница с регистрационными удостоверениями</div>
+            <div class="text-sm text-slate-700 mb-3">Сейчас на /about/ есть картинки сертификатов без текста. Поисковики и AI не могут их прочитать. Нужна полноценная страница.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• Список всех РУ Росздравнадзора (номер, дата, на что выдано) — текстом, не картинкой</li>
+              <li>• Сертификаты соответствия ГОСТ</li>
+              <li>• Декларация о маркировке Честный знак (если есть)</li>
+              <li>• Schema.org <code class="bg-slate-100 px-1 rounded text-xs">hasCredential</code> на каждое удостоверение</li>
+              <li>• Возможность скачать PDF каждого документа</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 text-violet-700 flex items-center justify-center font-bold text-lg">4</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">llms.txt + цитируемая структура статей под AI-поисковики</div>
+            <div class="text-sm text-slate-700 mb-3">AI-поисковики (ChatGPT, Perplexity, Claude, Gemini) при формировании ответа цитируют отдельные блоки из статей. Чтобы попадать в ответы — нужна правильная структура.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>llms.txt</strong> в корне сайта — стандарт для AI-краулеров с указанием главных страниц и контактов</li>
+              <li>• <strong>TL;DR в начале статей</strong> — 2-3 предложения с ключевым ответом (AI часто берёт именно их)</li>
+              <li>• <strong>Прямые цитаты экспертов</strong> с атрибуцией (имя врача, регалии) — AI-поисковики предпочитают цитировать с источником</li>
+              <li>• <strong>Ссылки на ВОЗ, Минздрав, ГОСТ</strong> в каждой релевантной статье — авторитетные источники</li>
+              <li>• <strong>FAQ-блоки</strong> с разметкой FAQPage</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 text-violet-700 flex items-center justify-center font-bold text-lg">5</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Внешние упоминания — Прессфид, нативные публикации</div>
+            <div class="text-sm text-slate-700 mb-3">Сигнал авторитетности — это не только то что на сайте, но и что про вас пишут другие. Без внешних упоминаний даже идеальный сайт не выходит в топ YMYL.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>Прессфид (pressfeed.ru)</strong> — комментарии вашего врача-эксперта в запросах журналистов. 2-4 публикации в месяц в качественных СМИ (Лента, Газета, РБК, MedicalForum)</li>
+              <li>• <strong>Нативные публикации</strong> в Дзене / vc.ru / Хабр / медицинских блогах — 1-2 в месяц</li>
+              <li>• <strong>Партнёрство с медассоциациями</strong> — членство в РОАГ / Российском обществе флебологов даёт sameAs-связь и top-trust сигнал</li>
+              <li>• <strong>Wikipedia / Wikidata</strong> — создать или дополнить статью «ТМ Интекс» / «ООО Интертекстиль» с источниками</li>
+            </ul>
+            <div class="mt-3 text-xs text-violet-700 font-semibold">Внешний расход: 30-40 тыс. ₽/мес на PR-публикации (1-2 в месяц)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ПРОГНОЗ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Прогноз — заходы из AI-поиска и защита от Core Updates</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="growthChart"></div>
+        <p class="text-xs text-slate-500 mt-4">Зелёная линия — заходы из AI-поисковиков. Эффект медленный — Яндекс и AI накапливают сигналы 3-6 месяцев перед изменением ранжирования. <strong>+12 мес:</strong> ~5-8 тыс. visits/мес из AI + защита всего основного органического трафика от просадок при обновлениях Яндекса.</p>
+      </div>
+    </div>
+
+    <!-- БЮДЖЕТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Бюджет</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Срок до эффекта</div>
+          <div class="text-3xl font-bold mt-2">6-12 мес</div>
+          <div class="text-sm text-slate-500 mt-2">YMYL-эффекты накапливаются медленно. Защита от Core Updates — сразу.</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Работа</div>
+          <div class="text-3xl font-bold mt-2 text-violet-700">100 тыс. ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">контент + Schema.org разметка + llms.txt + редактура статей под врача (40-50 ч/мес)</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Врач + публикации</div>
+          <div class="text-3xl font-bold mt-2 text-amber-700">40-60 тыс. ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">1 врач-эксперт (25k) + Прессфид / нативные публикации (15-35k)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ОКУПАЕМОСТЬ -->
+    <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-200">
+      <div class="flex items-start gap-4">
+        <div class="text-4xl">🛡️</div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-emerald-900">Окупаемость — два эффекта</h3>
+          <p class="mt-2 text-emerald-800 leading-relaxed">
+            <strong>Прямой:</strong> +5-8 тыс. AI-visits/мес × CR 1.5% × 3 500 ₽ = +250-450 тыс. ₽/мес через 12 мес работы.
+            <br><br>
+            <strong>Защитный (главный):</strong> 35 тыс. organic-visits/мес от Яндекса = ~70 тыс. ₽/мес выручки сейчас. Каждый Core Update без E-E-A-T режет 20-40% = потеря 14-28 тыс. ₽/мес. За год обычно 2-4 апдейта. Без защиты накопленный риск — потеря 50-100 тыс. ₽/мес постоянной выручки.
+            <br><br>
+            Направление 6 — это <strong>не «дополнительный трафик»</strong>, а <strong>страховка</strong> от потерь основного органического канала. Прямая окупаемость пограничная, но без неё весь Направления 1 (SEO) висит на честном слове.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЗАВИСИМОСТИ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border-l-4 border-amber-400 bg-amber-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-amber-800 uppercase tracking-wider mb-2">Требует</div>
+        <div class="font-semibold text-amber-900">Этап 0a — машинная разметка главной</div>
+        <div class="text-sm text-amber-800 mt-1">Schema.org Organization на корне — база для расширения через MedicalOrganization. Без 0a Направление 6 начинает с пустого места.</div>
+      </div>
+      <div class="border-l-4 border-indigo-400 bg-indigo-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-indigo-800 uppercase tracking-wider mb-2">Усиливает</div>
+        <div class="font-semibold text-indigo-900">Направление 1 (SEO) и Направление 2 (B2B)</div>
+        <div class="text-sm text-indigo-800 mt-1">Без E-E-A-T любая SEO-страница в YMYL не выходит в топ-3. Авторитет производителя с врачами-экспертами — критичный сигнал для аптек и B2B-закупщиков.</div>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что отслеживаем</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Метрика</th>
+              <th class="text-center p-3 font-semibold">Сейчас</th>
+              <th class="text-center p-3 font-semibold">+3 мес</th>
+              <th class="text-center p-3 font-semibold">+6 мес</th>
+              <th class="text-center p-3 font-semibold">+12 мес</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="p-3">Заходов из AI-поисковиков/мес</td><td class="text-center">~10</td><td class="text-center">100-300</td><td class="text-center">1-2 тыс.</td><td class="text-center font-bold text-emerald-700">5-8 тыс.</td></tr>
+            <tr><td class="p-3">Статей блога с подписью врача</td><td class="text-center">0</td><td class="text-center">15-25</td><td class="text-center">50-80</td><td class="text-center font-bold text-emerald-700">150+</td></tr>
+            <tr><td class="p-3">Внешних упоминаний/мес (СМИ + Прессфид)</td><td class="text-center">0</td><td class="text-center">2-3</td><td class="text-center">4-6</td><td class="text-center font-bold text-emerald-700">6-10</td></tr>
+            <tr><td class="p-3">Schema.org разметка медицинских сущностей</td><td class="text-center">нет</td><td class="text-center">базовая</td><td class="text-center">полная</td><td class="text-center font-bold text-emerald-700">с обновлениями</td></tr>
+            <tr><td class="p-3">Просадка после Core Update Яндекса</td><td class="text-center text-rose-700">-20-40%</td><td class="text-center text-amber-700">-10-20%</td><td class="text-center">-5-10%</td><td class="text-center font-bold text-emerald-700">в норме</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex gap-3 pt-4">
+      <button class="px-6 py-3 bg-violet-600 text-white rounded-lg font-semibold hover:bg-violet-700">Обсудить направление</button>
+      <button class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold hover:bg-slate-50">Список кандидатов на врача-эксперта</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Подсказка -->
+<div class="bg-slate-100 py-4">
+  <div class="max-w-6xl mx-auto px-8 text-sm text-slate-500">
+    <strong>Прототип Направления 6 с реальными данными.</strong> Я.Метрика 33517108 за 21 ноября 2025 — 21 мая 2026: AI-поисковики (chatgpt + perplexity + brave + copilot) суммарно 60 visits/6 мес. БД сайта — 640 статей блога с 0 авторами в схеме.
+  </div>
+</div>
+
+<script>
+// ПРОГНОЗ роста AI-visits — range area
+new ApexCharts(document.querySelector('#growthChart'), {
+  chart: { type: 'rangeArea', height: 320, toolbar: { show: false } },
+  series: [
+    {
+      name: 'Диапазон',
+      type: 'rangeArea',
+      data: [
+        { x: 'Сейчас', y: [10, 10] },
+        { x: '+1 мес', y: [15, 30] },
+        { x: '+3 мес', y: [100, 300] },
+        { x: '+6 мес', y: [1000, 2000] },
+        { x: '+9 мес', y: [2500, 5000] },
+        { x: '+12 мес', y: [5000, 8000] }
+      ]
+    },
+    {
+      name: 'Средняя оценка',
+      type: 'line',
+      data: [
+        { x: 'Сейчас', y: 10 },
+        { x: '+1 мес', y: 22 },
+        { x: '+3 мес', y: 200 },
+        { x: '+6 мес', y: 1500 },
+        { x: '+9 мес', y: 3750 },
+        { x: '+12 мес', y: 6500 }
+      ]
+    }
+  ],
+  stroke: { curve: 'smooth', width: [0, 3] },
+  colors: ['#a78bfa', '#7c3aed'],
+  fill: { opacity: [0.25, 1] },
+  markers: { size: [0, 6], strokeWidth: 2, strokeColors: '#fff', colors: ['#a78bfa', '#7c3aed'] },
+  xaxis: { categories: ['Сейчас', '+1 мес', '+3 мес', '+6 мес', '+9 мес', '+12 мес'] },
+  yaxis: {
+    title: { text: 'Заходов из AI-поисковиков / мес' },
+    labels: { formatter: v => v >= 1000 ? (v/1000).toFixed(1) + 'k' : v }
+  },
+  grid: { borderColor: '#e2e8f0' },
+  legend: { position: 'top' }
+}).render();
+</script>
+
+</Base>

@@ -1,0 +1,475 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Digital B2B" currentSlug="/2-b2b">
+
+<style is:global></style>
+
+<section class="border-t border-slate-200">
+
+  <!-- HEADER -->
+  <div class="bg-gradient-to-br from-orange-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-8 py-16">
+      <div class="flex items-center gap-3 text-sm text-orange-700 font-semibold mb-4">
+        <span class="px-3 py-1 bg-orange-100 rounded-full">Направление 2</span>
+        <span class="text-xs uppercase tracking-wider bg-gradient-to-r from-orange-500 to-amber-500 text-white px-2 py-0.5 rounded">Второй главный фронт</span>
+      </div>
+      <h2 class="text-5xl font-bold tracking-tight max-w-4xl">Digital B2B-канал</h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-3xl">В базе сайта <strong>204 заявки от оптовых клиентов</strong> за 31 месяц с трендом роста ×4. Эти заявки сейчас лежат в БД без CRM — менеджер обрабатывает в Excel. Задача — настроить amoCRM, сделать B2B-лендинг и масштабировать привлечение через Я.Директ + SEO. Целевая B2B-выручка <strong>800 тыс. ₽/мес</strong>.</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="max-w-6xl mx-auto px-8 py-12 space-y-12">
+
+    <!-- ГЛАВНЫЕ ЦИФРЫ -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">Заявок в БД</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">204</div>
+        <div class="text-xs text-slate-500 mt-1">за 31 мес, 100% юр.лица с ИНН</div>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">Рост за 2 года</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">×4</div>
+        <div class="text-xs text-slate-500 mt-1">2 → 7-8 заявок/мес органически</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Повторных без ответа</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">17</div>
+        <div class="text-xs text-slate-500 mt-1">писали снова потому что не дождались</div>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">/wholesale/ CR</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">11,3%</div>
+        <div class="text-xs text-slate-500 mt-1">vs 2-5% норма B2B-лендингов</div>
+      </div>
+    </div>
+
+    <!-- ТРЕНД РОСТА -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Тренд заявок от оптовиков · БД сайта</div>
+      <div class="text-xs text-slate-500 mb-4">Поквартально, форма <code>main_content_wholesalepricerequest</code>. Канал растёт <strong>без рекламы и без B2B-SEO</strong> — на органике и сарафане.</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="trendChart"></div>
+        <p class="text-xs text-slate-500 mt-4">2023: 6 заявок/Q4 (~2/мес) → 2024: 67/год (~5.6/мес) → 2025: 92/год (~7.7/мес) → 2026 Q1: 28 (~9.3/мес). Пиковые месяцы — окт 2025 (18), мар 2026 (15), фев 2025 (15).</p>
+      </div>
+    </div>
+
+    <!-- РЕАЛЬНЫЕ КЛИЕНТЫ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Реальные клиенты — кто пишет сейчас</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <p class="text-sm text-slate-600 mb-4">Извлечено из БД по email-доменам и заполненным полям компании. <strong>География — вся Россия</strong>: Москва 20%, СПб 9%, регионы 71%.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-emerald-50 rounded-lg p-4 border border-emerald-200">
+            <div class="font-bold text-emerald-900 mb-2">Аптечные сети</div>
+            <ul class="text-xs space-y-1 text-emerald-900">
+              <li>• <strong>Аптека-ОСК</strong> (apteka635@a-osk.ru) — крупная сеть, написали в марте 2026</li>
+              <li>• Логос Медицинский (Москва)</li>
+              <li>• Аптека Доктор (СПб)</li>
+            </ul>
+          </div>
+          <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div class="font-bold text-blue-900 mb-2">Медицинские дистрибьюторы</div>
+            <ul class="text-xs space-y-1 text-blue-900">
+              <li>• <strong>Atlant Medi</strong> ×2 (СПб) — повторные обращения</li>
+              <li>• Medic-project (Москва)</li>
+              <li>• Megmedik</li>
+              <li>• Diamedia, Mymedtech, Interlek, Mameto</li>
+            </ul>
+          </div>
+          <div class="bg-purple-50 rounded-lg p-4 border border-purple-200">
+            <div class="font-bold text-purple-900 mb-2">Региональные оптовики</div>
+            <ul class="text-xs space-y-1 text-purple-900">
+              <li>• <strong>Farmresurs</strong> ×2 (Екатеринбург)</li>
+              <li>• Tovar-Dnia ×2 (Москва)</li>
+              <li>• Medteh-PTP ×2 (Екатеринбург)</li>
+              <li>• ML-TEX (Иваново)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
+          <strong>⚠️ Повторные обращения</strong> (×2) от Atlant Medi, Farmresurs, Tovar-Dnia, Medteh-PTP — люди писали снова потому что <strong>не получили ответ на первую заявку</strong>. Это индикатор слабого менеджмента лидов: <strong>SLA по контакту отсутствует</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- /WHOLESALE/ КАК ЛУЧШАЯ СТРАНИЦА -->
+    <div class="bg-gradient-to-br from-emerald-50 to-white border-2 border-emerald-200 rounded-2xl p-8">
+      <div class="text-xs font-bold uppercase text-emerald-700 mb-2">/wholesale/ — лучшая страница сайта</div>
+      <h3 class="text-2xl font-bold mb-4">Аномалия Я.Метрики</h3>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 text-sm">
+        <div class="bg-white rounded-lg p-4 border border-slate-200">
+          <div class="text-xs text-slate-500 uppercase">Visits / 9 мес</div>
+          <div class="text-2xl font-bold mt-1">670</div>
+          <div class="text-xs text-slate-500 mt-1">~74/мес</div>
+        </div>
+        <div class="bg-white rounded-lg p-4 border border-emerald-300">
+          <div class="text-xs text-emerald-700 uppercase">Bounce rate</div>
+          <div class="text-2xl font-bold mt-1 text-emerald-700">4,8%</div>
+          <div class="text-xs text-slate-500 mt-1">vs 30-35% средне по сайту</div>
+        </div>
+        <div class="bg-white rounded-lg p-4 border border-emerald-300">
+          <div class="text-xs text-emerald-700 uppercase">Глубина просмотра</div>
+          <div class="text-2xl font-bold mt-1 text-emerald-700">1,66</div>
+          <div class="text-xs text-slate-500 mt-1">vs 1,1-1,3 средне</div>
+        </div>
+        <div class="bg-white rounded-lg p-4 border border-emerald-300">
+          <div class="text-xs text-emerald-700 uppercase">Конверсия в заявку</div>
+          <div class="text-2xl font-bold mt-1 text-emerald-700">11,3%</div>
+          <div class="text-xs text-slate-500 mt-1">vs 2-5% норма B2B</div>
+        </div>
+      </div>
+      <p class="text-sm text-emerald-900 leading-relaxed">
+        Эта страница работает <strong>аномально хорошо для В2В-лендинга</strong>: каждый 9-й посетитель оставляет заявку. Но получает её <strong>всего 74 человека в месяц</strong> — потому что:
+      </p>
+      <ul class="text-sm text-emerald-900 mt-2 space-y-1 list-disc list-inside">
+        <li>На страницу нет рекламы (Я.Директ B2B выключен — 1 визит за 9 мес из платного канала)</li>
+        <li>Нет B2B-SEO — страница не оптимизирована под «компрессионный трикотаж производитель» и «бандажи оптом»</li>
+        <li>Из блога нет перелинковки на /wholesale/</li>
+        <li>Нет внешних B2B-каталогов (Pulscen, Tiu, productcenter)</li>
+      </ul>
+      <p class="text-sm text-emerald-900 mt-3"><strong>Главная мысль:</strong> увеличить трафик на /wholesale/ в 5-10 раз — заявок будет соразмерно больше при той же конверсии 11,3%.</p>
+    </div>
+
+    <!-- B2B-СЕМАНТИКА -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">B2B-семантика — что ищут закупщики</div>
+      <div class="text-xs text-slate-500 mb-4">Wordstat за май 2026, точная частотность в скобках. Закупщики ищут «производителя», а не «опт».</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Запрос</th>
+              <th class="text-right p-3 font-semibold">Точная/мес</th>
+              <th class="text-left p-3 font-semibold">Кто в выдаче</th>
+              <th class="text-left p-3 font-semibold">Что делать</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr>
+              <td class="p-3 font-medium">производитель медицинских изделий</td>
+              <td class="p-3 text-right font-bold">1 797</td>
+              <td class="p-3 text-xs text-slate-600">Реестр Росздравнадзора, агрегаторы, статьи</td>
+              <td class="p-3 text-xs text-slate-700">Минус-слова: «как стать», «реестр», «обучение». Брать «купить продукцию у производителя»</td>
+            </tr>
+            <tr class="bg-emerald-50">
+              <td class="p-3 font-medium">компрессионный трикотаж производитель</td>
+              <td class="p-3 text-right font-bold">1 600</td>
+              <td class="p-3 text-xs text-slate-600">dvm-reab.ru, ckompress.ru, ortoeuromag.ru</td>
+              <td class="p-3 text-xs text-slate-700">🎯 Главный целевой запрос — большой объём, точный интент</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">бандажи оптом</td>
+              <td class="p-3 text-right font-bold">410-470</td>
+              <td class="p-3 text-xs text-slate-600">B2B-маркетплейсы, агрегаторы, медснабжение</td>
+              <td class="p-3 text-xs text-slate-700">Очень тёплый интент. Bint — производитель бандажей с РУ</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">рейтинг производителей компрессионного трикотажа</td>
+              <td class="p-3 text-right font-bold">235</td>
+              <td class="p-3 text-xs text-slate-600">Статьи-сравнения, обзоры</td>
+              <td class="p-3 text-xs text-slate-700">Контентный запрос — статья «5 российских производителей»</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">компрессионный трикотаж оптом</td>
+              <td class="p-3 text-right font-bold">51</td>
+              <td class="p-3 text-xs text-slate-600">Малая конкуренция</td>
+              <td class="p-3 text-xs text-slate-700">Низкая частота, но супер-таргетированный B2B-запрос</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">российский производитель компрессионного трикотажа</td>
+              <td class="p-3 text-right font-bold">11</td>
+              <td class="p-3 text-xs text-slate-600">—</td>
+              <td class="p-3 text-xs text-slate-700">🇷🇺 Импортозамещение — сильный нарратив 2024-2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ПОДЭТАПЫ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что делаем — 4 подэтапа</div>
+      <div class="space-y-3">
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">1</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">amoCRM-интеграция + менеджмент лидов <span class="text-xs text-slate-500 font-normal">(1 неделя)</span></div>
+            <div class="text-sm text-slate-700 mb-3">Самый важный и самый дешёвый шаг. 17 повторных заявок без ответа = лиды теряются прямо сейчас. До масштабирования трафика — починить.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>Django webhook → amoCRM REST API</strong> — автоматическое создание лида при отправке формы. Маппинг полей (name, phone, email, inn, city, message)</li>
+              <li>• <strong>Импорт 204 исторических заявок</strong> в воронку «Холодная база» для прозвона</li>
+              <li>• <strong>Воронка amoCRM:</strong> Новый лид → Квалификация → КП отправлено → Счёт → Отгрузка → Повторная сделка</li>
+              <li>• <strong>SLA <24ч на первый контакт</strong> (KPI менеджера B2B)</li>
+              <li>• Дедупликация формы: 1 заявка / email / 24ч throttle с видимым сообщением «Ваша заявка уже у нас»</li>
+              <li>• Шаблоны ответов + скрипт продаж + follow-up через 3/7/14 дней</li>
+            </ul>
+            <div class="mt-3 text-xs text-orange-700 font-semibold">Работа: 40k разово (Django-webhook + настройка воронки) · Сервисы: amoCRM от 5-10k/мес</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">2</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">B2B-лендинг /b2b/ <span class="text-xs text-slate-500 font-normal">(2-3 недели)</span></div>
+            <div class="text-sm text-slate-700 mb-3">Развернуть текущий /wholesale/ в полноценный B2B-лендинг по образцу <strong>lp.dvm-reab.ru</strong> (главный игрок в Я.Директе по нашей семантике).</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>Hero:</strong> «Российский производитель компрессионного трикотажа Интекс — стать дилером» + CTA</li>
+              <li>• <strong>5 преимуществ:</strong> с 1995 года, производство в РФ, 89+ SKU, сертификация Росздравнадзора, доставка по всей РФ</li>
+              <li>• <strong>Условия для дилеров:</strong> мин. заказ, скидки от 30%, прайс PDF, отсрочка платежа</li>
+              <li>• <strong>Кейсы клиентов</strong> (с согласия): Аптека-ОСК, Atlant Medi, Farmresurs — социальное доказательство</li>
+              <li>• <strong>Расширенная форма:</strong> ФИО, телефон, email, компания, ИНН, регион, <em>тип бизнеса</em> (аптека/клиника/реаб.центр/маркетплейс/дилер), <em>планируемый объём закупки</em></li>
+              <li>• <strong>Прайс PDF на скачивание</strong> после ввода email — лид-магнит</li>
+              <li>• Фото производства, сертификаты, FAQ B2B</li>
+            </ul>
+            <div class="mt-3 text-xs text-orange-700 font-semibold">Работа: 90k разово (дизайн + Django-разработка + копирайтинг)</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">3</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">Я.Директ B2B-кампания <span class="text-xs text-slate-500 font-normal">(постоянно)</span></div>
+            <div class="text-sm text-slate-700 mb-3">Конкуренция в B2B-Директе слабая — на «бандажи оптом» половина рекламы непрофильная (бакалея, детская одежда, спорт). CPC будет низким, выход в топ — быстрым.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• Семантика (по убыванию приоритета): «компрессионный трикотаж производитель» 1 600, «производитель медизделий» 1 797, «бандажи оптом» 410-470, «российский производитель» — низкая частота, но идеальный intent</li>
+              <li>• Минус-слова на «производитель медизделий»: «как стать», «реестр», «обучение», «лицензия»</li>
+              <li>• 3 креатива: «Российский производитель», «С 1995 года», «Прямые поставки от производителя — скидки от 30%»</li>
+              <li>• UTM-метки обязательно. Цели Метрики на отправку формы /b2b/ (после починки 0b)</li>
+            </ul>
+            <div class="mt-3 text-xs text-orange-700 font-semibold">Работа: 30-40k/мес ведение · Реклама: 30-50k/мес тест → 80-150k/мес расширение</div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">4</div>
+          <div class="flex-1">
+            <div class="font-bold mb-1">B2B-SEO + контент + размещение в каталогах <span class="text-xs text-slate-500 font-normal">(3-6 мес)</span></div>
+            <div class="text-sm text-slate-700 mb-3">Hub-страницы под главные B2B-сигналы, контентная серия, регистрация в B2B-каталогах.</div>
+            <ul class="text-xs text-slate-600 space-y-1">
+              <li>• <strong>Hub-страницы:</strong> /intex/proizvoditel/, /intex/rossiyskiy-proizvoditel/, /opt/bandazhi/, /opt/binty/, /opt/chulki/</li>
+              <li>• <strong>Контент-серия (8-12 статей за 6 мес):</strong> «Как выбрать поставщика компрессионного трикотажа для аптечной сети», «Российский производитель vs импорт», «Сертификация в РФ: что должно быть у поставщика», «Производство компрессионного трикотажа в России 2026»</li>
+              <li>• <strong>B2B-каталоги</strong> (одноразовая регистрация + актуализация прайса): Pulscen.ru (87.5 млн visits/год), productcenter.ru (каталог производителей РФ), B2Bkontur.ru (Контур.Поставщики, 1.5 млн компаний), business.market.yandex.ru (B2B-секция Яндекс.Маркета), fabricators.ru (уже даёт реферальный трафик — есть в Я.Метрике), Optlist.ru. <span class="text-emerald-700 font-semibold">Проверено 21.05.2026: ООО Интертекстиль не представлен ни на одном из них — чистая возможность.</span></li>
+              <li>• <strong>Schema.org:</strong> Organization + MedicalOrganization на /about/ и /b2b/, Product с оптовыми ценами на категорийных страницах опта</li>
+            </ul>
+            <div class="mt-3 text-xs text-orange-700 font-semibold">Работа: 60-90k/мес (SEO + контент + размещения)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ПРОГНОЗ ВЫРУЧКИ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Прогноз B2B-выручки</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="revenueChart"></div>
+        <p class="text-xs text-slate-500 mt-4">
+          База: 7-8 заявок/мес × 30% close rate × 100k опт чек = ~210 тыс. ₽/мес (требует подтверждения у Алёны — реальные close rate и опт чек).
+          Цель: 30-40 заявок/мес → при 30% close rate × 100k = <strong>800 тыс. ₽/мес</strong>.
+          B2B-цикл сделки 1-3 мес — ROI первых 2-3 мес будет визуально low. Не путать с retail.
+        </p>
+      </div>
+    </div>
+
+    <!-- БЮДЖЕТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Бюджет</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Разово</div>
+          <div class="text-3xl font-bold mt-2 text-orange-700">90 тыс. ₽</div>
+          <div class="text-sm text-slate-500 mt-2">amoCRM-интеграция + лендинг /b2b/ + копирайтинг</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Работа</div>
+          <div class="text-3xl font-bold mt-2 text-orange-700">80 тыс. ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">ведение Я.Директ B2B + B2B-SEO + контент + размещения</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Реклама и сервисы</div>
+          <div class="text-3xl font-bold mt-2 text-amber-700">15-55 тыс. ₽/мес</div>
+          <div class="text-sm text-slate-500 mt-2">amoCRM подписка + Я.Директ клики (растут постепенно)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ОКУПАЕМОСТЬ -->
+    <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-200">
+      <div class="flex items-start gap-4">
+        <div class="text-4xl">💼</div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-emerald-900">Окупаемость</h3>
+          <p class="mt-2 text-emerald-800 leading-relaxed">
+            <strong>Через 6 мес:</strong> +20-30 заявок/мес × 30% close rate × 100k = +600-900 тыс. ₽/мес дополнительной выручки.
+            <br><br>
+            <strong>Через 12 мес:</strong> +30-40 заявок/мес → выручка <strong>0.9-1.2 млн ₽/мес</strong> (с учётом роста чека и close rate).
+            <br><br>
+            Бюджет 12 мес × (80k работа + 30k среднее по сервисам) = <strong>~1.3 млн ₽</strong> вложений.
+            Окупаемость — <strong>2-3 месяца при выходе на цель</strong>. Самое выгодное направление по соотношению вложения/возврат.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЗАВИСИМОСТИ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border-l-4 border-amber-400 bg-amber-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-amber-800 uppercase tracking-wider mb-2">Требует</div>
+        <div class="font-semibold text-amber-900">Этап 0b — настройка аналитики</div>
+        <div class="text-sm text-amber-800 mt-1">Без цели «отправка формы B2B» в Метрике невозможно посчитать стоимость заявки от Я.Директ и SEO.</div>
+        <div class="font-semibold text-amber-900 mt-3">Подэтап 2a (amoCRM) — обязателен ПЕРЕД 2c/2d</div>
+        <div class="text-sm text-amber-800 mt-1">Запуск рекламы без CRM = увеличение трафика = увеличение потерянных лидов. Сначала чиним менеджмент, потом масштабируем поток.</div>
+      </div>
+      <div class="border-l-4 border-indigo-400 bg-indigo-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-indigo-800 uppercase tracking-wider mb-2">Усиливает / Усиливается</div>
+        <div class="font-semibold text-indigo-900">+ Этап 0a (брендовая защита)</div>
+        <div class="text-sm text-indigo-800 mt-1">«Интекс» как производитель с РУ Росздравнадзора — главный сигнал доверия для B2B-закупщиков аптек.</div>
+        <div class="font-semibold text-indigo-900 mt-3">+ Направление 6 (E-E-A-T)</div>
+        <div class="text-sm text-indigo-800 mt-1">Контент «5 российских производителей компрессионного трикотажа» — тёплый трафик от B2B-аудитории, ищущей сравнение.</div>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что отслеживаем</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Метрика</th>
+              <th class="text-center p-3 font-semibold">Сейчас</th>
+              <th class="text-center p-3 font-semibold">+3 мес</th>
+              <th class="text-center p-3 font-semibold">+6 мес</th>
+              <th class="text-center p-3 font-semibold">+12 мес</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="p-3">Заявок в месяц</td><td class="text-center">7-8</td><td class="text-center">15-25</td><td class="text-center">25-35</td><td class="text-center font-bold text-emerald-700">30-50</td></tr>
+            <tr><td class="p-3">Close rate</td><td class="text-center">~30% (оценка)</td><td class="text-center">30%</td><td class="text-center">32%</td><td class="text-center font-bold text-emerald-700">35%</td></tr>
+            <tr><td class="p-3">Средний опт чек</td><td class="text-center">100k (оценка)</td><td class="text-center">100k</td><td class="text-center">110k</td><td class="text-center font-bold text-emerald-700">120k</td></tr>
+            <tr><td class="p-3">Время первого контакта (SLA)</td><td class="text-center">неизвестно</td><td class="text-center">&lt;24ч</td><td class="text-center">&lt;8ч</td><td class="text-center font-bold text-emerald-700">&lt;2ч</td></tr>
+            <tr><td class="p-3">Доля повторных без ответа</td><td class="text-center">~8%</td><td class="text-center">&lt;3%</td><td class="text-center">&lt;1%</td><td class="text-center font-bold text-emerald-700">0%</td></tr>
+            <tr class="bg-emerald-50"><td class="p-3 font-bold">B2B-выручка/мес</td><td class="text-center font-semibold">~210 тыс.</td><td class="text-center font-semibold">450-700 тыс.</td><td class="text-center font-semibold">700 тыс. — 1 млн</td><td class="text-center font-bold text-emerald-700">800 тыс. — 1.2 млн</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- РИСКИ -->
+    <div class="bg-rose-50 border border-rose-200 rounded-2xl p-6">
+      <div class="text-xs font-bold uppercase text-rose-700 mb-2">Главные риски</div>
+      <ul class="text-sm text-rose-900 space-y-1.5">
+        <li>• <strong>Если 2a (amoCRM + SLA) не сделать первым</strong> — увеличение трафика только увеличит потери. 17 повторных заявок в БД = живой пример как уже сейчас лиды теряются.</li>
+        <li>• <strong>B2B-цикл сделки 1-3 мес.</strong> От заявки до первой оплаты у юр.лица проходит 30-90 дней (КП → согласование → договор → счёт → оплата → отгрузка). ROI первых 2-3 мес будет визуально low — не сворачивать кампанию преждевременно.</li>
+        <li>• <strong>Зависимость от 1 менеджера.</strong> Если SLA &lt;24ч держит один человек — болезнь/отпуск ломает воронку. С первого квартала — минимум 2 человека на B2B-входящих.</li>
+        <li>• <strong>УНГА® / АО Тонус</strong> — главный по эластичным бинтам в B2B. 57 лет на рынке, заводы в Унече. По бинтам обогнать в general невозможно. Bint — узкая ниша «трубчатые эластичные бинты от российского производителя».</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex gap-3 pt-4">
+      <button class="px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700">Обсудить направление</button>
+      <button class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold hover:bg-slate-50">Запросить детальную смету по подэтапам</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Подсказка -->
+<div class="bg-slate-100 py-4">
+  <div class="max-w-6xl mx-auto px-8 text-sm text-slate-500">
+    <strong>Прототип Направления 2 с реальными данными.</strong> БД сайта <code>main_content_wholesalepricerequest</code> — 204 заявки за окт 2023 — май 2026. Я.Метрика счётчик 33517108 — поведение /wholesale/. Wordstat за май 2026 — частотности B2B-семантики.
+  </div>
+</div>
+
+<script>
+// ТРЕНД роста заявок по месяцам — из БД bint.ru
+new ApexCharts(document.querySelector('#trendChart'), {
+  chart: { type: 'bar', height: 320, toolbar: { show: false } },
+  series: [{
+    name: 'Заявок в месяц',
+    data: [
+      { x: 'Q4 2023', y: 6 },
+      { x: 'Q1 2024', y: 20 },
+      { x: 'Q2 2024', y: 12 },
+      { x: 'Q3 2024', y: 19 },
+      { x: 'Q4 2024', y: 16 },
+      { x: 'Q1 2025', y: 34 },
+      { x: 'Q2 2025', y: 9 },
+      { x: 'Q3 2025', y: 21 },
+      { x: 'Q4 2025', y: 28 },
+      { x: 'Q1 2026', y: 28 },
+      { x: 'Q2 2026 (2 мес)', y: 11 }
+    ]
+  }],
+  plotOptions: { bar: { borderRadius: 5, columnWidth: '70%' } },
+  colors: ['#fb923c'],
+  dataLabels: {
+    enabled: true,
+    formatter: v => v,
+    style: { fontSize: '11px', colors: ['#475569'] },
+    offsetY: -20
+  },
+  xaxis: { labels: { style: { fontSize: '11px' } } },
+  yaxis: {
+    title: { text: 'Заявок за квартал' }
+  },
+  grid: { borderColor: '#e2e8f0' },
+  annotations: {
+    yaxis: [
+      { y: 18, borderColor: '#10b981', strokeDashArray: 4, label: { borderColor: '#10b981', style: { color: '#fff', background: '#10b981' }, text: 'Тренд: ~6 заявок/мес' } }
+    ]
+  }
+}).render();
+
+// ПРОГНОЗ B2B-ВЫРУЧКИ
+new ApexCharts(document.querySelector('#revenueChart'), {
+  chart: { type: 'rangeArea', height: 320, toolbar: { show: false } },
+  series: [
+    {
+      name: 'Диапазон прогноза',
+      type: 'rangeArea',
+      data: [
+        { x: 'Сейчас', y: [210000, 210000] },
+        { x: '+1 мес', y: [200000, 250000] },
+        { x: '+2 мес', y: [250000, 350000] },
+        { x: '+3 мес', y: [350000, 500000] },
+        { x: '+6 мес', y: [500000, 800000] },
+        { x: '+9 мес', y: [650000, 1000000] },
+        { x: '+12 мес', y: [800000, 1200000] }
+      ]
+    },
+    {
+      name: 'Средняя оценка',
+      type: 'line',
+      data: [
+        { x: 'Сейчас', y: 210000 },
+        { x: '+1 мес', y: 225000 },
+        { x: '+2 мес', y: 300000 },
+        { x: '+3 мес', y: 425000 },
+        { x: '+6 мес', y: 650000 },
+        { x: '+9 мес', y: 825000 },
+        { x: '+12 мес', y: 1000000 }
+      ]
+    }
+  ],
+  stroke: { curve: 'smooth', width: [0, 3] },
+  colors: ['#fb923c', '#ea580c'],
+  fill: { opacity: [0.25, 1] },
+  markers: { size: [0, 6], strokeWidth: 2, strokeColors: '#fff', colors: ['#fb923c', '#ea580c'] },
+  xaxis: { categories: ['Сейчас', '+1 мес', '+2 мес', '+3 мес', '+6 мес', '+9 мес', '+12 мес'] },
+  yaxis: {
+    title: { text: 'B2B-выручка ₽/мес' },
+    labels: { formatter: v => v >= 1000000 ? (v/1000000).toFixed(1) + ' млн' : (v/1000).toFixed(0) + ' тыс.' }
+  },
+  grid: { borderColor: '#e2e8f0' },
+  legend: { position: 'top' },
+  tooltip: { y: { formatter: v => v.toLocaleString('ru-RU') + ' ₽' } }
+}).render();
+</script>
+
+</Base>

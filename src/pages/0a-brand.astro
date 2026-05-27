@@ -1,0 +1,631 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Брендовая защита" currentSlug="/0a-brand">
+
+<style is:global>
+  .dom-pill { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 3px; }
+  .pill-bint { background: #d1fae5; color: #065f46; }
+  .pill-rec { background: #fce7f3; color: #831843; }
+  .pill-apt { background: #fef3c7; color: #78350f; }
+  .pill-other { background: #f1f5f9; color: #475569; }</style>
+
+<section class="border-t border-slate-200">
+
+  <!-- HEADER -->
+  <div class="bg-gradient-to-br from-rose-50 via-white to-white">
+    <div class="max-w-6xl mx-auto px-8 py-16">
+      <div class="flex items-center gap-3 text-sm text-rose-700 font-semibold mb-4">
+        <span class="px-3 py-1 bg-rose-100 rounded-full">Этап 0a</span>
+        <span class="text-xs uppercase tracking-wider bg-gradient-to-r from-amber-500 to-rose-500 text-white px-2 py-0.5 rounded">Быстрый эффект · 1-3 недели</span>
+      </div>
+      <h2 class="text-5xl font-bold tracking-tight max-w-4xl">Брендовая защита</h2>
+      <p class="mt-4 text-xl text-slate-600 max-w-3xl">Название «Интекс» в медицинском смысле ищут <strong>16 404 раза в месяц</strong> — это 148 запросов вида «бинт интекс», «чулки интекс» и т.п. В первых строчках Яндекса по ним — сайты аптек и однофамильный Intex Recreation (надувные бассейны, ещё 126 тыс. запросов/мес). На сайт bint.ru пользователи попадают первыми только по 2 запросам из 11 проверенных вручную, по 2 — он вообще ниже 15-го места.</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="max-w-6xl mx-auto px-8 py-12 space-y-12">
+
+    <!-- ГЛАВНЫЕ ЦИФРЫ -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="text-xs text-slate-500 uppercase">Запросов про «Интекс» (медицинский)</div>
+        <div class="text-3xl font-bold mt-1">148</div>
+        <div class="text-xs text-slate-500 mt-1">по данным Я.Вордстата</div>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="text-xs text-slate-500 uppercase">Запросов в месяц</div>
+        <div class="text-3xl font-bold mt-1">16 404</div>
+        <div class="text-xs text-slate-500 mt-1">сколько людей ищет</div>
+      </div>
+      <div class="bg-white rounded-xl border border-emerald-300 p-5">
+        <div class="text-xs text-emerald-700 uppercase">На первом месте сейчас</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">2</div>
+        <div class="text-xs text-slate-500 mt-1">из 11 проверенных вручную</div>
+      </div>
+      <div class="bg-white rounded-xl border border-rose-300 p-5">
+        <div class="text-xs text-rose-700 uppercase">Ниже 15-го места</div>
+        <div class="text-3xl font-bold mt-1 text-rose-700">2</div>
+        <div class="text-xs text-slate-500 mt-1">пользователи не доходят до сайта</div>
+      </div>
+    </div>
+
+    <!-- ГЛАВНАЯ ТАБЛИЦА: КТО ПЕРЕХВАТЫВАЕТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Что показывает Яндекс прямо сейчас · регион «Москва» · 21 мая 2026</div>
+      <div class="text-xs text-slate-500 mb-6">Первые три сайта в обычной выдаче по каждому запросу с «интекс». Цвета: <span class="dom-pill pill-bint">bint.ru</span> <span class="dom-pill pill-rec">Intex Recreation (бассейны — однофамильцы)</span> <span class="dom-pill pill-apt">аптеки</span> <span class="dom-pill pill-other">остальные</span></div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-4 font-semibold">Запрос</th>
+              <th class="text-right p-4 font-semibold">Запросов в месяц</th>
+              <th class="text-center p-4 font-semibold">Место bint.ru в выдаче</th>
+              <th class="text-left p-4 font-semibold">Первые три сайта (кто забирает заходы)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+
+            <tr class="bg-rose-50">
+              <td class="p-4 font-medium">интекс официальный сайт<div class="text-xs text-slate-500 font-normal">самый частотный брендовый</div></td>
+              <td class="p-4 text-right">157 показ/нед<div class="text-xs text-slate-400">Я.Вебмастер</div></td>
+              <td class="p-4 text-center"><span class="inline-block bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded">#4</span><div class="text-xs text-slate-500 font-normal">средняя поз. 7.3</div></td>
+              <td class="p-4">
+                <span class="dom-pill pill-rec">1. intex.ru</span>
+                <span class="dom-pill pill-rec">2. intex-store.ru</span>
+                <span class="dom-pill pill-rec">3. msk.intexrussia.ru</span>
+                <div class="text-xs text-rose-700 mt-1">🔴 Все три первых места — Intex Recreation (бассейны). Самый популярный запрос про «Интекс» уходит к однофамильцам.</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="p-4 font-medium">бинт интекс</td>
+              <td class="p-4 text-right">1 473</td>
+              <td class="p-4 text-center"><span class="inline-block bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded">#1</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-bint">1. bint.ru</span>
+                <span class="dom-pill pill-other">2. yabs (реклама)</span>
+                <span class="dom-pill pill-apt">3. apteka.ru</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="p-4 font-medium">интекс компрессионные</td>
+              <td class="p-4 text-right">1 227</td>
+              <td class="p-4 text-center"><span class="inline-block bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded">#1</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-bint">1. bint.ru</span>
+                <span class="dom-pill pill-apt">2. eapteka.ru</span>
+                <span class="dom-pill pill-apt">3. uteka.ru</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="p-4 font-medium">интекс чулки</td>
+              <td class="p-4 text-right">1 073</td>
+              <td class="p-4 text-center"><span class="inline-block bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded">#3</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. uteka.ru</span>
+                <span class="dom-pill pill-apt">2. apteka.ru</span>
+                <span class="dom-pill pill-bint">3. bint.ru</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="p-4 font-medium">бинт эластичный интекс</td>
+              <td class="p-4 text-right">973</td>
+              <td class="p-4 text-center"><span class="inline-block bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded">#2</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. apteka.ru</span>
+                <span class="dom-pill pill-bint">2. bint.ru</span>
+                <span class="dom-pill pill-apt">3. uteka.ru</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="p-4 font-medium">компрессионные чулки интекс</td>
+              <td class="p-4 text-right">593</td>
+              <td class="p-4 text-center"><span class="inline-block bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded">#5</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. apteka.ru</span>
+                <span class="dom-pill pill-apt">2. eapteka.ru</span>
+                <span class="dom-pill pill-apt">3. uteka.ru</span>
+              </td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="p-4 font-medium">бинт трубчатый интекс</td>
+              <td class="p-4 text-right">486</td>
+              <td class="p-4 text-center"><span class="inline-block bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded">ниже 15-го</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. uteka.ru</span>
+                <span class="dom-pill pill-apt">2. apteka.ru</span>
+                <span class="dom-pill pill-apt">3. stolichki.ru</span>
+                <div class="text-xs text-rose-700 mt-1">🔴 По собственному товару (28 SKU трубчатых на WB, 3 320 отзывов) bint.ru вообще не в видимой выдаче.</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="p-4 font-medium">бандаж интекс</td>
+              <td class="p-4 text-right">334</td>
+              <td class="p-4 text-center"><span class="inline-block bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded">#6</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. uteka.ru</span>
+                <span class="dom-pill pill-apt">2. apteka.ru</span>
+                <span class="dom-pill pill-apt">3. eapteka.ru</span>
+              </td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="p-4 font-medium">пояс интекс</td>
+              <td class="p-4 text-right">296</td>
+              <td class="p-4 text-center"><span class="inline-block bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded">ниже 15-го</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. apteka.ru</span>
+                <span class="dom-pill pill-apt">2. uteka.ru</span>
+                <span class="dom-pill pill-apt">3. planetazdorovo.ru</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="p-4 font-medium">гольфы интекс</td>
+              <td class="p-4 text-right">259</td>
+              <td class="p-4 text-center"><span class="inline-block bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded">#7</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. apteka.ru</span>
+                <span class="dom-pill pill-apt">2. uteka.ru</span>
+                <span class="dom-pill pill-apt">3. eapteka.ru</span>
+              </td>
+            </tr>
+
+            <tr class="bg-amber-50">
+              <td class="p-4 font-medium">интекс чулки купить <span class="text-xs text-amber-700 font-normal">(коммерческий)</span></td>
+              <td class="p-4 text-right">~220</td>
+              <td class="p-4 text-center"><span class="inline-block bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded">#7</span></td>
+              <td class="p-4">
+                <span class="dom-pill pill-apt">1. uteka.ru</span>
+                <span class="dom-pill pill-apt">2. apteka.ru</span>
+                <span class="dom-pill pill-apt">3. megapteka.ru</span>
+                <div class="text-xs text-amber-800 mt-1">🟡 Покупательский интент — самый ценный, отдан аптекам.</div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 p-4 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-900">
+        <strong>Дополнительно из Я.Вебмастера за 7 дней:</strong> по запросам с «интекс» bint.ru показался в выдаче только <strong>11 раз из 148</strong> возможных запросов кластера. По остальным ~137 — сайт ниже топ-50 (Яндекс его не показывает вообще). Реальный потерянный охват — кратно больше чем по 11 проверенным запросам выше.
+      </div>
+    </div>
+
+    <!-- ОМОНИМИЯ — DONUT + ОБЪЯСНЕНИЕ -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <h3 class="font-bold text-lg mb-1">Что ищут по слову «интекс»</h3>
+        <p class="text-sm text-slate-600 mb-4">Я.Вордстат, 1 200 запросов со словом «интекс», суммарно <strong>298 733/мес</strong>. Только <strong>16 404</strong> (5,5%) — про медицинский Интекс. Остальное: Intex Recreation (42% — бассейны, матрасы, насосы) и неоднозначные (52% — «интекс купить», «личный кабинет», «официальный сайт»).</p>
+        <div id="omonymyDonut"></div>
+      </div>
+      <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6">
+        <h3 class="font-bold text-lg mb-1">15 самых частых брендовых запросов</h3>
+        <p class="text-sm text-slate-600 mb-4">Основной список ключевых слов для Этапа 0a. Полный список 148 запросов выгружается отдельным файлом при старте работ.</p>
+        <div id="topQueriesBar"></div>
+      </div>
+    </div>
+
+    <!-- BEFORE / AFTER МОКАПЫ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что меняем в HTML товарных страниц</div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+        <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+          <div class="text-xs font-bold text-slate-500 mb-2 uppercase">Сейчас (89 SKU)</div>
+          <div class="bg-white rounded p-3 border border-slate-200 space-y-2 text-xs">
+            <div><span class="text-slate-400 font-mono">&lt;title&gt;</span> Чулки антиэмболические Универсал 1 класс компрессии — купить в интернет-магазине <span class="text-slate-400 font-mono">&lt;/title&gt;</span></div>
+            <div><span class="text-slate-400 font-mono">&lt;h1&gt;</span> Чулки антиэмболические Универсал 1 класс <span class="text-slate-400 font-mono">&lt;/h1&gt;</span></div>
+            <div><span class="text-slate-400 font-mono">&lt;meta name="description"&gt;</span> Купить чулки антиэмболические Универсал в интернет-магазине. Доставка по России. <span class="text-slate-400 font-mono">&lt;/meta&gt;</span></div>
+            <div class="text-rose-600 mt-2 font-semibold">❌ Слова «Интекс» нет ни в заголовке страницы, ни в её описании. Машинная разметка с указанием бренда тоже отсутствует.</div>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 rounded-lg p-4 border-2 border-emerald-300">
+          <div class="text-xs font-bold text-emerald-700 mb-2 uppercase">Будет</div>
+          <div class="bg-white rounded p-3 border border-slate-200 space-y-2 text-xs">
+            <div><span class="text-slate-400 font-mono">&lt;title&gt;</span> Чулки антиэмболические <strong class="text-emerald-700">Универсал Интекс</strong> 1 класс — купить у производителя | bint.ru <span class="text-slate-400 font-mono">&lt;/title&gt;</span></div>
+            <div><span class="text-slate-400 font-mono">&lt;h1&gt;</span> Чулки антиэмболические <strong class="text-emerald-700">Универсал ТМ Интекс</strong> 1 класс <span class="text-slate-400 font-mono">&lt;/h1&gt;</span></div>
+            <div><span class="text-slate-400 font-mono">&lt;meta&gt;</span> Купить <strong class="text-emerald-700">Универсал Интекс</strong> у производителя ТМ Интекс (ООО «Интертекстиль», с 1995). Цена от производителя. Сертификат соответствия. <span class="text-slate-400 font-mono">&lt;/meta&gt;</span></div>
+            <div class="bg-slate-50 rounded p-2 mt-2 font-mono text-[10px] leading-tight">
+&#123;<br>
+&nbsp;"@type": "Product",<br>
+&nbsp;"name": "Универсал",<br>
+&nbsp;<strong class="text-emerald-700">"brand": &#123;"@type": "Brand", "name": "Интекс"&#125;</strong>,<br>
+&nbsp;<strong class="text-emerald-700">"manufacturer": &#123;"@type": "Organization", "name": "ООО Интертекстиль"&#125;</strong><br>
+&#125;
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- МОКАП ГЛАВНАЯ КАК БРЕНД-HUB -->
+      <div class="mt-6">
+        <div class="text-xs font-bold uppercase text-slate-500 mb-3">Дочинить главную bint.ru — уже позиционируется как бренд-hub, но без технической разметки</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+          <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <div class="text-xs font-bold text-slate-500 mb-2 uppercase">Сейчас на главной</div>
+            <div class="bg-white rounded p-3 border border-slate-200 space-y-2 text-xs">
+              <div>✅ Title: «Официальный сайт «ИНТЕКС». Компрессионное белье, купить компрессионный трикотаж при варикозе.»</div>
+              <div>✅ Описание под title: упоминает «ИНТЕКС», «Интертекстиль», классы I/II/III</div>
+              <div>✅ Контент: производство, «с 1995», линейки, сертификаты, Росздравнадзор</div>
+              <div class="text-rose-600 font-semibold pt-2 border-t">🔴 Нет главного заголовка страницы (тега H1) — Яндекс не понимает о чём страница в одну фразу</div>
+              <div class="text-rose-600 font-semibold">🔴 Нет машинной разметки Schema.org — поисковику не объяснено что это страница производителя</div>
+              <div class="text-rose-600 font-semibold">🔴 Подзаголовки слабые: «Нам доверяют лучшие», «Остались вопросы?»</div>
+            </div>
+          </div>
+
+          <div class="bg-emerald-50 rounded-lg p-4 border-2 border-emerald-300">
+            <div class="text-xs font-bold text-emerald-700 mb-2 uppercase">Будет на главной</div>
+            <div class="bg-white rounded p-3 border border-slate-200 space-y-2 text-xs">
+              <div>✅ Title и описание — без изменений (уже хорошие)</div>
+              <div class="text-emerald-700 font-semibold">+ Главный заголовок H1: «Российский производитель компрессионного трикотажа ТМ Интекс»</div>
+              <div class="text-emerald-700 font-semibold">+ Подзаголовки: О производителе · Линейки · Сертификаты · Каталог</div>
+              <div class="bg-slate-50 rounded p-2 mt-2 font-mono text-[10px] leading-tight">
+&#123;<br>
+&nbsp;"@type": <strong class="text-emerald-700">"Organization"</strong>,<br>
+&nbsp;"name": "ООО Интертекстиль",<br>
+&nbsp;"brand": &#123;"@type":"Brand","name":"Интекс"&#125;,<br>
+&nbsp;"foundingDate": "1995",<br>
+&nbsp;"address": &#123;"streetAddress":"ул. Железнодорожная, 5","addressLocality":"Реутов"&#125;,<br>
+&nbsp;<strong class="text-emerald-700">"sameAs":</strong> ["wikidata.org/wiki/Q...", "yandex.ru/maps/org/..."]<br>
+&#125;
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ПОДПУНКТ — PRODUCT SCHEMA + СНИППЕТЫ -->
+      <div class="mt-8 border-t border-slate-200 pt-8">
+        <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">+ Дополнение к Этапу 0a: как товары будут выглядеть в выдаче</div>
+        <p class="text-sm text-slate-600 mb-4">Тот же шаблон товарной страницы, добавляем разметку Schema.org с расширенными полями. <strong>+20-40% переходов из выдачи без расходов на рекламу.</strong></p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+          <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <div class="text-xs font-bold text-slate-500 mb-2 uppercase">Сниппет товара сейчас</div>
+            <div class="bg-white rounded p-3 border border-slate-200 text-xs">
+              <div class="text-blue-700 font-semibold">Чулки антиэмболические Универсал — bint.ru</div>
+              <div class="text-emerald-700 text-[10px]">bint.ru › shop › chulki › ...</div>
+              <div class="text-slate-600 mt-1">Купить чулки антиэмболические Универсал в интернет-магазине. Доставка по России.</div>
+              <div class="text-rose-600 mt-2 text-[11px]">❌ нет фото товара, нет цены, нет звёзд, нет хлебных крошек, нет ярлыка «в наличии»</div>
+            </div>
+          </div>
+
+          <div class="bg-emerald-50 rounded-lg p-4 border-2 border-emerald-300">
+            <div class="text-xs font-bold text-emerald-700 mb-2 uppercase">Сниппет товара будет</div>
+            <div class="bg-white rounded p-3 border border-slate-200 text-xs flex gap-3">
+              <div class="flex-shrink-0 w-20 h-24 bg-gradient-to-br from-slate-100 to-slate-200 rounded border border-slate-300 flex items-center justify-center text-[9px] text-slate-400 text-center leading-tight">
+                фото<br>товара<br>(Product.image)
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="text-blue-700 font-semibold">Чулки Универсал Интекс 1 класс — купить у производителя | bint.ru</div>
+                <div class="text-emerald-700 text-[10px]">bint.ru › Каталог › Чулки › 1 класс</div>
+                <div class="flex items-center gap-2 mt-1 flex-wrap">
+                  <span class="text-amber-500 text-[11px]">★★★★★</span>
+                  <span class="text-slate-600 text-[11px]">4,9 · 187 отзывов</span>
+                  <span class="text-emerald-700 text-[11px] font-bold">· 2 264 ₽</span>
+                  <span class="bg-emerald-100 text-emerald-800 text-[10px] px-1.5 rounded">В наличии</span>
+                </div>
+                <div class="text-slate-600 mt-1">Купить Универсал Интекс у производителя ТМ Интекс (с 1995). Сертификат соответствия. Доставка по России.</div>
+                <div class="text-[11px] mt-2 space-y-0.5">
+                  <div class="font-semibold text-slate-700">Часто спрашивают:</div>
+                  <div class="text-slate-600">▸ Сколько носить чулки после операции?</div>
+                  <div class="text-slate-600">▸ Чем отличаются 1 и 2 класс?</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-4 bg-white rounded-lg p-4 border border-slate-200 text-xs">
+          <div class="font-bold mb-2">Что добавляем в код:</div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="bg-slate-50 rounded p-2"><strong>Фото товара</strong><div class="text-slate-500">в выдаче — главное, что видит пользователь (Product.image)</div></div>
+            <div class="bg-slate-50 rounded p-2"><strong>Цена</strong><div class="text-slate-500">актуальная цена прямо в выдаче (Offer.price)</div></div>
+            <div class="bg-slate-50 rounded p-2"><strong>Наличие</strong><div class="text-slate-500">«в наличии» / «нет в наличии» (Offer.availability)</div></div>
+            <div class="bg-slate-50 rounded p-2"><strong>Хлебные крошки</strong><div class="text-slate-500">«Каталог › Чулки › 1 класс» в выдаче (BreadcrumbList)</div></div>
+            <div class="bg-slate-50 rounded p-2"><strong>Часто спрашивают</strong><div class="text-slate-500">блок «Часто спрашивают» под сниппетом категории (FAQPage)</div></div>
+            <div class="bg-slate-50 rounded p-2"><strong>Превью для соцсетей</strong><div class="text-slate-500">красивая картинка при пересылке в Telegram / WhatsApp (og:image)</div></div>
+            <div class="bg-slate-50 rounded p-2"><strong>Иконка сайта</strong><div class="text-slate-500">логотип ТМ Интекс рядом со ссылкой в выдаче (favicon)</div></div>
+            <div class="bg-slate-50 rounded p-2 bg-amber-50"><strong>Звёзды рейтинга</strong><div class="text-slate-500">⏳ когда появятся отзывы (Направление 4)</div></div>
+            <div class="bg-slate-50 rounded p-2 bg-amber-50"><strong>Доп. ссылки в выдаче</strong><div class="text-slate-500">⏳ через 1-3 месяца после индексации (Sitelinks)</div></div>
+          </div>
+          <div class="text-slate-600 mt-3"><strong>Бюджет:</strong> +15-30 тыс. ₽ к Этапу 0a (программист 10-15 ч + копирайтер для блоков «Часто спрашивают»).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПОРЯДОК ДЕЙСТВИЙ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Порядок действий по неделям</div>
+      <div class="space-y-3">
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-slate-500 uppercase font-semibold">Неделя</div>
+            <div class="text-2xl font-bold text-rose-700">1</div>
+          </div>
+          <div class="flex-1 border-l border-slate-200 pl-4">
+            <div class="font-bold mb-2">Аудит и подготовка</div>
+            <ul class="text-sm text-slate-700 space-y-1">
+              <li>• Выгрузка из Я.Вебмастера всех брендовых запросов (содержащих «интекс» или «bint») — какое место, какая доля переходов, какие страницы попадают в выдачу</li>
+              <li>• Открыть Яндекс по 30 главным запросам с «интекс», зафиксировать кто стоит выше bint.ru (apteka.ru, uteka.ru, eapteka.ru, Intex Recreation)</li>
+              <li>• Матрица «89 SKU + 23 категории → бренд + модельная линия»</li>
+              <li>• Проверить заголовки и описания всех страниц + машинную разметку товаров (есть ли указание бренда «Интекс»)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-slate-500 uppercase font-semibold">Неделя</div>
+            <div class="text-2xl font-bold text-rose-700">2</div>
+          </div>
+          <div class="flex-1 border-l border-slate-200 pl-4">
+            <div class="font-bold mb-2">Внедрение</div>
+            <ul class="text-sm text-slate-700 space-y-1">
+              <li>• <strong>Мета-теги всех 89 SKU</strong> по формуле <code class="text-xs bg-slate-100 px-1 rounded">&#123;Название&#125; &#123;Линейка&#125; Интекс &#123;категория&#125; — купить у производителя</code></li>
+              <li>• <strong>H1 на товарных страницах</strong> включить «Интекс» если нет</li>
+              <li>• <strong>Машинная разметка товаров</strong>: указать бренд «Интекс» + производителя «ООО Интертекстиль» (Schema.org Product)</li>
+              <li>• <strong>Категорийные H1/title</strong>: «Компрессионные &#123;категория&#125; Интекс — каталог производителя»</li>
+              <li>• <strong>Дочинить главную</strong> bint.ru как страницу-визитку производителя: добавить главный заголовок H1, машинную разметку (производитель + бренд + связки с Wikipedia/Wikidata/Я.Бизнес), переписать подзаголовки (О производителе · Линейки · Сертификаты · Каталог)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 flex gap-4">
+          <div class="flex-shrink-0 w-20 text-center">
+            <div class="text-xs text-slate-500 uppercase font-semibold">Неделя</div>
+            <div class="text-2xl font-bold text-rose-700">3</div>
+          </div>
+          <div class="flex-1 border-l border-slate-200 pl-4">
+            <div class="font-bold mb-2">Перелинковка и индексация</div>
+            <ul class="text-sm text-slate-700 space-y-1">
+              <li>• Каждая категория /shop/.../ ссылается на главную через блок «О производителе ТМ Интекс»</li>
+              <li>• Sitemap обновить (включая обновлённую главную и все товарные/категорийные страницы с новой разметкой)</li>
+              <li>• Запрос переобхода в Я.Вебмастере и GSC для всех изменённых URL</li>
+              <li>• Внешние подтверждения бренда: профиль в Я.Бизнес, статья в Wikidata, связки между ними</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ПРОГНОЗ РОСТА -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Прогноз — сколько заходов в месяц получим с брендовых запросов</div>
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div id="brandGrowthChart"></div>
+        <p class="text-xs text-slate-500 mt-4">Сейчас: <strong>~110 заходов/мес</strong> по 11 запросам, по которым Я.Вебмастер видит сайт в выдаче (218 показов в неделю × 12% перешли на сайт × 4 недели). По остальным ~137 запросам bint.ru ниже 50-го места — Яндекс его не показывает. <strong>+1 месяц</strong> — Яндекс переобошёл сайт, позиции начинают расти. <strong>+3 месяца</strong> — в первой тройке по 30-40% запросов, в выдаче появились расширенные сниппеты (картинка, цена, «в наличии»). <strong>+6 месяцев</strong> — на 1-м месте по 50-70% + звёзды рейтинга (когда подключим отзывы из Направления 4) = <strong>5-8 тыс. заходов/мес</strong>. Потолок (если по всем 148 запросам встать на 1-е место со средней долей переходов 27%) — около 4-7 тыс. заходов; «околобрендовые» запросы вроде «интекс купить» добавят ещё 20-40%.</p>
+      </div>
+    </div>
+
+    <!-- БЮДЖЕТ -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Бюджет и сроки</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Срок</div>
+          <div class="text-3xl font-bold mt-2">2-3 недели</div>
+          <div class="text-sm text-slate-500 mt-2">Внедрение. Эффект на горизонте 1-6 мес.</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Разово</div>
+          <div class="text-3xl font-bold mt-2 text-rose-700">120-190k ₽</div>
+          <div class="text-sm text-slate-500 mt-2">SEO-специалист 40-60 ч · программист 30-45 ч (заголовки, машинная разметка) · копирайтер на блоки FAQ</div>
+        </div>
+        <div class="bg-white border-2 border-slate-200 rounded-xl p-6">
+          <div class="text-xs text-slate-500 uppercase">Ежемесячно</div>
+          <div class="text-3xl font-bold mt-2 text-slate-600">0 ₽</div>
+          <div class="text-sm text-slate-500 mt-2">После внедрения работает само. Поддержка — в рамках общих работ по продвижению.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ОКУПАЕМОСТЬ -->
+    <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-200">
+      <div class="flex items-start gap-4">
+        <div class="text-4xl">📈</div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-emerald-900">Окупаемость</h3>
+          <p class="mt-2 text-emerald-800 leading-relaxed">
+            <strong>Сколько максимум визитов можно получить:</strong> 148 запросов × 16 404 поиска в месяц × средняя доля переходов с 1-го места ~27% ≈ <strong>4-7 тыс. заходов/мес</strong>. Если ещё притянуть «околобрендовые» запросы — реалистично <strong>5-8 тыс. заходов/мес за 6 месяцев</strong>.
+            <br><br>
+            <strong>Сейчас покупает только 0.03% посетителей</strong> (Я.Метрика: 171 заказ за год на ~50 тыс. визитов в месяц). При такой конверсии 5-8 тыс. бренд-заходов дают всего 1.5-2.5 тыс. ₽/мес выручки — символически. <strong>Чтобы получить деньги, нужно сначала чинить корзину и оформление заказа (Направление 4).</strong>
+            <br><br>
+            После Направления 4 при конверсии 0.5% (норма для бренд-трафика) — <strong>+110-175 тыс. ₽/мес</strong>. При конверсии 1% (потолок ниши) — <strong>+220-350 тыс. ₽/мес</strong>. Расширенные сниппеты добавляют ещё ~30% сверху за счёт более высокой доли переходов из выдачи.
+            <br><br>
+            <strong>Окупаемость единоразовых 120-190 тыс. ₽:</strong> при сегодняшней конверсии — никогда; после Направления 4 при 0.5% — 1-2 месяца; при 1% — меньше месяца.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЗАВИСИМОСТИ И СВЯЗКИ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border-l-4 border-amber-400 bg-amber-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-amber-800 uppercase tracking-wider mb-2">Требует</div>
+        <div class="font-semibold text-amber-900">Этап 0b — настроить Я.Метрику</div>
+        <div class="text-sm text-amber-800 mt-1">Без работающих целей и слоя данных о заказах нечем измерить «рост по брендовым запросам».</div>
+      </div>
+      <div class="border-l-4 border-indigo-400 bg-indigo-50 p-6 rounded-r-lg">
+        <div class="text-xs font-semibold text-indigo-800 uppercase tracking-wider mb-2">Усиливает</div>
+        <div class="font-semibold text-indigo-900">Направления 1, 4, 6</div>
+        <div class="text-sm text-indigo-800 mt-1">Продвижение для покупателей (1) — бренд-страницы получают приоритет в индексе. Конверсия и чекаут (4) — узнаваемость бренда снижает страх покупки + звёзды рейтинга в сниппетах. Авторитетность сайта (6) — главная страница + разметка Organization формируют доверие в медтематике и шанс на «карточку бренда» в Яндексе.</div>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div>
+      <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Что отслеживаем — целевые показатели</div>
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+            <tr>
+              <th class="text-left p-3 font-semibold">Метрика</th>
+              <th class="text-center p-3 font-semibold">Сейчас</th>
+              <th class="text-center p-3 font-semibold">+1 мес</th>
+              <th class="text-center p-3 font-semibold">+3 мес</th>
+              <th class="text-center p-3 font-semibold">+6 мес</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr><td class="p-3">Запросов в первой тройке Яндекса (из 148)</td><td class="text-center">4 (Я.Вебмастер)</td><td class="text-center">15-20</td><td class="text-center">40-60</td><td class="text-center font-bold text-emerald-700">80-100</td></tr>
+            <tr><td class="p-3">Заходов/мес с брендовых запросов</td><td class="text-center">~110</td><td class="text-center">250-400</td><td class="text-center">1-2 тыс.</td><td class="text-center font-bold text-emerald-700">5-8 тыс.</td></tr>
+            <tr><td class="p-3">Место по «интекс официальный сайт»</td><td class="text-center">4 (за Intex Recreation)</td><td class="text-center">3</td><td class="text-center">2</td><td class="text-center font-bold text-emerald-700">1</td></tr>
+            <tr><td class="p-3">Среднее место в выдаче (по 11 видимым)</td><td class="text-center">~5</td><td class="text-center">3-4</td><td class="text-center">2-3</td><td class="text-center font-bold text-emerald-700">1-2</td></tr>
+            <tr><td class="p-3">Доля переходов из выдачи (рост от расш. сниппетов)</td><td class="text-center">базовая</td><td class="text-center">+10-15%</td><td class="text-center">+20-30%</td><td class="text-center font-bold text-emerald-700">+30-40%</td></tr>
+            <tr><td class="p-3 text-xs text-slate-500 italic" colspan="5">❌ НЕ измеряем рост по голому «интекс» — слишком много запросов про бассейны Intex Recreation (90% — не наш бренд)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="flex gap-3 pt-4">
+      <button class="px-6 py-3 bg-rose-600 text-white rounded-lg font-semibold hover:bg-rose-700">Обсудить этап</button>
+      <button class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold hover:bg-slate-50">Скачать полный список 148 запросов</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Подсказка ниже -->
+<div class="bg-slate-100 py-4">
+  <div class="max-w-6xl mx-auto px-8 text-sm text-slate-500">
+    <strong>Прототип Этапа 0a с реальными данными.</strong> Я.Вордстат — прямая выгрузка 21 мая 2026 (1 200 запросов, отфильтрован медицинский кластер). Я.Вебмастер — за неделю 13–19 мая 2026. Выдача Яндекса проверена вручную в регионе «Москва» 21 мая 2026.
+  </div>
+</div>
+
+<script>
+// DONUT — Что ищут по слову «интекс»
+new ApexCharts(document.querySelector('#omonymyDonut'), {
+  chart: { type: 'donut', height: 300, toolbar: { show: false } },
+  series: [16404, 126284, 156045],
+  labels: ['Медицинский Интекс (148 запросов)', 'Intex Recreation (бассейны/матрасы, 460 запросов)', 'Неоднозначные («интекс», «купить», «офиц. сайт», 592 запроса)'],
+  colors: ['#10b981', '#ec4899', '#94a3b8'],
+  legend: { position: 'bottom', fontSize: '11px' },
+  plotOptions: {
+    pie: {
+      donut: {
+        size: '55%',
+        labels: {
+          show: true,
+          total: { show: true, label: 'Всего/мес', formatter: () => '298 733' }
+        }
+      }
+    }
+  },
+  dataLabels: { formatter: v => v.toFixed(0) + '%' }
+}).render();
+
+// BAR — Топ-15 двусоставных запросов
+new ApexCharts(document.querySelector('#topQueriesBar'), {
+  chart: { type: 'bar', height: 380, toolbar: { show: false } },
+  series: [{
+    name: 'Wordstat/мес',
+    data: [
+      { x: 'бинт интекс', y: 1473 },
+      { x: 'интекс компрессионные', y: 1227 },
+      { x: 'интекс чулки', y: 1073 },
+      { x: 'бинт эластичный интекс', y: 973 },
+      { x: 'компрессионные чулки интекс', y: 593 },
+      { x: 'бинт трубчатый интекс', y: 486 },
+      { x: 'интекс бинт эластичный трубчатый', y: 355 },
+      { x: 'бандаж интекс', y: 334 },
+      { x: 'чулки интекс 1 класс', y: 299 },
+      { x: 'пояс интекс', y: 296 },
+      { x: 'бинт интекс лайт', y: 261 },
+      { x: 'гольфы интекс', y: 259 },
+      { x: 'чулки интекс 2 класс', y: 239 },
+      { x: 'чулки интекс элеганс', y: 227 },
+      { x: 'чулки интекс компрессионные 1', y: 224 }
+    ]
+  }],
+  plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '80%' } },
+  colors: ['#0891b2'],
+  dataLabels: {
+    enabled: true,
+    formatter: v => v.toLocaleString('ru-RU'),
+    offsetX: 30,
+    style: { fontSize: '11px', colors: ['#475569'] }
+  },
+  xaxis: {
+    labels: { formatter: v => v.toLocaleString('ru-RU') }
+  },
+  grid: { borderColor: '#e2e8f0' }
+}).render();
+
+// ПРОГНОЗ visits/мес из бренд-поиска (range area)
+new ApexCharts(document.querySelector('#brandGrowthChart'), {
+  chart: { type: 'rangeArea', height: 320, toolbar: { show: false } },
+  series: [
+    {
+      name: 'Диапазон прогноза',
+      type: 'rangeArea',
+      data: [
+        { x: 'Сейчас', y: [110, 110] },
+        { x: '+1 мес', y: [250, 400] },
+        { x: '+2 мес', y: [600, 1000] },
+        { x: '+3 мес', y: [1000, 2000] },
+        { x: '+4 мес', y: [2000, 4000] },
+        { x: '+6 мес', y: [5000, 8000] }
+      ]
+    },
+    {
+      name: 'Средняя оценка',
+      type: 'line',
+      data: [
+        { x: 'Сейчас', y: 110 },
+        { x: '+1 мес', y: 325 },
+        { x: '+2 мес', y: 800 },
+        { x: '+3 мес', y: 1500 },
+        { x: '+4 мес', y: 3000 },
+        { x: '+6 мес', y: 6500 }
+      ]
+    }
+  ],
+  stroke: { curve: 'smooth', width: [0, 3] },
+  colors: ['#f59e0b', '#dc2626'],
+  fill: { opacity: [0.25, 1] },
+  markers: { size: [0, 6], strokeWidth: 2, strokeColors: '#fff', colors: ['#f59e0b', '#dc2626'] },
+  xaxis: { categories: ['Сейчас', '+1 мес', '+2 мес', '+3 мес', '+4 мес', '+6 мес'] },
+  yaxis: {
+    title: { text: 'Заходов / мес с брендовых запросов' },
+    labels: { formatter: v => v.toLocaleString('ru-RU') }
+  },
+  grid: { borderColor: '#e2e8f0' },
+  legend: { position: 'top' },
+  tooltip: { y: { formatter: v => v.toLocaleString('ru-RU') } },
+  annotations: {
+    points: [{
+      x: 'Сейчас', y: 110,
+      marker: { size: 8, fillColor: '#94a3b8', strokeColor: '#fff', strokeWidth: 2 },
+      label: { text: 'Сейчас ~110 заходов/мес по 11 запросам, где сайт виден', borderColor: '#94a3b8', style: { background: '#f1f5f9', color: '#475569', fontSize: '11px' }, offsetY: -8 }
+    }, {
+      x: '+6 мес', y: 6500,
+      marker: { size: 8, fillColor: '#dc2626', strokeColor: '#fff', strokeWidth: 2 },
+      label: { text: '5-8 тыс. заходов/мес — 1-е место по 50-70% из 148 запросов', borderColor: '#dc2626', style: { background: '#fef2f2', color: '#991b1b', fontSize: '11px' }, offsetY: -8 }
+    }]
+  }
+}).render();
+</script>
+
+</Base>
