@@ -292,10 +292,10 @@ import Base from '../layouts/Base.astro';
             <div class="text-sm font-bold leading-tight">Реклама</div>
             <div class="switch off"></div>
           </div>
-          <div class="text-[10px] text-slate-500 mt-2">Эффект после конверсии. Клики оплачиваются Яндексу.</div>
+          <div class="text-[10px] text-slate-500 mt-2">VK Реклама + Я.Промостраницы + Я.Директ. Клики оплачиваются площадкам.</div>
           <div class="text-[10px] mt-1.5 leading-snug">
             <div><span class="text-sky-700 font-semibold">Работа:</span> <span class="text-slate-700">30-50k/мес</span></div>
-            <div><span class="text-amber-700 font-semibold">Клики:</span> <span class="text-slate-700">20-200k/мес</span></div>
+            <div><span class="text-amber-700 font-semibold">Реклама:</span> <span class="text-slate-700">20-200k/мес</span> <span class="text-slate-400">(+3% госсбор)</span></div>
           </div>
         </div>
 
@@ -307,7 +307,7 @@ import Base from '../layouts/Base.astro';
           <div class="text-[10px] text-slate-500 mt-2">контент + AI-разметка + врач-эксперт</div>
           <div class="text-[10px] mt-1.5 leading-snug">
             <div><span class="text-sky-700 font-semibold">Работа:</span> <span class="text-slate-700">100k/мес</span></div>
-            <div><span class="text-amber-700 font-semibold">Врач + публикации:</span> <span class="text-slate-700">40-60k/мес</span></div>
+            <div><span class="text-amber-700 font-semibold">Врач + публикации:</span> <span class="text-slate-700">40-70k/мес</span></div>
           </div>
         </div>
       </div>
@@ -349,7 +349,7 @@ import Base from '../layouts/Base.astro';
           <div class="text-[10px] text-slate-500 mt-2">+40% повторных, +15% средний чек</div>
           <div class="text-[10px] mt-1.5 leading-snug">
             <div><span class="text-orange-700 font-semibold">Работа:</span> <span class="text-slate-700">50-80k/мес</span></div>
-            <div><span class="text-amber-700 font-semibold">Сервисы:</span> <span class="text-slate-700">10-15k/мес</span> <span class="text-slate-400">(unisender + домен)</span></div>
+            <div><span class="text-amber-700 font-semibold">Сервисы:</span> <span class="text-slate-700">4-8k/мес</span> <span class="text-slate-400">(Unisender + домен + почта)</span></div>
           </div>
         </div>
 
@@ -361,7 +361,7 @@ import Base from '../layouts/Base.astro';
           <div class="text-[10px] text-slate-500 mt-2">amoCRM, /b2b/ лендинг, Я.Директ опт, B2B-каталоги</div>
           <div class="text-[10px] mt-1.5 leading-snug">
             <div><span class="text-orange-700 font-semibold">Работа:</span> <span class="text-slate-700">90k разово + 80k/мес</span></div>
-            <div><span class="text-amber-700 font-semibold">Сервисы:</span> <span class="text-slate-700">15-55k/мес</span> <span class="text-slate-400">(amoCRM + Я.Директ клики)</span></div>
+            <div><span class="text-amber-700 font-semibold">Сервисы:</span> <span class="text-slate-700">16-46k/мес</span> <span class="text-slate-400">(каталоги + amoCRM + Я.Директ)</span></div>
           </div>
         </div>
 
@@ -452,7 +452,7 @@ import Base from '../layouts/Base.astro';
   <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
     <div class="bg-white rounded-xl border border-slate-200 p-5">
       <div class="text-xs font-bold uppercase text-slate-500 mb-2">Откуда цифры</div>
-      <div class="text-sm text-slate-700">База: 43 тыс. заходов/мес (Я.Метрика), 171 заказ/год (БД сайта), конверсия 0.03%, средний чек 4 400 ₽. Эффекты направлений — медиана из прогноза плана v2.</div>
+      <div class="text-sm text-slate-700">База: 43 тыс. заходов/мес (Я.Метрика), 171 заказ/год (БД сайта), средний чек 3 500 ₽ (БД), CR раздела /shop/ ~1.3% (Я.Метрика). Конверсия считается по каждому источнику отдельно. Эффекты направлений — медиана из прогноза плана v2.</div>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-5">
       <div class="text-xs font-bold uppercase text-slate-500 mb-2">Что не учтено</div>
@@ -548,8 +548,8 @@ function calculate(active) {
       cr: cr(0.002, 0.008) });
   }
 
-  // 3 Реклама: +3-5k при умеренном бюджете 80-200k клики (CPC 50-80 ₽ × 200k = ~3 тыс. visits)
-  // Для 20-40k visits нужен бюджет 1-3 млн ₽/мес — это уже отдельный сценарий
+  // 3 Реклама: +3-5k visits при бюджете 80-200k. Микс: Я.Директ Поиск 70-150₽ (осн. бюджет, горячий intent),
+  // VK/Промостраницы 15-40₽ (вспом.). Blended ~50-90₽ → 200k ≈ 2,5-4 тыс. кликов. Потолок ниши ~25-60 тыс. кликов/мес.
   if (has('3')) {
     segments.push({ name: '3 Реклама', visits: 4000 * r('3'),
       cr: cr(0.0015, 0.007) });
@@ -602,8 +602,8 @@ function calculate(active) {
   if (has('3')) {
     const k3 = r('3');
     const cro = r('4');
-    workMonthly += 50000 * k3;                   // ведение Я.Директ + Google Ads
-    externalMonthly += (20000 + 180000 * cro) * k3; // 20k клики стартово → 200k с CRO
+    workMonthly += 50000 * k3;                   // ведение VK Реклама + Я.Промостраницы + Я.Директ
+    externalMonthly += (20000 + 180000 * cro) * k3; // 20k стартово → 200k с CRO (вкл. ~3% госсбор, заложен площадками)
   }
 
   // 4 CRO: высокий первые 3-4 мес, потом снижается
@@ -617,13 +617,13 @@ function calculate(active) {
   if (has('6')) {
     const k6 = r('6');
     workMonthly += 100000;                       // контент + AI-оптимизация
-    externalMonthly += 60000 * k6;               // 1 врач 25k + 1-2 публикации 35k
+    externalMonthly += 70000 * k6;               // врач-ретейнер 25-35k + 1-2 публикации 35-50k (40-70k: тест→устойчивый)
   }
 
   // 7 Retention: email-маркетинг + сервисы
   if (has('7')) {
     workMonthly += 60000;                        // email + автоматизация
-    externalMonthly += 15000;                    // unisender + домен
+    externalMonthly += 7000;                     // Unisender (база 5-20k = 3,4-5,6k) + домен + почта
   }
 
   // 2 Digital B2B: лендинг разово + ведение + клики + amoCRM подписка
@@ -631,7 +631,7 @@ function calculate(active) {
     const k2 = r('2');
     workOneTime += 90000;                        // лендинг + amoCRM настройка
     workMonthly += 80000;                        // ведение Я.Директ B2B + B2B-SEO
-    externalMonthly += (15000 + 40000 * k2);     // amoCRM 10-15k + клики 0-40k
+    externalMonthly += (16000 + 30000 * k2);     // B2B-каталоги ~15k (Pulscen+Supl.biz) + amoCRM ~1,5k + Я.Директ клики 0-30k
   }
 
   // Обратная совместимость для UI и render()
