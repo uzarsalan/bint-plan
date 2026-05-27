@@ -283,7 +283,7 @@ import Base from '../layouts/Base.astro';
             <div class="text-sm font-bold leading-tight">SEO для покупателей</div>
             <div class="switch off"></div>
           </div>
-          <div class="text-[10px] text-slate-500 mt-2">+ до 70 тыс. заходов/мес за 12 мес</div>
+          <div class="text-[10px] text-slate-500 mt-2">+ до 20 тыс. заходов/мес за 12 мес <span class="text-slate-400">(потолок 50-70k — горизонт 2-3 года)</span></div>
           <div class="text-[10px] mt-1.5 leading-snug"><span class="text-sky-700 font-semibold">Работа:</span> <span class="text-slate-700">120-180k/мес</span></div>
         </div>
 
@@ -299,7 +299,7 @@ import Base from '../layouts/Base.astro';
           </div>
         </div>
 
-        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="6">
+        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="5">
           <div class="flex items-start justify-between gap-2">
             <div class="text-sm font-bold leading-tight">Авторитетность + AI-поиск</div>
             <div class="switch off"></div>
@@ -341,7 +341,7 @@ import Base from '../layouts/Base.astro';
           <div class="text-[10px] text-slate-500">повторные и оптовые</div>
         </div>
 
-        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="7">
+        <div class="node off bg-white rounded-xl border-2 border-slate-300 p-3" data-id="6">
           <div class="flex items-start justify-between gap-2">
             <div class="text-sm font-bold leading-tight">Повторные продажи + рассылки</div>
             <div class="switch off"></div>
@@ -456,7 +456,7 @@ import Base from '../layouts/Base.astro';
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-5">
       <div class="text-xs font-bold uppercase text-slate-500 mb-2">Что не учтено</div>
-      <div class="text-sm text-slate-700">Сезонность · временной лаг SEO (6-12 мес до выхода в топ) · риски Core Updates без Направления 6 · цикл B2B-сделки 1-3 мес.</div>
+      <div class="text-sm text-slate-700">Сезонность · временной лаг SEO (6-12 мес до выхода в топ) · риски Core Updates без Направления 5 · цикл B2B-сделки 1-3 мес.</div>
     </div>
     <div class="bg-white rounded-xl border border-slate-200 p-5">
       <div class="text-xs font-bold uppercase text-slate-500 mb-2">Пресеты</div>
@@ -473,8 +473,8 @@ import Base from '../layouts/Base.astro';
 const PRESETS = {
   none:    [],
   minimal: ['0a','0b','1','4'],
-  basic:   ['0a','0b','1','3','4','6','7'],
-  full:    ['0a','0b','1','2','3','4','6','7']
+  basic:   ['0a','0b','1','3','4','5','6'],
+  full:    ['0a','0b','1','2','3','4','5','6']
 };
 
 // Профиль выхода каждого направления на полную мощность (1 = 100% эффект)
@@ -486,8 +486,8 @@ const RAMP = {
   '2':          { 0: 0.1,  3: 0.3,  6: 0.6,  12: 1.0 },  // B2B цикл 1-3 мес
   '3':          { 0: 0.2,  3: 0.8,  6: 1.0,  12: 1.0 },  // реклама — быстрый эффект
   '4':          { 0: 0,    3: 0.5,  6: 0.9,  12: 1.0 },  // CRO — несколько A/B-итераций
-  '6':          { 0: 0,    3: 0.15, 6: 0.4,  12: 1.0 },  // E-E-A-T + AI — медленный
-  '7':          { 0: 0,    3: 0.3,  6: 0.7,  12: 1.0 }   // retention — нужна накопленная база
+  '5':          { 0: 0,    3: 0.15, 6: 0.4,  12: 1.0 },  // E-E-A-T + AI — медленный
+  '6':          { 0: 0,    3: 0.3,  6: 0.7,  12: 1.0 }   // retention — нужна накопленная база
 };
 
 let currentHorizon = 12;
@@ -524,7 +524,7 @@ function calculate(active) {
   const segments = [];
 
   // Базовые сегменты — есть всегда (калибровка под факт 14 заказов/мес)
-  // Блог: 41k visits × 1% переход в /shop/ × 1.3% CR = 0.013% от visits. С CRO: 4% × 2.5% = 0.1%
+  // Блог: 41k visits × ~1% переход в /shop/ × ~1.3% CR ≈ 0.013% от visits. С CRO (перелинковка + норма /shop/): ~0.1%
   segments.push({ name: 'Блог', visits: 41000,
     cr: cr(0.00013, 0.0010) });
   // Брендовый сейчас (~110 visits) — горячая аудитория уже сегодня
@@ -532,33 +532,33 @@ function calculate(active) {
     cr: cr(0.013, 0.025) });
   // Прямые / закладки / бренд-набор
   segments.push({ name: 'Прямые', visits: 1900,
-    cr: cr(0.004, 0.022) });
+    cr: cr(0.004, 0.020) });
 
   // === Эффекты направлений (visits * ramp) ===
 
-  // 0a: +6500 брендовых заходов, тёплая аудитория (попадают в /shop/ напрямую)
+  // 0a: +4000 брендовых заходов за 12 мес (потолок бренд-запросов ~4-7k), тёплая аудитория → /shop/ напрямую
   if (has('0a')) {
-    segments.push({ name: '0a Бренд', visits: 6500 * r('0a'),
-      cr: cr(0.008, 0.022) });
+    segments.push({ name: '0a Бренд', visits: 4000 * r('0a'),
+      cr: cr(0.008, 0.020) });
   }
 
-  // 1 SEO коммерческий: +70k visits на hub-страницы (попадают в /shop/ сразу)
+  // 1 SEO коммерческий: +20k visits/мес за 12 мес (реалистичный выход для ниши; потолок 50-70k — горизонт 2-3 года)
   if (has('1')) {
-    segments.push({ name: '1 SEO коммерч.', visits: 70000 * r('1'),
-      cr: cr(0.002, 0.008) });
+    segments.push({ name: '1 SEO коммерч.', visits: 20000 * r('1'),
+      cr: cr(0.002, 0.009) });
   }
 
   // 3 Реклама: +3-5k visits при бюджете 80-200k. Микс: Я.Директ Поиск 70-150₽ (осн. бюджет, горячий intent),
   // VK/Промостраницы 15-40₽ (вспом.). Blended ~50-90₽ → 200k ≈ 2,5-4 тыс. кликов. Потолок ниши ~25-60 тыс. кликов/мес.
   if (has('3')) {
     segments.push({ name: '3 Реклама', visits: 4000 * r('3'),
-      cr: cr(0.0015, 0.007) });
+      cr: cr(0.0015, 0.008) });
   }
 
-  // 6 AI-поиск + E-E-A-T: +6k тёплых, осознанный выбор
-  if (has('6')) {
-    segments.push({ name: '6 AI-поиск', visits: 6000 * r('6'),
-      cr: cr(0.005, 0.015) });
+  // 5 AI-поиск + E-E-A-T: +3.5k тёплых за 12 мес, осознанный выбор (потолок ~5-8k)
+  if (has('5')) {
+    segments.push({ name: '5 AI-поиск', visits: 3500 * r('5'),
+      cr: cr(0.005, 0.013) });
   }
 
 
@@ -568,11 +568,11 @@ function calculate(active) {
   let aov = 3500; // факт из БД за 12 мес
   let retentionMul = 1.0;
 
-  // 7 Retention: +40% повторных + +15% средний чек, рампится
-  if (has('7')) {
-    const k7 = r('7');
-    retentionMul = 1.0 + 0.4 * k7;
-    aov *= (1 + 0.15 * k7);
+  // 6 Retention: +40% повторных + +15% средний чек, рампится
+  if (has('6')) {
+    const k6 = r('6');
+    retentionMul = 1.0 + 0.4 * k6;
+    aov *= (1 + 0.08 * k6);
   }
 
   // ============ B2B (только digital-канал) ============
@@ -613,15 +613,15 @@ function calculate(active) {
   }
 
 
-  // 6 E-E-A-T: моя работа (контент, AI, разметка) + врач + PR-публикации
-  if (has('6')) {
-    const k6 = r('6');
+  // 5 E-E-A-T: моя работа (контент, AI, разметка) + врач + PR-публикации
+  if (has('5')) {
+    const k5 = r('5');
     workMonthly += 100000;                       // контент + AI-оптимизация
-    externalMonthly += 70000 * k6;               // врач-ретейнер 25-35k + 1-2 публикации 35-50k (40-70k: тест→устойчивый)
+    externalMonthly += 70000 * k5;               // врач-ретейнер 25-35k + 1-2 публикации 35-50k (40-70k: тест→устойчивый)
   }
 
-  // 7 Retention: email-маркетинг + сервисы
-  if (has('7')) {
+  // 6 Retention: email-маркетинг + сервисы
+  if (has('6')) {
     workMonthly += 60000;                        // email + автоматизация
     externalMonthly += 7000;                     // Unisender (база 5-20k = 3,4-5,6k) + домен + почта
   }
@@ -732,8 +732,8 @@ const NODE_HREF = {
   '2':  '/2-b2b',
   '3':  '/3-ads',
   '4':  '/4-cro',
-  '6':  '/6-eeat',
-  '7':  '/7-retention'
+  '5':  '/5-eeat',
+  '6':  '/6-retention'
 };
 
 // Превращаем каждую карточку в гиперссылку и добавляем hint при наведении
@@ -888,17 +888,17 @@ const SEGMENT_COLORS = ['#818cf8', '#38bdf8', '#a855f7', '#fb923c'];
 // Какие узлы каждого сегмента «питают» поток (для расчёта плотности частиц)
 const SEGMENT_NODES = [
   ['0a','0b'],
-  ['1','3','6'],
+  ['1','3','5'],
   ['4'],
-  ['7','2']
+  ['6','2']
 ];
 
 // Соответствие узла → цвет (по колонке)
 const NODE_COLOR = {
   '0a':'#818cf8','0b':'#818cf8','compliance':'#fbbf24',
-  '1':'#38bdf8','3':'#38bdf8','6':'#38bdf8',
+  '1':'#38bdf8','3':'#38bdf8','5':'#38bdf8',
   '4':'#a855f7',
-  '7':'#fb923c','2':'#fb923c'
+  '6':'#fb923c','2':'#fb923c'
 };
 
 function drawArrows() {

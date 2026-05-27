@@ -45,9 +45,9 @@ import Base from '../layouts/Base.astro';
         <div class="text-xs text-slate-500 mt-1">точных запросов/мес по основным категориям</div>
       </div>
       <div class="bg-white rounded-xl border border-emerald-300 p-5">
-        <div class="text-xs text-emerald-700 uppercase">Цель через 12 мес</div>
-        <div class="text-3xl font-bold mt-1 text-emerald-700">50-70k</div>
-        <div class="text-xs text-slate-500 mt-1">заходов/мес в /shop/</div>
+        <div class="text-xs text-emerald-700 uppercase">Реалистично за 12 мес</div>
+        <div class="text-3xl font-bold mt-1 text-emerald-700">~20k</div>
+        <div class="text-xs text-slate-500 mt-1">заходов/мес в /shop/ <span class="text-slate-400">(потолок 50-70k — 2-3 года)</span></div>
       </div>
     </div>
 
@@ -315,7 +315,7 @@ import Base from '../layouts/Base.astro';
           </div>
           <div class="flex-1 border-l border-slate-200 pl-4">
             <div class="font-bold mb-1">Оптимизация и масштабирование</div>
-            <div class="text-sm text-slate-700">Дозагрузка до 50-60 страниц по длинному хвосту. Анализ позиций — где сайт встал, где нет. Усиление контента на «застрявших» страницах. Кросс-перелинковка между hub'ами. Внешние ссылки на сильные hub-страницы (через PR из Направления 6).</div>
+            <div class="text-sm text-slate-700">Дозагрузка до 50-60 страниц по длинному хвосту. Анализ позиций — где сайт встал, где нет. Усиление контента на «застрявших» страницах. Кросс-перелинковка между hub'ами. Внешние ссылки на сильные hub-страницы (через PR из Направления 5).</div>
           </div>
         </div>
       </div>
@@ -326,7 +326,7 @@ import Base from '../layouts/Base.astro';
       <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Прогноз — сколько заходов получим</div>
       <div class="bg-white rounded-2xl border border-slate-200 p-6">
         <div id="growthChart"></div>
-        <p class="text-xs text-slate-500 mt-4">SEO — самый долгий канал. <strong>1-2 мес</strong> — индексация, ничего почти не видно. <strong>3-6 мес</strong> — первые позиции по длинному хвосту, 5-15 тыс. заходов/мес. <strong>9-12 мес</strong> — устойчивые позиции по топ-категориям, выход на потолок 50-70 тыс./мес.</p>
+        <p class="text-xs text-slate-500 mt-4">SEO — самый долгий канал. <strong>1-2 мес</strong> — индексация, ничего почти не видно. <strong>3-6 мес</strong> — первые позиции по длинному хвосту, 6-11 тыс. заходов/мес. <strong>9-12 мес</strong> — устойчивые позиции по топ-категориям, ~15-20 тыс./мес (потолок 50-70 тыс. — горизонт 2-3 года).</p>
       </div>
     </div>
 
@@ -359,12 +359,12 @@ import Base from '../layouts/Base.astro';
         <div class="flex-1">
           <h3 class="text-xl font-bold text-emerald-900">Окупаемость</h3>
           <p class="mt-2 text-emerald-800 leading-relaxed">
-            <strong>Потолок через 12 мес:</strong> 50-70 тыс. коммерческих заходов в месяц.
-            При конверсии 0.5% (после починки чекаута в Направлении 4) × средний чек 3 500 ₽ = <strong>+875 тыс. — 1.2 млн ₽/мес</strong> розничной выручки.
+            <strong>Реалистично за 12 мес:</strong> ~20 тыс. коммерческих заходов в месяц (потолок 50-70 тыс. — горизонт 2-3 года; ёмкость ниши ограничена).
+            При конверсии после починки чекаута ~0.9% × средний чек 3 500 ₽ = <strong>+630 тыс. ₽/мес</strong> розничной выручки (так и заложено в дашборде). Потолок 50-70 тыс. → +1.5-2.2 млн ₽/мес на горизонте 2-3 года.
             <br><br>
-            <strong>Без Направления 4</strong> (текущая конверсия 0.03%) — даже 70 тыс. заходов дадут только +75 тыс. ₽/мес. <strong>Поэтому SEO эффективен только в связке с чекаутом.</strong>
+            <strong>Без Направления 4</strong> (текущая конверсия 0.03%) — даже 20 тыс. заходов дадут лишь ~25 тыс. ₽/мес. <strong>Поэтому SEO эффективен только в связке с чекаутом.</strong>
             <br><br>
-            <strong>Окупаемость:</strong> при бюджете 150 тыс./мес × 12 мес = 1.8 млн вложений → окупается на 10-12 мес работы при CR 0.5%.
+            <strong>Окупаемость:</strong> при бюджете 150 тыс./мес и выходе на +630 тыс. ₽/мес розницы — вложения окупаются в пределах года работы (с учётом лага SEO 6-12 мес).
           </p>
         </div>
       </div>
@@ -383,7 +383,7 @@ import Base from '../layouts/Base.astro';
         <div class="text-xs font-semibold text-indigo-800 uppercase tracking-wider mb-2">Усиливает / Усиливается</div>
         <div class="font-semibold text-indigo-900">+ Этап 0a (брендовая защита)</div>
         <div class="text-sm text-indigo-800 mt-1">«Купить компрессионные чулки Интекс» — отдельный сегмент. После 0a hub-страницы получают бренд-приоритет.</div>
-        <div class="font-semibold text-indigo-900 mt-3">+ Направление 6 (E-E-A-T)</div>
+        <div class="font-semibold text-indigo-900 mt-3">+ Направление 5 (E-E-A-T)</div>
         <div class="text-sm text-indigo-800 mt-1">Authority бренда — главный сигнал ранжирования в YMYL (медтрикотаж). Без 6 любой Core Update Яндекса просядет позиции на 20-40%.</div>
       </div>
     </div>
@@ -404,7 +404,7 @@ import Base from '../layouts/Base.astro';
           </thead>
           <tbody class="divide-y divide-slate-100">
             <tr><td class="p-3">Hub-страниц создано</td><td class="text-center">0</td><td class="text-center">15</td><td class="text-center">40</td><td class="text-center font-bold text-emerald-700">50-60</td></tr>
-            <tr><td class="p-3">Заходов в /shop/ в месяц</td><td class="text-center">~600</td><td class="text-center">2-5 тыс.</td><td class="text-center">15-25 тыс.</td><td class="text-center font-bold text-emerald-700">50-70 тыс.</td></tr>
+            <tr><td class="p-3">Заходов в /shop/ в месяц</td><td class="text-center">~600</td><td class="text-center">2-4 тыс.</td><td class="text-center">8-12 тыс.</td><td class="text-center font-bold text-emerald-700">15-20 тыс.</td></tr>
             <tr><td class="p-3">Коммерческих запросов в топ-10</td><td class="text-center">0</td><td class="text-center">10-20</td><td class="text-center">50-80</td><td class="text-center font-bold text-emerald-700">150-200</td></tr>
             <tr><td class="p-3">Средняя позиция по hub-семантике</td><td class="text-center">&gt; 50</td><td class="text-center">15-25</td><td class="text-center">7-12</td><td class="text-center font-bold text-emerald-700">3-7</td></tr>
             <tr><td class="p-3">Заказов из /shop/ органики (после Н4)</td><td class="text-center">~5</td><td class="text-center">15-30</td><td class="text-center">80-150</td><td class="text-center font-bold text-emerald-700">250-400</td></tr>
@@ -440,7 +440,7 @@ new ApexCharts(document.querySelector('#competitorsBar'), {
       { x: 'medi-salon.ru', y: 236000, fillColor: '#fb923c' },
       { x: 'ortix.ru', y: 170000, fillColor: '#fbbf24' },
       { x: 'bint.ru (сейчас)', y: 600, fillColor: '#94a3b8' },
-      { x: 'bint.ru (цель 12 мес)', y: 60000, fillColor: '#10b981' }
+      { x: 'bint.ru (12 мес)', y: 20000, fillColor: '#10b981' }
     ]
   }],
   plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '70%' } },
@@ -466,11 +466,11 @@ new ApexCharts(document.querySelector('#growthChart'), {
       data: [
         { x: 'Сейчас', y: [600, 600] },
         { x: '+1 мес', y: [600, 1200] },
-        { x: '+2 мес', y: [1500, 3000] },
-        { x: '+3 мес', y: [2000, 5000] },
-        { x: '+6 мес', y: [15000, 25000] },
-        { x: '+9 мес', y: [30000, 50000] },
-        { x: '+12 мес', y: [50000, 70000] }
+        { x: '+2 мес', y: [1200, 2500] },
+        { x: '+3 мес', y: [2000, 4000] },
+        { x: '+6 мес', y: [6000, 11000] },
+        { x: '+9 мес', y: [10000, 16000] },
+        { x: '+12 мес', y: [15000, 22000] }
       ]
     },
     {
@@ -479,11 +479,11 @@ new ApexCharts(document.querySelector('#growthChart'), {
       data: [
         { x: 'Сейчас', y: 600 },
         { x: '+1 мес', y: 900 },
-        { x: '+2 мес', y: 2250 },
-        { x: '+3 мес', y: 3500 },
-        { x: '+6 мес', y: 20000 },
-        { x: '+9 мес', y: 40000 },
-        { x: '+12 мес', y: 60000 }
+        { x: '+2 мес', y: 1800 },
+        { x: '+3 мес', y: 3000 },
+        { x: '+6 мес', y: 8500 },
+        { x: '+9 мес', y: 13000 },
+        { x: '+12 мес', y: 18500 }
       ]
     }
   ],
