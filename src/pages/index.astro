@@ -295,7 +295,7 @@ import Base from '../layouts/Base.astro';
           <div class="text-[10px] text-slate-500 mt-2">VK Реклама + Я.Промостраницы + Я.Директ. Клики оплачиваются площадкам.</div>
           <div class="text-[10px] mt-1.5 leading-snug">
             <div><span class="text-sky-700 font-semibold">Работа:</span> <span class="text-slate-700">30-50k/мес</span></div>
-            <div><span class="text-amber-700 font-semibold">Реклама:</span> <span class="text-slate-700">20-200k/мес</span> <span class="text-slate-400">(+3% госсбор)</span></div>
+            <div><span class="text-amber-700 font-semibold">Реклама:</span> <span class="text-slate-700">20-80k/мес</span> <span class="text-slate-400">(тест, +3% госсбор)</span></div>
           </div>
         </div>
 
@@ -603,7 +603,7 @@ function calculate(active) {
     const k3 = r('3');
     const cro = r('4');
     workMonthly += 50000 * k3;                   // ведение VK Реклама + Я.Промостраницы + Я.Директ
-    externalMonthly += (20000 + 180000 * cro) * k3; // 20k стартово → 200k с CRO (вкл. ~3% госсбор, заложен площадками)
+    externalMonthly += (20000 + 60000 * cro) * k3; // 20k стартово → 80k с CRO — тестовый окупаемый бюджет (узкие кампании, отключение неокупаемого). Масштаб 200-400k — отдельный сценарий при доказанной окупаемости
   }
 
   // 4 CRO: высокий первые 3-4 мес, потом снижается
