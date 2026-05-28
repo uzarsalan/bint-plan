@@ -296,6 +296,7 @@ import Base from '../layouts/Base.astro';
           <div class="text-[10px] mt-1.5 leading-snug">
             <div><span class="text-sky-700 font-semibold">Работа:</span> <span class="text-slate-700">30-50k/мес</span></div>
             <div><span class="text-amber-700 font-semibold">Реклама:</span> <span class="text-slate-700">20-80k/мес</span> <span class="text-slate-400">(тест, +3% госсбор)</span></div>
+            <div><span class="text-amber-700 font-semibold">Коллтрекинг:</span> <span class="text-slate-700">~5k/мес</span> <span class="text-slate-400">(Callibri: звонки + email)</span></div>
           </div>
         </div>
 
@@ -361,7 +362,7 @@ import Base from '../layouts/Base.astro';
           <div class="text-[10px] text-slate-500 mt-2">amoCRM, /b2b/ лендинг, Я.Директ опт, B2B-каталоги</div>
           <div class="text-[10px] mt-1.5 leading-snug">
             <div><span class="text-orange-700 font-semibold">Работа:</span> <span class="text-slate-700">90k разово + 80k/мес</span></div>
-            <div><span class="text-amber-700 font-semibold">Сервисы:</span> <span class="text-slate-700">16-46k/мес</span> <span class="text-slate-400">(каталоги + amoCRM + Я.Директ)</span></div>
+            <div><span class="text-amber-700 font-semibold">Сервисы:</span> <span class="text-slate-700">8-38k/мес</span> <span class="text-slate-400">(Pulscen + amoCRM + Я.Директ)</span></div>
           </div>
         </div>
 
@@ -603,7 +604,8 @@ function calculate(active) {
     const k3 = r('3');
     const cro = r('4');
     workMonthly += 50000 * k3;                   // ведение VK Реклама + Я.Промостраницы + Я.Директ
-    externalMonthly += (20000 + 60000 * cro) * k3; // 20k стартово → 80k с CRO — тестовый окупаемый бюджет (узкие кампании, отключение неокупаемого). Масштаб 200-400k — отдельный сценарий при доказанной окупаемости
+    workOneTime += 10000;                        // настройка коллтрекинга + email-трекинга (Callibri), разово
+    externalMonthly += (20000 + 60000 * cro) * k3 + 5000; // клики 20-80k (тест, +3% госсбор) + Callibri коллтрекинг/email-трекинг ~5k/мес. Масштаб 200-400k — отдельный сценарий при доказанной окупаемости
   }
 
   // 4 CRO: высокий первые 3-4 мес, потом снижается
@@ -629,9 +631,9 @@ function calculate(active) {
   // 2 Digital B2B: лендинг разово + ведение + клики + amoCRM подписка
   if (has('2')) {
     const k2 = r('2');
-    workOneTime += 90000;                        // лендинг + amoCRM настройка
+    workOneTime += 90000 + 20000;                // лендинг + amoCRM настройка + размещение в каталогах и Я.Бизнес (карточки, YML-фид товаров, единый NAP)
     workMonthly += 80000;                        // ведение Я.Директ B2B + B2B-SEO
-    externalMonthly += (16000 + 30000 * k2);     // B2B-каталоги ~15k (Pulscen+Supl.biz) + amoCRM ~1,5k + Я.Директ клики 0-30k
+    externalMonthly += (8000 + 30000 * k2);      // Pulscen «Серебро» 74k/год (~6,2k/мес) + amoCRM ~1,5k + Я.Директ клики 0-30k. Supl.biz (15-30k/мес) и Я.Бизнес-приоритет — опции, не в базовом
   }
 
   // Обратная совместимость для UI и render()
